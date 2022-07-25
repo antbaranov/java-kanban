@@ -1,30 +1,45 @@
 public class TaskManager {
-    int taskId;
+    int id;
     HashMap<Integer, String> tasks;
 
     // Объявление конструктора
-    public TaskManager(int taskId, HashMap<Integer, String> tasks) {
-        this.taskId = taskId;
+    public TaskManager(int id, HashMap<Integer, String> tasks) {
+        this.id = id;
         this.tasks = tasks;
     }
 
-    // Метод создания всех типов задач
+    // Метод создания простой задачи
     public Task creatTask(String taskName, String taskDescription, String taskStatus) {
-        taskId++;
-        Task task = new Task(taskId, taskName, taskDescription, taskStatus)
+        HashMap<Integer, String> tasks;
+        id++;
+        Task task = new Task(id, taskName, taskDescription, taskStatus)
         tasks.put(taskId, task)
         return task;
+    }
+
+    // Метод создания подзадачи
+    public SubTask creatSubTask(String epicName, String epicDescription, String epicStatus) { // параметры изменить
+        HashMap<Integer, String> subTasks;
+        id++;
+        SubTask subTask = new SubTask(taskId, taskName, taskDescription, taskStatus)
+        subTasks.put(id, subTask)
+        return subTask;
     }
 
     // Метод создания Эпика
-    public Epic creatEpic(String taskName, String taskDescription, String taskStatus) {
-        taskId++;
+    public Epic creatEpic(String epicName, String epicDescription, String epicStatus) { // параметры изменить
+        HashMap<Integer, String> epics;
+        id++;
         Epic epic = new Epic(taskId, taskName, taskDescription, taskStatus)
-        tasks.put(taskId, task)
-        return task;
+        epics.put(id, epic)
+        return epic;
     }
 
 
+    // Метод обновления данных
+    public void updateTask(Task, task) {
+        task.put(task.getId(), task);
+    }
 
 
 } // скобка закрывает class TaskManager
