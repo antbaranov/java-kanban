@@ -1,28 +1,31 @@
-public class TaskManager {
-    int id;
-    HashMap<Integer, String> tasks;
+import java.util.HashMap;
 
-    // Объявление конструктора
-    public TaskManager(int id, HashMap<Integer, String> tasks) {
-        this.id = id;
-        this.tasks = tasks;
-    }
+public class TaskManager {
+
+
+
+
 
     // Метод создания простой задачи
-    public Task creatTask(String taskName, String taskDescription, String taskStatus) {
-        HashMap<Integer, String> tasks;
+    HashMap<Integer, Task> tasks;
+    public Task creatTask(String name, String description, String status) {
         id++;
-        Task task = new Task(id, taskName, taskDescription, taskStatus)
-        tasks.put(taskId, task)
+        Task task = new Task(name, description, status);
+        tasks.put(id, task);
         return task;
     }
 
+
+
+
+/*
+
     // Метод создания подзадачи
-    public SubTask creatSubTask(String epicName, String epicDescription, String epicStatus) { // параметры изменить
+    public SubTask creatSubTask(String subTaskName, String subTaskDescription, String subTaskStatus) { // параметры изменить
         HashMap<Integer, String> subTasks;
         id++;
-        SubTask subTask = new SubTask(taskId, taskName, taskDescription, taskStatus)
-        subTasks.put(id, subTask)
+        SubTask subTask = new SubTask(id, subTaskName, subTaskDescription, subTaskStatus);
+        subTasks.put(id, subTask);
         return subTask;
     }
 
@@ -30,16 +33,17 @@ public class TaskManager {
     public Epic creatEpic(String epicName, String epicDescription, String epicStatus) { // параметры изменить
         HashMap<Integer, String> epics;
         id++;
-        Epic epic = new Epic(taskId, taskName, taskDescription, taskStatus)
-        epics.put(id, epic)
+        Epic epic = new Epic(id, epicName, epicDescription, epicStatus, epicName);
+        epics.put(id, epic);
         return epic;
     }
+*/
 
 
     // Метод обновления данных
-    public void updateTask(Task, task) {
+    /*public void updateTask(Task, task) {
         task.put(task.getId(), task);
-    }
+    }*/
 
 
 } // скобка закрывает class TaskManager
