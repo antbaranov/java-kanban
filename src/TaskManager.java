@@ -7,7 +7,7 @@ public class TaskManager {
 
 
     // Метод создания простой задачи
-    HashMap<Integer, Task> tasks;
+    HashMap<Integer, Task> tasks = new HashMap<>();
     public Task creatTask(String name, String description, String status) {
         id++;
         Task task = new Task(id, name, description, status);
