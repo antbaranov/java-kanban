@@ -4,7 +4,6 @@ public class TaskManager {
     int id;
 
     // Метод создания простой задачи
-
     HashMap<Integer, Task> tasks = new HashMap<>();
     public Task creatTask(String name, String description, String status) {
         id++;
@@ -13,29 +12,14 @@ public class TaskManager {
         return task;
     }
 
-
-
-
-/*
-
     // Метод создания подзадачи
-    public SubTask creatSubTask(String subTaskName, String subTaskDescription, String subTaskStatus) { // параметры изменить
-        HashMap<Integer, String> subTasks;
+    HashMap<Integer, Task> subTasks = new HashMap<>();
+    public Task creatSubTask(String name, String description, String status) {
         id++;
-        SubTask subTask = new SubTask(id, subTaskName, subTaskDescription, subTaskStatus);
+        Task subTask = new Task(id, name, description, status);
         subTasks.put(id, subTask);
         return subTask;
     }
-
-    // Метод создания Эпика
-    public Epic creatEpic(String epicName, String epicDescription, String epicStatus) { // параметры изменить
-        HashMap<Integer, String> epics;
-        id++;
-        Epic epic = new Epic(id, epicName, epicDescription, epicStatus, epicName);
-        epics.put(id, epic);
-        return epic;
-    }
-*/
 
 
     // Метод обновления данных

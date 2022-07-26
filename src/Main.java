@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -16,6 +17,17 @@ public class Main {
         for (Task value : taskManager.tasks.values()) {
             System.out.println(value);
         }
+        System.out.println("Создание Подзадачи");
+        /*System.out.println("Введите название задачи");
+        String taskName = scanner.nextLine();
+        System.out.println("Введите описание задачи");
+        String taskDescription = scanner.nextLine();*/
+        taskManager.creatSubTask("1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW");
+        taskManager.creatSubTask("2 Наименование Подзадачи 2", "2 Описание Подзадачи 2", "NEW");
+        System.out.println(taskManager.subTasks);
+        for (Task value : taskManager.subTasks.values()) {
+            System.out.println(value);
+        }
+
     }
 }
-

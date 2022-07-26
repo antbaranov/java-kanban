@@ -9,10 +9,22 @@ public class Task {
     IN_PROGRESS — над задачей ведётся работа.
     DONE — задача выполнена */
 
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
     public Task(int id, String name, String description, String status) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
     }
+
+
 }
