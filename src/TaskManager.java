@@ -10,7 +10,7 @@ public class TaskManager {
     HashMap<Integer, Task> tasks;
     public Task creatTask(String name, String description, String status) {
         id++;
-        Task task = new Task(name, description, status);
+        Task task = new Task(id, name, description, status);
         tasks.put(id, task);
         return task;
     }
