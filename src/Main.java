@@ -6,11 +6,11 @@ public class Main {
         TaskManager taskManager = new TaskManager();
 
         System.out.println("Создание задачи");
-        System.out.println("Введите название задачи");
+        /*System.out.println("Введите название задачи");
         String taskName = scanner.nextLine();
         System.out.println("Введите описание задачи");
-        String taskDescription = scanner.nextLine();
-        taskManager.creatTask(taskName, taskDescription, "NEW");
+        String taskDescription = scanner.nextLine();*/
+        taskManager.creatTask("Наименование задачи", "Описание задачи", "NEW");
         System.out.println(taskManager.tasks);
     }
 }
