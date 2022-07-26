@@ -46,7 +46,7 @@ public class Manager {
 
     // Получение списка всех Эпиков
     public String printEpics() {
-        return "Список Эпиков: "  + epics;
+        return "Список Эпиков: " + epics;
     }
 
     // Удаление всех Задач
@@ -89,10 +89,23 @@ public class Manager {
         System.out.println("Обновление задачи. Список обновленных задач: " + tasks);
     }
 
-// Удаление Задачи по идентификатору
-public String deleteByIdTasks(int id) {
-    tasks.clear();
-    return "Задача по id удалена";
-}
+    // Удаление Задачи по идентификатору
+    public String deleteByIdTask(int id) {
+        tasks.remove(id);
+        return "Задача по id удалена!";
+    }
+
+    // Удаление Подзадачи по идентификатору
+    public String deleteByIdSubTask(int id) {
+        subTasks.remove(id);
+        return "Подзадача по id удалена!";
+    }
+
+    // Удаление Эпика по идентификатору
+    public String deleteByIdEpic(int id) {
+        epics.remove(id);
+        return "Эпик по id удален!";
+    }
+
 
 } // скобка закрывает class TaskManager

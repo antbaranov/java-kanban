@@ -26,5 +26,7 @@ public class Main {
         System.out.println(manager.getByIdTask(1));
 
      //   System.out.println(manager.updateTask(1, "Обновление Наименования Задачи", "Обновление Описание Задачи", "IN_PROGRESS"));
+
+     //   System.out.println(manager.deleteByIdTask(1));
     }
 }
