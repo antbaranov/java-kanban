@@ -26,7 +26,19 @@ public class Main {
         System.out.println(manager.getByIdTask(1));
 
      //   System.out.println(manager.updateTask(1, "Обновление Наименования Задачи", "Обновление Описание Задачи", "IN_PROGRESS"));
+        System.out.println("Какой Task обновить? ");
+       // int taskId = scanner.nextInt();
+        Task taskUpdate = new Task("Обновление Наименования Задачи", "Обновление Описание Задачи", "IN_PROGRESS");
+        taskUpdate.setId(1);
+        manager.updateTask(taskUpdate);
 
-     //   System.out.println(manager.deleteByIdTask(1));
+       /* System.out.println("Какой Task обновить? ");
+        int taskId = scanner.nextInt();
+        Task taskUpdate = new Task("Новая задача", "Описание новой задачи", "NEW");
+        taskUpdate.setId(taskId);
+        tasksManager.updateTask(taskUpdate);*/
+
+
+        //   System.out.println(manager.deleteByIdTask(1));
     }
 }
