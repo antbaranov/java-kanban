@@ -7,9 +7,10 @@ public class Main {
 
         System.out.println("Создание задачи");
         System.out.println("Введите название задачи");
-        /*String taskName = new scanner.nextline();
-        String taskDescription = new scanner.nextLine();*/
-        taskManager.creatTask("Переезд", "Описание переезда", "NEW");
+        String taskName = scanner.nextLine();
+        System.out.println("Введите описание задачи");
+        String taskDescription = scanner.nextLine();
+        taskManager.creatTask(taskName, taskDescription, "NEW");
         System.out.println(taskManager.tasks);
     }
 }
