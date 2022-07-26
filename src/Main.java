@@ -28,7 +28,7 @@ public class Main {
      //   System.out.println(manager.updateTask(1, "Обновление Наименования Задачи", "Обновление Описание Задачи", "IN_PROGRESS"));
         System.out.println("Какой Task обновить? ");
        // int taskId = scanner.nextInt();
-        Task taskUpdate = new Task("Обновление Наименования Задачи", "Обновление Описание Задачи", "IN_PROGRESS");
+        Task taskUpdate = new Task(1,"Обновление Наименования Задачи", "Обновление Описание Задачи", "IN_PROGRESS");
         taskUpdate.setId(1);
         manager.updateTask(taskUpdate);
 
