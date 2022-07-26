@@ -25,7 +25,15 @@ public class Main {
         taskManager.creatSubTask("1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW");
         taskManager.creatSubTask("2 Наименование Подзадачи 2", "2 Описание Подзадачи 2", "NEW");
         System.out.println(taskManager.subTasks);
-        for (Task value : taskManager.subTasks.values()) {
+        for (SubTask value : taskManager.subTasks.values()) {
+            System.out.println(value);
+        }
+
+        System.out.println("Создание Эпика");
+        taskManager.creatEpic("1 Наименование Эпик 1", "1 Описание Эпик 1", "NEW");
+        taskManager.creatEpic("2 Наименование Эпик 2", "2 Описание Эпик 2", "NEW");
+        System.out.println(taskManager.epics);
+        for (Epic value : taskManager.epics.values()) {
             System.out.println(value);
         }
 
