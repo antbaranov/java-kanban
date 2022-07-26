@@ -10,7 +10,11 @@ public class Main {
         String taskName = scanner.nextLine();
         System.out.println("Введите описание задачи");
         String taskDescription = scanner.nextLine();*/
-        taskManager.creatTask("Наименование задачи", "Описание задачи", "NEW");
+        taskManager.creatTask("1 Наименование задачи 1", "1 Описание задачи 1", "NEW");
+        taskManager.creatTask("2 Наименование задачи 2", "2 Описание задачи 2", "NEW");
         System.out.println(taskManager.tasks);
+        for (Task value : taskManager.tasks.values()) {
+            System.out.println(value);
+        }
     }
 }
