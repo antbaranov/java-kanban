@@ -1,14 +1,15 @@
 import java.util.HashMap;
 
 public class TaskManager {
-
-
+    int id;
 
 
 
     // Метод создания простой задачи
+
     HashMap<Integer, Task> tasks = new HashMap<>();
     public Task creatTask(String name, String description, String status) {
+
         id++;
         Task task = new Task(id, name, description, status);
         tasks.put(id, task);
