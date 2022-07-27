@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Manager {
@@ -13,11 +14,19 @@ public class Manager {
     }
 
     // Метод создания Подзадачи subTask
+
     private HashMap<Integer, SubTask> subTasks = new HashMap<>();
 
     public int creatSubTask(SubTask subTask) {
+        int epicId = subTask.getEpicId();
+        Epic epic = epics.get(epicId);
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
+        epic.setSubTaskIds(addSubTask(addSubTask(subTask.getId()););
+//        updateEpicStatus(epic);
+
+        System.out.println(epic.getSubTaskIds());
+
         return subTask.getId();
     }
 
