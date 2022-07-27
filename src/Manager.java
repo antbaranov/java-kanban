@@ -1,37 +1,39 @@
 import java.util.HashMap;
 
 public class Manager {
-    int id;
+    private int nextId = 1; // Объявление, инициализация начального идентификатора
 
     // Метод создания простой Задачи task
-    HashMap<Integer, Task> tasks = new HashMap<>();
+    private HashMap<Integer, Task> tasks = new HashMap<>();
 
-
-    public Task creatTask(String name, String description, String status) {
-        id++;
-        Task task = new Task(id, name, description, status);
-        tasks.put(id, task);
-        return task;
+    public int creatTask(Task task) {
+        task.setId(nextId++);
+        tasks.put(task.getId(), task);
+        return task.getId();
     }
 
     // Метод создания Подзадачи subTask
-    HashMap<Integer, SubTask> subTasks = new HashMap<>();
+    private HashMap<Integer, SubTask> subTasks = new HashMap<>();
 
-    public SubTask creatSubTask(String name, String description, String status) {
-        id++;
-        SubTask subTask = new SubTask(id, name, description, status);
-        subTasks.put(id, subTask);
-        return subTask;
+    public int creatSubTask(SubTask subTask) {
+        subTask.setId(nextId++);
+        subTasks.put(subTask.getId(), subTask);
+        return subTask.getId();
     }
 
     // Метод создания Эпика Epic
-    HashMap<Integer, Epic> epics = new HashMap<>();
+    private HashMap<Integer, Epic> epics = new HashMap<>();
 
-    public Epic creatEpic(String name, String description, String status) {
-        id++;
-        Epic epic = new Epic(id, name, description, status);
-        epics.put(id, epic);
-        return epic;
+    public int creatEpic(Epic epic) {
+        epic.setId(nextId++);
+        // updateEpicStatus(epic);
+        epics.put(epic.getId(), epic);
+        return epic.getId();
+    }
+
+    // Метод обновление статуса Эпика
+    private void updateEpicStatus(Epic epic) {
+
     }
 
     // Получение списка всех Задач
@@ -41,6 +43,7 @@ public class Manager {
 
     // Получение списка всех ПодЗадач
     public String printSubTasks() {
+
         return "Список Подзадач: " + subTasks;
     }
 
@@ -83,7 +86,7 @@ public class Manager {
         return "Эпик по выбранному id: " + epics.get(id);
     }
 
- // Обновление Задач (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
+    // Обновление Задач (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
     public void updateTask(Task task) {
         tasks.put(task.getId(), task);
         System.out.println("Обновление задачи. Список обновленных задач: " + tasks);

@@ -7,36 +7,38 @@ public class Main {
         Manager manager = new Manager();
 
         System.out.println("Создание задачи");
-        manager.creatTask("1 Наименование задачи 1", "1 Описание задачи 1", "NEW");
-        manager.creatTask("2 Наименование задачи 2", "2 Описание задачи 2", "NEW");
+        Task task = new Task(0, "1 Наименование задачи 1", "1 Описание задачи 1", "NEW");
+        manager.creatTask(task);
+        task = new Task(0, "2 Наименование задачи 2", "2 Описание задачи 2", "NEW");
+        manager.creatTask(task);
         System.out.println(manager.printTasks());
 
         System.out.println("Создание Подзадачи");
-        manager.creatSubTask("1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW");
-        manager.creatSubTask("2 Наименование Подзадачи 2", "2 Описание Подзадачи 2", "NEW");
+        SubTask subTask = new SubTask(0, "1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW", 0);
+        manager.creatSubTask(subTask);
+        subTask =  new SubTask(0, "2 Наименование Подзадачи 2", "2 Описание Подзадачи 2", "NEW", 0);
+        manager.creatSubTask(subTask);
         System.out.println(manager.printSubTasks());
 
 
         System.out.println("Создание Эпика");
-        manager.creatEpic("1 Наименование Эпик 1", "1 Описание Эпик 1", "NEW");
-        manager.creatEpic("2 Наименование Эпик 2", "2 Описание Эпик 2", "NEW");
+        Epic epic = new Epic(0, "1 Наименование Эпик 1", "1 Описание Эпик 1", "NEW");
+        manager.creatEpic(epic);
+        epic = new Epic(0, "2 Наименование Эпик 2", "2 Описание Эпик 2", "NEW");
+        manager.creatEpic(epic);
         System.out.println(manager.printEpics());
+
         // System.out.println(manager.deleteTasks() + " Список должен быть пустой: " + manager.printTasks());
 
         System.out.println(manager.getByIdTask(1));
 
-     //   System.out.println(manager.updateTask(1, "Обновление Наименования Задачи", "Обновление Описание Задачи", "IN_PROGRESS"));
-        System.out.println("Какой Task обновить? ");
-       // int taskId = scanner.nextInt();
-        Task taskUpdate = new Task(1,"Обновление Наименования Задачи", "Обновление Описание Задачи", "IN_PROGRESS");
+
+        System.out.println("Обновление простой задачи");
+        Task taskUpdate = new Task(1,"Обновили Наименования Задачи", "Обновили Описание Задачи", "IN_PROGRESS");
         taskUpdate.setId(1);
         manager.updateTask(taskUpdate);
 
-       /* System.out.println("Какой Task обновить? ");
-        int taskId = scanner.nextInt();
-        Task taskUpdate = new Task("Новая задача", "Описание новой задачи", "NEW");
-        taskUpdate.setId(taskId);
-        tasksManager.updateTask(taskUpdate);*/
+
 
 
         //   System.out.println(manager.deleteByIdTask(1));
