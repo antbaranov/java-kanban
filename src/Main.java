@@ -1,3 +1,8 @@
+/*
+Привет! В проекте реализовал то, что понимаю как сделать. Остальные задачи нет понимания как делать.
+Вопросы наставнику задавал, но мы разговариваем на разных языках и не понимаем друг друга. Поэтому проект отправляю в таком виде.
+*/
+
 import java.util.Scanner;
 
 public class Main {
@@ -38,7 +43,7 @@ public class Main {
         System.out.println(manager.printEpics());
         System.out.println(manager.printSubTasks());
 
-        // System.out.println(manager.deleteTasks() + " Список должен быть пустой: " + manager.printTasks());
+
 
         System.out.println(manager.getByIdTask(1));
 
@@ -58,6 +63,18 @@ public class Main {
         System.out.println(manager.printEpics());
         System.out.println(manager.printSubTasks());
 
+        System.out.println("\nСписок Эпиков и его подзадач после удаления Эпика");
+        System.out.println(manager.deleteByIdEpic(3));
+        System.out.println(manager.printEpics());
+        System.out.println(manager.printSubTasks());
+
+        System.out.println("\nУдаление подзадачи");
+        manager.deleteByIdSubTask(3);
+        System.out.println(manager.printEpics());
+        System.out.println(manager.printSubTasks());
+
+
+         System.out.println(manager.deleteTasks() + " Список должен быть пустой: " + manager.printTasks());
         //   System.out.println(manager.deleteByIdTask(1));
     }
 }

@@ -91,8 +91,8 @@ public class Manager {
     }
 
     // Получение Эпика по идентификатору
-    public String getByIdEpic(int id) {
-        return "Эпик по выбранному id: " + epics.get(id);
+    public Epic getByIdEpic(int id) {
+        return epics.get(id);
     }
 
     // Обновление Задач (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
@@ -159,13 +159,33 @@ public class Manager {
     }
 
     // Удаление Подзадачи по идентификатору
+
     public String deleteByIdSubTask(int id) {
+        int epicId = subTasks.get(id).getEpicId();
+        epics.get(epicId).subTaskIds.remove(id);
         subTasks.remove(id);
+        SubTask subTask = subTasks.get(id);
+        Epic epic = getByIdEpic(subTask.getEpicId());
+        updateEpicStatus(epic);
         return "Подзадача по id удалена!";
     }
 
+//    public String deleteByIdSubTask(int id) {
+//        SubTask subTask = subTasks.get(id);
+//        Epic epic = getByIdEpic(subTask.getEpicId());
+//        epic.getSubTaskIds().remove((Integer)subTasks.getId());
+////        epic.getSubTaskIds().remove(Integer.valueOf(subTasks.getId()));
+//        subTasks.remove(id);
+//        updateEpicStatus(epic);
+//        return "Подзадача по id удалена!";
+//    }
+
     // Удаление Эпика по идентификатору
     public String deleteByIdEpic(int id) {
+        Epic epic = epics.get(id);
+        for (int subTaskId : epic.getSubTaskIds()) {
+            subTasks.remove(subTaskId);
+        }
         epics.remove(id);
         return "Эпик по id удален!";
     }
