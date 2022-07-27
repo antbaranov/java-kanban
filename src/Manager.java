@@ -18,6 +18,7 @@ public class Manager {
     public int creatSubTask(SubTask subTask) {
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
+        Epic epic = epics.get(subTask.getEpicId());
         return subTask.getId();
     }
 
@@ -28,6 +29,7 @@ public class Manager {
         epic.setId(nextId++);
         // updateEpicStatus(epic);
         epics.put(epic.getId(), epic);
+        SubTask subTask = subTasks.get(epic.getSubTaskIds());
         return epic.getId();
     }
 
@@ -49,6 +51,7 @@ public class Manager {
 
     // Получение списка всех Эпиков
     public String printEpics() {
+
         return "Список Эпиков: " + epics;
     }
 
@@ -89,7 +92,18 @@ public class Manager {
     // Обновление Задач (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
     public void updateTask(Task task) {
         tasks.put(task.getId(), task);
-        System.out.println("Обновление задачи. Список обновленных задач: " + tasks);
+    }
+
+    // Обновление Подзадач (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
+    public void updateSubTask(SubTask subTask) {
+        subTasks.put(subTask.getId(), subTask);
+        Epic epic = epics.get(subTask.getEpicId());
+    }
+
+    // Обновление Эпиков (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
+    public void updateEpic(Epic epic) {
+        epics.put(epic.getId(), epic);
+
     }
 
     // Удаление Задачи по идентификатору
@@ -110,5 +124,10 @@ public class Manager {
         return "Эпик по id удален!";
     }
 
+    // Получение списка всех подзадач определённого эпика
+    public String getSubTasksOfEpic(int epicId) {
+        return "Список подзадач Эпика: " ;
+     }
 
-} // скобка закрывает class TaskManager
+
+} // !!! Cкобка закрывает class Manager
