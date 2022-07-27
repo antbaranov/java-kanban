@@ -17,17 +17,20 @@ public class Manager {
 
     private HashMap<Integer, SubTask> subTasks = new HashMap<>();
 
-    public int creatSubTask(SubTask subTask) {
+    public void creatSubTask(SubTask subTask) {
         int epicId = subTask.getEpicId();
         Epic epic = epics.get(epicId);
+        if (epic == null) {
+            return;
+        }
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
         epic.addSubTask(subTask.getId());
-//        updateEpicStatus(epic);
+        updateEpicStatus(epic);
 
-        System.out.println(epic.getSubTaskIds());
+        System.out.println("epic.getSubTaskIds() : " + epic.getSubTaskIds());
 
-        return subTask.getId();
+      //  return subTask.getId();
     }
 
     // Метод создания Эпика Epic
@@ -148,8 +151,6 @@ public class Manager {
             }
         }
     }
-
-
 
     // Удаление Задачи по идентификатору
     public String deleteByIdTask(int id) {
