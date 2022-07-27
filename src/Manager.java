@@ -22,7 +22,7 @@ public class Manager {
         Epic epic = epics.get(epicId);
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
-        epic.setSubTaskIds(addSubTask(addSubTask(subTask.getId())));
+        epic.setSubTaskIds(subTask.getId());
 //        updateEpicStatus(epic);
 
         System.out.println(epic.getSubTaskIds());
