@@ -18,7 +18,7 @@ public class Manager {
     public int creatSubTask(SubTask subTask) {
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
-        Epic epic = epics.get(subTask.getEpicId());
+//
         return subTask.getId();
     }
 
@@ -29,7 +29,7 @@ public class Manager {
         epic.setId(nextId++);
         // updateEpicStatus(epic);
         epics.put(epic.getId(), epic);
-        SubTask subTask = subTasks.get(epic.getSubTaskIds());
+//
         return epic.getId();
     }
 
