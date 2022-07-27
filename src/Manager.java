@@ -22,7 +22,7 @@ public class Manager {
         Epic epic = epics.get(epicId);
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
-        epic.setSubTaskIds(subTask.getId());
+        epic.addSubTask(subTask.getId());
 //        updateEpicStatus(epic);
 
         System.out.println(epic.getSubTaskIds());
@@ -101,6 +101,7 @@ public class Manager {
     public void updateSubTask(SubTask subTask) {
         subTasks.put(subTask.getId(), subTask);
         Epic epic = epics.get(subTask.getEpicId());
+//        updateEpicStatus(epic); // создать метод обнговления статуса
     }
 
     // Обновление Эпиков (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
@@ -108,6 +109,47 @@ public class Manager {
         epics.put(epic.getId(), epic);
 
     }
+
+    // Обновление статуса Эпиков
+    private void updateEpicStatus(Epic epic) {
+        if (subTasks.isEmpty()) {
+            epic.setStatus("NEW");
+        } else {
+            ArrayList<SubTask> subTasksNew = new ArrayList<>();
+            int counterDone = 0;
+            int counterNew = 0;
+
+            for (int i = 0; i < epic.getSubTaskIds().size(); i++) {
+                subTasksNew.add(subTasks.get(epic.getSubTaskIds().get(i)));
+            }
+            if (!subTasks.isEmpty()) {
+                epic.setStatus("NEW");
+                return;
+            }
+            for (SubTask value : subTasksNew) {
+                switch (value.getStatus()) {
+                    case "NEW":
+                        counterNew++;
+                        break;
+                    case "IN_PROGRESS":
+                        epic.setStatus("IN_PROGRESS");
+                        return;
+                    case "DONE":
+                        counterDone++;
+                        break;
+                }
+            }
+            if (counterDone == subTasksNew.size()) {
+                epic.setStatus("DONE");
+            } else if (counterNew == subTasksNew.size()) {
+                epic.setStatus("NEW");
+            } else {
+                epic.setStatus("IN_PROGRESS");
+            }
+        }
+    }
+
+
 
     // Удаление Задачи по идентификатору
     public String deleteByIdTask(int id) {

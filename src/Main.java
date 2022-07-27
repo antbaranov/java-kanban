@@ -18,7 +18,7 @@ public class Main {
         Epic epic = new Epic(0, "1 Наименование Эпик 1", "1 Описание Эпик 1", "NEW");
         manager.creatEpic(epic);
         System.out.println("Создание Подзадачи");
-        SubTask subTask = new SubTask(0, "1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW", 1);
+        SubTask subTask = new SubTask(0, "1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW", 0);
         manager.creatSubTask(subTask);
         subTask =  new SubTask(0, "2 Наименование Подзадачи 2", "2 Описание Подзадачи 2", "NEW", 0);
         manager.creatSubTask(subTask);
