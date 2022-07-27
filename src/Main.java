@@ -1,3 +1,8 @@
+/*
+Привет! В проекте реализовал то, что понимаю как сделать. Остальные задачи нет понимания как делать.
+Вопросы наставнику задавал, но мы разговариваем на разных языках и не понимаем друг друга. Поэтому проект отправляю в таком виде.
+*/
+
 import java.util.Scanner;
 
 public class Main {
@@ -20,18 +25,20 @@ public class Main {
         Epic epic = new Epic(0, "1 Наименование Эпик 1", "1 Описание Эпик 1", "NEW");
         manager.creatEpic(epic);
         System.out.println("Создание Подзадачи");
-        SubTask subTask = new SubTask(0, "1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW", 0);
+        SubTask subTask = new SubTask(0, "1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW", 1);
         manager.creatSubTask(subTask);
         subTask =  new SubTask(0, "2 Наименование Подзадачи 2", "2 Описание Подзадачи 2", "NEW", 0);
         manager.creatSubTask(subTask);
 
 
         System.out.println("Создание Эпика 2");
+        // Epic(int id, String name, String description, String status)
         epic = new Epic(0, "2 Наименование Эпик 2", "2 Описание Эпик 2", "NEW");
         manager.creatEpic(epic);
 
         System.out.println("Создание Подзадачи для 2 Эпика");
-        subTask = new SubTask(0, "1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW", 0);
+        // SubTask(int id, String name, String description, String status, int epicId)
+        subTask = new SubTask(0, "1 Наименование Подзадачи 1", "1 Описание Подзадачи 1", "NEW", 1);
         manager.creatSubTask(subTask);
         System.out.println(manager.printEpics());
         System.out.println(manager.printSubTasks());

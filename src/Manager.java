@@ -18,7 +18,6 @@ public class Manager {
     public int creatSubTask(SubTask subTask) {
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
-//
         return subTask.getId();
     }
 
@@ -27,16 +26,11 @@ public class Manager {
 
     public int creatEpic(Epic epic) {
         epic.setId(nextId++);
-        // updateEpicStatus(epic);
+
         epics.put(epic.getId(), epic);
-//
         return epic.getId();
     }
 
-    // Метод обновление статуса Эпика
-    private void updateEpicStatus(Epic epic) {
-
-    }
 
     // Получение списка всех Задач
     public String printTasks() {
@@ -124,9 +118,9 @@ public class Manager {
         return "Эпик по id удален!";
     }
 
-    // Получение списка всех подзадач определённого эпика
+    // Получение списка всех подзадач определённого эпика - не понимаю как делать
     public String getSubTasksOfEpic(int epicId) {
-        return "Список подзадач Эпика: " ;
+        return "Список подзадач Эпика: " + epics.get(epicId);
      }
 
 
