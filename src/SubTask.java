@@ -1,5 +1,5 @@
 public class SubTask extends Task {
-    protected int epicId;
+    protected int epicId; // если сделать приватным, тогда не работает в классе Manager
 
 
     public SubTask(int id, String name, String description, String status, int epicId) {

@@ -69,23 +69,60 @@ public class Manager {
 
     // Обновление Задач (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
     public void updateTask(Task task) {
-        tasks.put(task.getId(), task);
+        if (tasks.containsKey(task.getId())) { // Филипп говорил, что проверки делать не надо
+            tasks.put(task.getId(), task);
+        }
     }
 
     // Обновление Подзадач (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
     public void updateSubTask(SubTask subTask) {
-        subTasks.put(subTask.getId(), subTask);
-        Epic epic = epics.get(subTask.getEpicId());
-//        updateEpicStatus(epic); // создать метод обнговления статуса
+        if (subTasks.containsKey(subTask.getId())) {
+            Epic epic = epics.get(subTask.getEpicId());
+            if (epics.containsKey(epic.getId())) {
+                subTasks.put(subTask.getId(), subTask);
+//        updateEpicStatus(epic); // создать метод обновления статуса
+            }
+        }
     }
 
     // Обновление Эпиков (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
     public void updateEpic(Epic epic) {
-        epics.put(epic.getId(), epic);
-
+        if (epics.containsKey(epic.getId())) {
+            epics.put(epic.getId(), epic);
+        }
     }
 
     // Обновление статуса Эпиков
+   /* Алгоритм можно реализовать чуть проще:
+    Обозначаем переменную status = null
+    Проходимся по всем подзадачам эпика и смотрим
+ - если статус null, то проставляем статус подзадачи и переходим к следующему шагу цикла (continue;)
+            - если статус эпика равен статусу подзадачи и (&&) статус эпика не равен IN_PROGRESS тоже переходим к следующем шагу цикла
+ - проставляем эпику статус IN_PROGRESS
+    выходим из цикла (return;)
+    После цикла проставляем эпику статус переменной status*/
+/*
+    private void updateCollectionRating(Collection collection) {
+        int rating = 0;
+        for (int itemsId : collection.getItemsIds()) {
+            CollectionItem item = collectionItems.get(itemsId);
+            rating += item.getRating();
+        }
+        rating = rating / collection.getItemsIds().size();
+        //rating /= collection.getItemsIds().size();
+        collection.setRating(rating);
+    }
+
+    private void updateEpicStatus(Epic epic) {
+        String status = null;
+        for (int subTaskId : epic.getgetSubTaskIds()()) {
+            SubTask subTask = subTasks.get(subTaskId);
+
+        }
+
+    }
+*/
+
     private void updateEpicStatus(Epic epic) {
         if (subTasks.isEmpty()) {
             epic.setStatus("NEW");
@@ -125,59 +162,70 @@ public class Manager {
     }
 
     // Удаление Задачи по идентификатору
-    public String deleteByIdTask(int id) {
-        tasks.remove(id);
-        return "Задача по id удалена!";
+    public void deleteByIdTask(int id) {
+        if (tasks.containsKey(id)) {
+            tasks.remove(id);
+        }
     }
 
     // Удаление Подзадачи по идентификатору
-
-    public String deleteByIdSubTask(int id) {
+    public void deleteByIdSubTask(int id) {
         int epicId = subTasks.get(id).getEpicId();
-        epics.get(epicId).subTaskIds.remove((Integer) id);
-        subTasks.remove((Integer) id);
         SubTask subTask = subTasks.get(id);
-        Epic epic = getByIdEpic(subTask.getEpicId());
-        updateEpicStatus(epic);
-        return "Подзадача по id удалена!";
+        Epic epic = getByIdEpic(subTask.getEpicId()); // Так имелось ввиду?
+        if (subTasks.containsKey(id)) {
+            if (epics.containsKey(epic.getId())) {
+                epics.get(epicId).getSubTaskIds().remove((Integer) id);
+                subTasks.remove((Integer) id);
+                updateEpicStatus(epic);
+            }
+        }
     }
 
 //    public String deleteByIdSubTask(int id) {
 //        SubTask subTask = subTasks.get(id);
 //        Epic epic = getByIdEpic(subTask.getEpicId());
-//        epic.getSubTaskIds().remove((Integer)subTasks.getId());
-////        epic.getSubTaskIds().remove(Integer.valueOf(subTasks.getId()));
+//        epic.getgetSubTaskIds()().remove((Integer)subTasks.getId());
+////        epic.getgetSubTaskIds()().remove(Integer.valueOf(subTasks.getId()));
 //        subTasks.remove(id);
 //        updateEpicStatus(epic);
 //        return "Подзадача по id удалена!";
 //    }
 
     // Удаление Эпика по идентификатору
-    public String deleteByIdEpic(int id) {
+    public void deleteByIdEpic(int id) {
+        if (epics.containsKey(id)) {
         Epic epic = epics.get(id);
         for (int subTaskId : epic.getSubTaskIds()) {
             subTasks.remove(subTaskId);
         }
         epics.remove(id);
-        return "Эпик по id удален!";
+        }
     }
 
     // Получение списка всех подзадач определённого эпика
 
+   /* ArrayList<Subtask> subtasksNew = new ArrayList<>();
+    int counterDone = 0;
+    int counterNew = 0;
 
-   /* public List<SubTask> getSubTasksOfEpic(int epicId) {
-        List<SubTask> result = new ArrayList<>();
-        subTasks.
+            for (int i = 0; i < epic.getSubtaskIds().size(); i++) {
+        subtasksNew.add(subtasks.get(epic.getSubtaskIds().get(i)));
+    }*/
+
+
+    public ArrayList<Integer> getSubTasksOfEpic(int id) {
+        if (epics.containsKey(id)) {
+            ArrayList<Integer> subTasksNew = new ArrayList<>();
+            Epic epic = epics.get(id);
+            for (int i = 0; i < epic.getSubTaskIds().size(); i++) {
+                subTasksNew.add((subTasks.get(epic.getSubTaskIds().get(i))));
+            }
+            return subTasksNew;
+
+        }
     }
 
-for(
-    int subTaskId :subTaskIds.getSubTaskIds())
-
-    {
-        subTasks.remove(subTaskId);
-    }
-    //return "Список : " + epic + subTasks.get(subTaskId);
-}*/
 
 
 } // !!! Cкобка закрывает class Manager
