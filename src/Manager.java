@@ -195,24 +195,15 @@ public class Manager {
     // Удаление Эпика по идентификатору
     public void deleteByIdEpic(int id) {
         if (epics.containsKey(id)) {
-        Epic epic = epics.get(id);
-        for (int subTaskId : epic.getSubTaskIds()) {
-            subTasks.remove(subTaskId);
-        }
-        epics.remove(id);
+            Epic epic = epics.get(id);
+            for (int subTaskId : epic.getSubTaskIds()) {
+                subTasks.remove(subTaskId);
+            }
+            epics.remove(id);
         }
     }
 
     // Получение списка всех подзадач определённого эпика
-
-   /* ArrayList<Subtask> subtasksNew = new ArrayList<>();
-    int counterDone = 0;
-    int counterNew = 0;
-
-            for (int i = 0; i < epic.getSubtaskIds().size(); i++) {
-        subtasksNew.add(subtasks.get(epic.getSubtaskIds().get(i)));
-    }*/
-
 
     public ArrayList<Integer> getSubTasksOfEpic(int id) {
         if (epics.containsKey(id)) {
@@ -227,5 +218,4 @@ public class Manager {
     }
 
 
-
-} // !!! Cкобка закрывает class Manager
+}
