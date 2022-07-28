@@ -3,91 +3,63 @@ import java.util.HashMap;
 
 public class Manager {
     private int nextId = 1; // Объявление, инициализация начального идентификатора
+    public HashMap<Integer, Task> tasks = new HashMap<>();
+    public HashMap<Integer, SubTask> subTasks = new HashMap<>();
+    public HashMap<Integer, Epic> epics = new HashMap<>();
 
     // Метод создания простой Задачи task
-    private HashMap<Integer, Task> tasks = new HashMap<>();
-
-    public int creatTask(Task task) {
+    public int addTask(Task task) {
         task.setId(nextId++);
         tasks.put(task.getId(), task);
         return task.getId();
     }
 
     // Метод создания Подзадачи subTask
-
-    private HashMap<Integer, SubTask> subTasks = new HashMap<>();
-
-    public void creatSubTask(SubTask subTask) {
+    public int addSubTask(SubTask subTask) {
         int epicId = subTask.getEpicId();
         Epic epic = epics.get(epicId);
-        if (epic == null) {
+        /*if (epic == null) {
             return;
-        }
+        }*/
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
         epic.addSubTask(subTask.getId());
         updateEpicStatus(epic);
-
-        System.out.println("epic.getSubTaskIds() : " + epic.getSubTaskIds());
-
-      //  return subTask.getId();
+        return subTask.getId();
     }
 
     // Метод создания Эпика Epic
-    private HashMap<Integer, Epic> epics = new HashMap<>();
-
-    public int creatEpic(Epic epic) {
+    public int addEpic(Epic epic) {
         epic.setId(nextId++);
-
         epics.put(epic.getId(), epic);
         return epic.getId();
     }
 
 
-    // Получение списка всех Задач
-    public String printTasks() {
-        return "Список задач: " + tasks;
-    }
-
-    // Получение списка всех ПодЗадач
-    public String printSubTasks() {
-
-        return "Список Подзадач: " + subTasks;
-    }
-
-    // Получение списка всех Эпиков
-    public String printEpics() {
-
-        return "Список Эпиков: " + epics;
-    }
-
     // Удаление всех Задач
-    public String deleteTasks() {
+    public void deleteTasks() {
         tasks.clear();
-        return "Все задачи удалены!";
     }
 
     // Удаление всех ПодЗадач
-    public String deleteSubTasks() {
+    public void deleteSubTasks() {
         subTasks.clear();
-        return "Все Подзадачи удалены!";
     }
 
     // Удаление всех Эпиков
-    public String deleteEpics() {
+    public void deleteEpics() {
         subTasks.clear();
         epics.clear();
-        return "Все Эпики с подзадачами удалены!";
     }
 
     // Получение Задач по идентификатору
-    public String getByIdTask(int id) {
-        return "Задача по выбранному id: " + tasks.get(id);
+    public Task getByIdTask(int id) {
+        return tasks.get(id);
     }
 
-    // Получение ПодЗадачи по идентификатору
-    public String getByIdSubTask(int id) {
-        return "Подзадача по выбранному id: " + subTasks.get(id);
+    // Получение Подзадач по идентификатору
+    public SubTask getByIdSubTask(int id) {
+        return subTasks.get(id);
     }
 
     // Получение Эпика по идентификатору
@@ -162,8 +134,8 @@ public class Manager {
 
     public String deleteByIdSubTask(int id) {
         int epicId = subTasks.get(id).getEpicId();
-        epics.get(epicId).subTaskIds.remove(id);
-        subTasks.remove(id);
+        epics.get(epicId).subTaskIds.remove((Integer) id);
+        subTasks.remove((Integer) id);
         SubTask subTask = subTasks.get(id);
         Epic epic = getByIdEpic(subTask.getEpicId());
         updateEpicStatus(epic);
@@ -190,10 +162,22 @@ public class Manager {
         return "Эпик по id удален!";
     }
 
-    // Получение списка всех подзадач определённого эпика - не понимаю как делать
-    public String getSubTasksOfEpic(int epicId) {
-        return "Список подзадач Эпика: " + epics.get(epicId);
-     }
+    // Получение списка всех подзадач определённого эпика
+
+
+   /* public List<SubTask> getSubTasksOfEpic(int epicId) {
+        List<SubTask> result = new ArrayList<>();
+        subTasks.
+    }
+
+for(
+    int subTaskId :subTaskIds.getSubTaskIds())
+
+    {
+        subTasks.remove(subTaskId);
+    }
+    //return "Список : " + epic + subTasks.get(subTaskId);
+}*/
 
 
 } // !!! Cкобка закрывает class Manager
