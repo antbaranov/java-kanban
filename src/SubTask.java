@@ -1,12 +1,10 @@
 public class SubTask extends Task {
-    protected int epicId; // если сделать приватным, тогда не работает в классе Manager
-
+    private int epicId; // если сделать приватным, тогда не работает в классе Manager
 
     public SubTask(int id, String name, String description, String status, int epicId) {
         super(id, name, description, status);
         this.epicId = epicId;
     }
-
 
     public int getEpicId() {
         return epicId;
@@ -15,8 +13,6 @@ public class SubTask extends Task {
     public void setEpicId(int epicId) {
         this.epicId = epicId;
     }
-
-
 
     @Override
     public String toString() {

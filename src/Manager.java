@@ -18,9 +18,6 @@ public class Manager {
     public int addSubTask(SubTask subTask) {
         int epicId = subTask.getEpicId();
         Epic epic = epics.get(epicId);
-        /*if (epic == null) {
-            return;
-        }*/
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
         epic.addSubTask(subTask.getId());
@@ -34,7 +31,6 @@ public class Manager {
         epics.put(epic.getId(), epic);
         return epic.getId();
     }
-
 
     // Удаление всех Задач
     public void deleteTasks() {
@@ -80,7 +76,7 @@ public class Manager {
             Epic epic = epics.get(subTask.getEpicId());
             if (epics.containsKey(epic.getId())) {
                 subTasks.put(subTask.getId(), subTask);
-//        updateEpicStatus(epic); // создать метод обновления статуса
+                updateEpicStatus(epic);
             }
         }
     }
@@ -92,8 +88,11 @@ public class Manager {
         }
     }
 
-    // Обновление статуса Эпиков
-   /* Алгоритм можно реализовать чуть проще:
+    // _________________________Обновление статуса Эпиков_____________________________________________________________
+
+    // С этим методом беда. Не получилось. Либо я устал, либо жара. А точнее, мозгов не хватает ))
+
+ /* Алгоритм можно реализовать чуть проще:
     Обозначаем переменную status = null
     Проходимся по всем подзадачам эпика и смотрим
  - если статус null, то проставляем статус подзадачи и переходим к следующему шагу цикла (continue;)
@@ -101,25 +100,23 @@ public class Manager {
  - проставляем эпику статус IN_PROGRESS
     выходим из цикла (return;)
     После цикла проставляем эпику статус переменной status*/
-/*
-    private void updateCollectionRating(Collection collection) {
-        int rating = 0;
-        for (int itemsId : collection.getItemsIds()) {
-            CollectionItem item = collectionItems.get(itemsId);
-            rating += item.getRating();
-        }
-        rating = rating / collection.getItemsIds().size();
-        //rating /= collection.getItemsIds().size();
-        collection.setRating(rating);
-    }
 
+/*
     private void updateEpicStatus(Epic epic) {
         String status = null;
-        for (int subTaskId : epic.getgetSubTaskIds()()) {
-            SubTask subTask = subTasks.get(subTaskId);
 
+        for (int i = 0; i < epic.getSubTaskIds().size(); i++) {
+            SubTask subTask = subTasks.get(i);
+            if (subTask.getStatus() == null) {
+                status = "NEW";
+                continue;
+            } else if ((epic.getStatus() == subTasks.getStatus()) && (epic.getStatus() != "IN_PROGRESS")) {
+                status = "IN_PROGRESS";
+                continue;
+            }
+            return;
         }
-
+        epic.setStatus(status);
     }
 */
 
@@ -182,16 +179,6 @@ public class Manager {
         }
     }
 
-//    public String deleteByIdSubTask(int id) {
-//        SubTask subTask = subTasks.get(id);
-//        Epic epic = getByIdEpic(subTask.getEpicId());
-//        epic.getgetSubTaskIds()().remove((Integer)subTasks.getId());
-////        epic.getgetSubTaskIds()().remove(Integer.valueOf(subTasks.getId()));
-//        subTasks.remove(id);
-//        updateEpicStatus(epic);
-//        return "Подзадача по id удалена!";
-//    }
-
     // Удаление Эпика по идентификатору
     public void deleteByIdEpic(int id) {
         if (epics.containsKey(id)) {
@@ -204,7 +191,6 @@ public class Manager {
     }
 
     // Получение списка всех подзадач определённого эпика
-
     public ArrayList<SubTask> getSubTasksOfEpic(int id) {
         if (epics.containsKey(id)) {
             ArrayList<SubTask> subTasksNew = new ArrayList<>();
@@ -213,9 +199,7 @@ public class Manager {
                 subTasksNew.add(subTasks.get(epic.getSubTaskIds().get(i)));
             }
             return subTasksNew;
-
-        } return null;
+        }
+        return null;
     }
-
-
 }

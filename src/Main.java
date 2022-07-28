@@ -27,7 +27,7 @@ public class Main {
 
         System.out.println("\nСоздание Эпика 2");
         // Epic(int id, String name, String description, String status)
-        Epic epic2 = new Epic(1, "2 Наименование Эпик 2", "2 Описание Эпик 2", "NEW");
+        Epic epic2 = new Epic(2, "2 Наименование Эпик 2", "2 Описание Эпик 2", "NEW");
         manager.addEpic(epic2);
 
         System.out.println("Создание Подзадачи для 2 Эпика");
@@ -56,7 +56,7 @@ public class Main {
         System.out.println(manager.epics);
         System.out.println(manager.subTasks);
 
-        System.out.println("Получение списка всех подзадач определённого эпика: " + manager.getSubTasksOfEpic(3));
+        System.out.println("Получение списка всех подзадач определённого эпика: " + manager.getSubTasksOfEpic(epic2.getId()));
 
         /*System.out.println("\nСписок Эпиков и его подзадач после удаления Эпика");
         System.out.println(manager.deleteByIdEpic(4));
