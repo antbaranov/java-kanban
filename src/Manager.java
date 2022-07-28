@@ -205,16 +205,16 @@ public class Manager {
 
     // Получение списка всех подзадач определённого эпика
 
-    public ArrayList<Integer> getSubTasksOfEpic(int id) {
+    public ArrayList<SubTask> getSubTasksOfEpic(int id) {
         if (epics.containsKey(id)) {
-            ArrayList<Integer> subTasksNew = new ArrayList<>();
+            ArrayList<SubTask> subTasksNew = new ArrayList<>();
             Epic epic = epics.get(id);
             for (int i = 0; i < epic.getSubTaskIds().size(); i++) {
-                subTasksNew.add((subTasks.get(epic.getSubTaskIds().get(i))));
+                subTasksNew.add(subTasks.get(epic.getSubTaskIds().get(i)));
             }
             return subTasksNew;
 
-        }
+        } return null;
     }
 
 

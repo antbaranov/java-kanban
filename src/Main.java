@@ -56,6 +56,8 @@ public class Main {
         System.out.println(manager.epics);
         System.out.println(manager.subTasks);
 
+        System.out.println("Получение списка всех подзадач определённого эпика: " + manager.getSubTasksOfEpic(3));
+
         /*System.out.println("\nСписок Эпиков и его подзадач после удаления Эпика");
         System.out.println(manager.deleteByIdEpic(4));
         System.out.println(manager.epics);
