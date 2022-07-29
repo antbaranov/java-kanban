@@ -89,56 +89,28 @@ public class Manager {
     }
 
     // _________________________Обновление статуса Эпиков_____________________________________________________________
-
- /* Алгоритм можно реализовать чуть проще:
-    Обозначаем переменную status = null
-    Проходимся по всем подзадачам эпика и смотрим
- - если статус null, то проставляем статус подзадачи и переходим к следующему шагу цикла (continue;)
-            - если статус эпика равен статусу подзадачи и (&&) статус эпика не равен IN_PROGRESS тоже переходим к следующем шагу цикла
- - проставляем эпику статус IN_PROGRESS
-    выходим из цикла (return;)
-    После цикла проставляем эпику статус переменной status */
-
+// Оказывается всё ещё проще))
     private void updateEpicStatus(Epic epic) {
-        ArrayList<Integer> subs = epic.getSubTaskIds(); //  Получаем список подзадач:
-        if (subs.isEmpty()) { // Проверяем
+        ArrayList<Integer> subs = epic.getSubTaskIds();
+        if (subs.isEmpty()) {
             epic.setStatus("NEW");
             return;
         }
-//        А дальше запускаем алгоритм
         String status = null;
-        for (int i = 0; i < epic.getSubTaskIds().size(); i++) { // Можно сделать с помощью foreach for (int id : subs)
-            SubTask subTask = subTasks.get(i);
-            if (subTask.getStatus() == null) {
-                status = "NEW";
-
-                if (epic.getStatus() == null) { // если статус null, то проставляем статус подзадачи
-                    status = subTask.getStatus();
-                    continue;
-                }
-
-            /* Если статус равен статусу подзадачи и (&&) статус не равен IN_PROGRESS
-            тоже переходим к следующем шагу цикла  status == subTasks.getStatus() и status != "IN_PROGRESS"
-            Прости, пожалуйста, вот здесь, наверное, запутала,
-            так как мы работаем с переменной status надо сравнивать ее,
-            а не статус, записанный в эпике
-            Кстати, можно оставить просто if */
-            }
-            if ((epic.getStatus() == subTask.getStatus()) && (epic.getStatus() != "IN_PROGRESS")) {
-                // тоже переходим к следующем шагу цикла
-                //  Пока статус не проставляем
-                continue;
-            } if ((status == subTask.getStatus()) && (status != "IN_PROGRESS")) {
-            /* А вот здесь нужно поставить status = "IN_PROGRESS";
-                    - проставляем эпику статус IN_PROGRESS
-                    - выходим из цикла (return;)
-                    а потом делаем return; */
-                status = "IN_PROGRESS";
+        for (int id : subs) {
+            final SubTask subTask = subTasks.get(id);
+            if (status == null) {
+                status = subTask.getStatus();
                 continue;
             }
+            if (status.equals(subTask.getStatus())
+                    && !status.equals("IN_PROGRESS")) {
+                continue;
+            }
+            epic.setStatus("IN_PROGRESS");
             return;
         }
-        epic.setStatus(status); // После цикла проставляем эпику статус переменной status
+        epic.setStatus(status);
     }
 
     // Удаление Задачи по идентификатору
