@@ -200,6 +200,11 @@ public class Manager {
             }
             return subTasksNew;
         }
-        return null;
+        return new ArrayList<>(); /* Лучше в таком случае возвращать пустой список new ArrayList<>();
+                                    Когда мы явно возвращаем в методе null,
+                                    то нужно не забывать его обрабатывать:
+                                    при использовании проверять, что получили не null,
+                                    потому что если мы об этом забудем,
+                                    программа выкинет NullPointerException */
     }
 }

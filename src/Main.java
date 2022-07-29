@@ -11,7 +11,6 @@ public class Main {
         manager.addTask(task2);
         System.out.println(manager.tasks);
 
-
         System.out.println("\nСоздание Эпика 1 с 2-мя Подзадачами");
         Epic epic1 = new Epic(1, "1 Наименование Эпик 1", "1 Описание Эпик 1", "NEW");
         manager.addEpic(epic1);
@@ -23,7 +22,6 @@ public class Main {
         manager.addSubTask(subTask2);
         System.out.println(manager.epics);
         System.out.println(manager.subTasks);
-
 
         System.out.println("\nСоздание Эпика 2");
         // Epic(int id, String name, String description, String status)
@@ -37,9 +35,7 @@ public class Main {
         System.out.println(manager.epics);
         System.out.println(manager.subTasks);
 
-
         System.out.println(manager.getByIdTask(1));
-
 
         System.out.println("\nОбновление простой задачи");
         Task taskUpdate = new Task(1, "Обновили Наименования Задачи 1", "Обновили Описание Задачи 1", "IN_PROGRESS");
@@ -68,11 +64,9 @@ public class Main {
         System.out.println(manager.epics);
         System.out.println(manager.subTasks);*/
 
-
         // System.out.println(manager.deleteTasks() + " Список должен быть пустой: " + manager.tasks);
         // System.out.println(manager.deleteByIdTask(1));
         // System.out.println(manager.getSubTasksOfEpic(6));
-
 
     }
 }
