@@ -111,6 +111,7 @@ public class Manager {
             SubTask subTask = subTasks.get(i);
             if (subTask.getStatus() == null) {
                 status = "NEW";
+
                 if (epic.getStatus() == null) { // если статус null, то проставляем статус подзадачи
                     status = subTask.getStatus();
                     continue;
@@ -133,7 +134,7 @@ public class Manager {
                     - выходим из цикла (return;)
                     а потом делаем return; */
                 status = "IN_PROGRESS";
-                epic.setStatus(status);
+                continue;
             }
             return;
         }
