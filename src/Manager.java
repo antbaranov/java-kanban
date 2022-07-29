@@ -99,7 +99,6 @@ public class Manager {
     выходим из цикла (return;)
     После цикла проставляем эпику статус переменной status */
 
-
     private void updateEpicStatus(Epic epic) {
         ArrayList<Integer> subs = epic.getSubTaskIds(); //  Получаем список подзадач:
         if (subs.isEmpty()) { // Проверяем
@@ -112,8 +111,10 @@ public class Manager {
             SubTask subTask = subTasks.get(i);
             if (subTask.getStatus() == null) {
                 status = "NEW";
-                status = subTask.getStatus(); // если статус null, то проставляем статус подзадачи
-                continue;
+                if (epic.getStatus() == null) { // если статус null, то проставляем статус подзадачи
+                    status = subTask.getStatus();
+                    continue;
+                }
 
             /* Если статус равен статусу подзадачи и (&&) статус не равен IN_PROGRESS
             тоже переходим к следующем шагу цикла  status == subTasks.getStatus() и status != "IN_PROGRESS"
@@ -126,56 +127,18 @@ public class Manager {
                 // тоже переходим к следующем шагу цикла
                 //  Пока статус не проставляем
                 continue;
-            }
+            } if ((status == subTask.getStatus()) && (status != "IN_PROGRESS")) {
             /* А вот здесь нужно поставить status = "IN_PROGRESS";
                     - проставляем эпику статус IN_PROGRESS
                     - выходим из цикла (return;)
                     а потом делаем return; */
-            status = "IN_PROGRESS";
-            epic.setStatus(status);
-
+                status = "IN_PROGRESS";
+                epic.setStatus(status);
+            }
             return;
         }
         epic.setStatus(status); // После цикла проставляем эпику статус переменной status
     }
-
-  /*  private void updateEpicStatus(Epic epic) {
-        if (subTasks.isEmpty()) {
-            epic.setStatus("NEW");
-        } else {
-            ArrayList<SubTask> subTasksNew = new ArrayList<>();
-            int counterDone = 0;
-            int counterNew = 0;
-
-            for (int i = 0; i < epic.getSubTaskIds().size(); i++) {
-                subTasksNew.add(subTasks.get(epic.getSubTaskIds().get(i)));
-            }
-            if (!subTasks.isEmpty()) {
-                epic.setStatus("NEW");
-                return;
-            }
-            for (SubTask value : subTasksNew) {
-                switch (value.getStatus()) {
-                    case "NEW":
-                        counterNew++;
-                        break;
-                    case "IN_PROGRESS":
-                        epic.setStatus("IN_PROGRESS");
-                        return;
-                    case "DONE":
-                        counterDone++;
-                        break;
-                }
-            }
-            if (counterDone == subTasksNew.size()) {
-                epic.setStatus("DONE");
-            } else if (counterNew == subTasksNew.size()) {
-                epic.setStatus("NEW");
-            } else {
-                epic.setStatus("IN_PROGRESS");
-            }
-        }
-    }*/
 
     // Удаление Задачи по идентификатору
     public void deleteByIdTask(int id) {
