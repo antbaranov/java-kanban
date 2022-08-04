@@ -89,7 +89,7 @@ public class Manager {
     }
 
     // _________________________Обновление статуса Эпиков_____________________________________________________________
-// Оказывается всё ещё проще))
+
     private void updateEpicStatus(Epic epic) {
         ArrayList<Integer> subs = epic.getSubTaskIds();
         if (subs.isEmpty()) {
@@ -155,11 +155,6 @@ public class Manager {
             }
             return subTasksNew;
         }
-        return new ArrayList<>(); /* Лучше в таком случае возвращать пустой список new ArrayList<>();
-                                    Когда мы явно возвращаем в методе null,
-                                    то нужно не забывать его обрабатывать:
-                                    при использовании проверять, что получили не null,
-                                    потому что если мы об этом забудем,
-                                    программа выкинет NullPointerException */
+        return new ArrayList<>();
     }
 }
