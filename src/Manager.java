@@ -88,7 +88,7 @@ public class Manager {
         }
     }
 
-    // _________________________Обновление статуса Эпиков_____________________________________________________________
+    // Обновление статуса Эпиков
 
     private void updateEpicStatus(Epic epic) {
         ArrayList<Integer> subs = epic.getSubTaskIds();
