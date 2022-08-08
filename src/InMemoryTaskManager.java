@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Manager {
+public class InMemoryTaskManager {
     private int nextId = 1; // Объявление , инициализация начального идентификатора
     public HashMap<Integer, Task> tasks = new HashMap<>();
     public HashMap<Integer, SubTask> subTasks = new HashMap<>();
