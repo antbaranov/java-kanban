@@ -43,5 +43,5 @@ public interface TaskManager {
 
     void updateEpicStatus(Epic epic); // Обновление статуса Эпиков
 
-    List<Task> getHistory();
+    List<Task> getHistory(); // История просмотров задач
 }
