@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface TaskManager {
-    
+
     // Метод создания простой Задачи task
     public void addTask(Task task);
 
