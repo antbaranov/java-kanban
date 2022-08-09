@@ -12,7 +12,6 @@ public class Main {
         TaskManager inMemoryTaskManager = new InMemoryTaskManager();
         HistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
 
-
         System.out.println("\nСоздание простой задачи");
         Task task1 = new Task(1, "1 Наименование простой задачи 1", "1 Описание простой задачи 1", Status.NEW);
         inMemoryTaskManager.addTask(task1);
@@ -70,8 +69,6 @@ public class Main {
         System.out.println(inMemoryTaskManager.getHistoryManager());
         System.out.println(inMemoryHistoryManager.getHistory());
 
-
-
         inMemoryTaskManager.getByIdTask(task2.getId());
         System.out.println(inMemoryTaskManager.getHistoryManager());
         System.out.println(inMemoryHistoryManager.getHistory());
@@ -83,25 +80,6 @@ public class Main {
         inMemoryTaskManager.getByIdSubTask(subTask2.getId());
         System.out.println(inMemoryTaskManager.getHistoryManager());
         System.out.println(inMemoryHistoryManager.getHistory());
-
-//        System.out.println(taskManager.epics);
-//        System.out.println(taskManager.subTasks);
-
-//        System.out.println("Получение списка всех подзадач определённого эпика: " + taskManager.getSubTasksOfEpic(epic2.getId()));
-
-        /*System.out.println("\nСписок Эпиков и его подзадач после удаления Эпика");
-        System.out.println(manager.deleteByIdEpic(4));
-        System.out.println(manager.epics);
-        System.out.println(manager.subTasks);*/
-
-        /*System.out.println("\nУдаление подзадачи");
-        manager.deleteByIdSubTask(3);
-        System.out.println(manager.epics);
-        System.out.println(manager.subTasks);*/
-
-        // System.out.println(manager.deleteTasks() + " Список должен быть пустой: " + manager.tasks);
-        // System.out.println(manager.deleteByIdTask(1));
-        // System.out.println(manager.getSubTasksOfEpic(6));
 
     }
 }
