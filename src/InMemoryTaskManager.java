@@ -60,22 +60,22 @@ public class InMemoryTaskManager implements TaskManager {
     // Получение списка Эпиков
     @Override
     public List<Epic> getEpics() {
-        Collection<Epic> values = epics.values();
-        return new ArrayList<>(values);
+//        List<Epic> values = epics.values();
+        return new ArrayList<>(epics.values());
     }
 
     // Получение списка задач
     @Override
     public List<Task> getTasks() {
-        Collection<Task> values = tasks.values();
-        return new ArrayList<>(values);
+//        List<Task> values = tasks.values();
+        return new ArrayList<>(tasks.values());
     }
 
     // Получение списка подзадач
     @Override
     public List<SubTask> getSubTask() {
-        Collection<SubTask> values = subTasks.values();
-        return new ArrayList<>(values);
+//        List<SubTask> values = subTasks.values();
+        return new ArrayList<>(subTasks.values());
     }
 
     // Получение Задач по идентификатору
