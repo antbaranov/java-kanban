@@ -8,7 +8,6 @@ import tasks.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
 
@@ -62,6 +61,7 @@ public class InMemoryTaskManager implements TaskManager {
         epics.clear();
     }
 
+
     // Получение списка Эпиков
     @Override
     public List<Epic> getEpics() {
@@ -78,6 +78,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public List<SubTask> getSubTask() {
         return new ArrayList<>(subTasks.values());
+
     }
 
     // Получение Задач по идентификатору
@@ -206,7 +207,16 @@ public class InMemoryTaskManager implements TaskManager {
 
     // История просмотров задач
     @Override
-    public List<Task> getHistory() {
-        return historyManager.getHistory();
+    public HistoryManager getHistoryManager() {
+        return historyManager;
+    }
+
+    @Override
+    public String toString() {
+        return "InMemoryTaskManager{" +
+                "historyManager=" + historyManager +
+                '}';
     }
 }
+
+
