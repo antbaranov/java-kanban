@@ -1,3 +1,5 @@
+package tasks;
+
 public class SubTask extends Task {
     private int epicId; // если сделать приватным, тогда не работает в классе Manager
 
@@ -16,7 +18,7 @@ public class SubTask extends Task {
 
     @Override
     public String toString() {
-        return "SubTask{" +
+        return "tasks.SubTask{" +
                 "epicId=" + epicId +
                 ", id=" + id +
                 ", name='" + name + '\'' +

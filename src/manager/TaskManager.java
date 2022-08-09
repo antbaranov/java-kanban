@@ -1,3 +1,9 @@
+package manager;
+
+import tasks.Epic;
+import tasks.SubTask;
+import tasks.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +15,7 @@ public interface TaskManager {
     // Метод создания Подзадачи subTask
     public void addSubTask(SubTask subTask);
 
-    // Метод создания Эпика Epic
+    // Метод создания Эпика tasks.Epic
     public void addEpic(Epic epic);
 
     // Удаление всех Задач

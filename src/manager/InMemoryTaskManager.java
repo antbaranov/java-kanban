@@ -1,13 +1,21 @@
+package manager;
+
+import tasks.Epic;
+import tasks.Status;
+import tasks.SubTask;
+import tasks.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Collection;
+import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
+
     private int nextId = 1; // Объявление , инициализация начального идентификатора
-    public HashMap<Integer, Task> tasks = new HashMap<>();
-    public HashMap<Integer, SubTask> subTasks = new HashMap<>();
-    public HashMap<Integer, Epic> epics = new HashMap<>();
+    private HashMap<Integer, Task> tasks = new HashMap<>();
+    private HashMap<Integer, SubTask> subTasks = new HashMap<>();
+    private HashMap<Integer, Epic> epics = new HashMap<>();
     private final HistoryManager historyManager = Managers.getDefaultHistory();
 
     // Метод создания простой Задачи task
@@ -30,7 +38,7 @@ public class InMemoryTaskManager implements TaskManager {
 //        return subTask.getId();
     }
 
-    // Метод создания Эпика Epic
+    // Метод создания Эпика tasks.Epic
     @Override
     public void addEpic(Epic epic) {
         epic.setId(nextId++);
@@ -60,21 +68,21 @@ public class InMemoryTaskManager implements TaskManager {
     // Получение списка Эпиков
     @Override
     public List<Epic> getEpics() {
-//        List<Epic> values = epics.values();
+//        List<tasks.Epic> values = epics.values();
         return new ArrayList<>(epics.values());
     }
 
     // Получение списка задач
     @Override
     public List<Task> getTasks() {
-//        List<Task> values = tasks.values();
+//        List<tasks.Task> values = tasks.values();
         return new ArrayList<>(tasks.values());
     }
 
     // Получение списка подзадач
     @Override
     public List<SubTask> getSubTask() {
-//        List<SubTask> values = subTasks.values();
+//        List<tasks.SubTask> values = subTasks.values();
         return new ArrayList<>(subTasks.values());
     }
 
@@ -134,7 +142,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
         Status status = null;
         for (int id : subs) {
-            final SubTask subTask = subTasks.get(id);
+            SubTask subTask = subTasks.get(id);
             if (status == null) {
                 status = subTask.getStatus();
                 continue;

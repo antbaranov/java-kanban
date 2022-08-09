@@ -1,7 +1,7 @@
-// Модификаторы доступа установил protected. Наставник на вебинаре говорил, что нужно делать как protected
+package tasks;// Модификаторы доступа установил protected. Наставник на вебинаре говорил, что нужно делать как protected
 
 public class Task {
-    // Объявляем поля класса Task
+    // Объявляем поля класса tasks.Task
     protected int id; // Уникальный идентификационный номер задачи, по которому её можно будет найти
     protected String name; // Название, кратко описывающее суть задачи (например, «Переезд»)
     protected String description; // Описание, в котором раскрываются детали
@@ -53,7 +53,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "tasks.Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
