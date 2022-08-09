@@ -1,44 +1,68 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public interface TaskManager {
+    
+    // Метод создания простой Задачи task
+    public void addTask(Task task);
 
-    void addTask(Task task); // Метод создания простой Задачи task
+    // Метод создания Подзадачи subTask
+    public void addSubTask(SubTask subTask);
 
-    void addSubTask(SubTask subTask); // Метод создания Подзадачи subTask
+    // Метод создания Эпика Epic
+    public void addEpic(Epic epic);
 
-    void addEpic(Epic epic); // Метод создания Эпика Epic
+    // Удаление всех Задач
+    public void deleteTasks();
 
-    void updateTask(Task task); // Обновление Задач
+    // Удаление всех ПодЗадач
+    public void deleteSubTasks();
 
-    void updateEpic(Epic epic); // Обновление Эпиков
+    // Удаление всех Эпиков
+    public void deleteEpics();
 
-    void updateSubTask(SubTask subTask); // Обновление Подзадач
+    // Получение списка Эпиков
+    public List<Epic> getEpics();
 
-    List<Epic> getEpics();
+    // Получение списка задач
+    public List<Task> getTasks();
 
-    List<Task> getTasks();
+    // Получение списка подзадач
+    public List<SubTask> getSubTask();
 
-    List<SubTask> getSubTask();
+    // Получение Задач по идентификатору
+    public Task getByIdTask(int id);
 
-    void deleteTasks(); // Удаление всех Задач
+    // Получение Подзадач по идентификатору
+    public SubTask getByIdSubTask(int id);
 
-    void deleteEpics(); // Удаление всех Эпиков
+    // Получение Эпика по идентификатору
+    public Epic getByIdEpic(int id);
 
-    void deleteSubTasks(); // Удаление всех ПодЗадач
+    // Обновление Задач
+    public void updateTask(Task task);
 
-    Task getByIdTask(int id); // Получение Задач по идентификатору
+    // Обновление Подзадач
+    public void updateSubTask(SubTask subTask);
 
-    Epic getByIdEpic(int id); // Получение Эпика по идентификатору
+    // Обновление Эпиков
+    public void updateEpic(Epic epic);
 
-    SubTask getByIdSubTask(int id); // Получение Подзадач по идентификатору
+    // Обновление статуса Эпиков
+    public void updateEpicStatus(Epic epic);
 
-    void deleteByIdTask(int id); // Удаление Задачи по идентификатору
+    // Удаление Задачи по идентификатору
+    public void deleteByIdTask(int id);
 
-    void deleteByIdEpic(int id); // Удаление Эпика по идентификатору
+    // Удаление Подзадачи по идентификатору
+    public void deleteByIdSubTask(int id);
 
-    void deleteByIdSubTask(int id); // Удаление Подзадачи по идентификатору
+    // Удаление Эпика по идентификатору
+    public void deleteByIdEpic(int id);
 
-    void updateEpicStatus(Epic epic); // Обновление статуса Эпиков
+    // Получение списка всех подзадач определённого эпика
+    public ArrayList<SubTask> getSubTasksOfEpic(int id);
 
-    List<Task> getHistory(); // История просмотров задач
+    // История просмотров задач
+    public List<Task> getHistory();
 }

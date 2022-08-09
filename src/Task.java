@@ -5,14 +5,14 @@ public class Task {
     protected int id; // Уникальный идентификационный номер задачи, по которому её можно будет найти
     protected String name; // Название, кратко описывающее суть задачи (например, «Переезд»)
     protected String description; // Описание, в котором раскрываются детали
-    protected String status; //Статус, отображающий её прогресс
+    protected Status status; //Статус, отображающий её прогресс
     /* Мы будем выделять следующие этапы жизни задачи:
     NEW — задача только создана, но к её выполнению ещё не приступили.
     IN_PROGRESS — над задачей ведётся работа.
     DONE — задача выполнена */
 
 
-    public Task(int id, String name, String description, String status) {
+    public Task(int id, String name, String description, Status status) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -43,11 +43,11 @@ public class Task {
         this.description = description;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

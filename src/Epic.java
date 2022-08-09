@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Epic extends Task {
     private ArrayList<Integer> subTaskIds; // если сделать приватным, тогда не работает в классе Manager
 
-    public Epic(int id, String name, String description, String status) {
+    public Epic(int id, String name, String description, Status status) {
         super(id, name, description, status);
         subTaskIds = new ArrayList<>();
     }
