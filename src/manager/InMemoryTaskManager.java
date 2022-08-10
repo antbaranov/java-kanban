@@ -62,7 +62,6 @@ public class InMemoryTaskManager implements TaskManager {
         epics.clear();
     }
 
-
     // Получение списка Эпиков
     @Override
     public List<Epic> getEpics() {

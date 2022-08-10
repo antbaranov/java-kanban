@@ -11,7 +11,6 @@ public class Main {
 
         TaskManager inMemoryTaskManager = new InMemoryTaskManager();
         HistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
-
         System.out.println("\nСоздание простой задачи");
         Task task1 = new Task(1, "1 Наименование простой задачи 1", "1 Описание простой задачи 1", Status.NEW);
         inMemoryTaskManager.addTask(task1);
