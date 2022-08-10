@@ -1,10 +1,10 @@
 package tasks;
 
 public class SubTask extends Task {
-    private int epicId; // если сделать приватным, тогда не работает в классе Manager
+    private int epicId;
 
-    public SubTask(int id, String name, String description, Status status, int epicId) {
-        super(id, name, description, status);
+    public SubTask(String name, String description, Status status, int epicId) {
+        super(name, description, status);
         this.epicId = epicId;
     }
 
