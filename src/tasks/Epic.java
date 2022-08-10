@@ -1,9 +1,10 @@
 package tasks;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Epic extends Task {
-    private ArrayList<Integer> subTaskIds; // если сделать приватным, тогда не работает в классе Manager
+    private List<Integer> subTaskIds;
 
     public Epic(int id, String name, String description, Status status) {
         super(id, name, description, status);
@@ -15,12 +16,12 @@ public class Epic extends Task {
         this.subTaskIds.add(subTaskId);
     }
 
-    public ArrayList<Integer> getSubTaskIds() {
+    public List<Integer> getSubTaskIds() {
 
         return subTaskIds;
     }
 
-    public void setSubTaskIds(ArrayList<Integer> subTaskIds) {
+    public void setSubTaskIds(List<Integer> subTaskIds) {
 
         this.subTaskIds = subTaskIds;
     }
