@@ -13,34 +13,37 @@ import java.util.Map;
 public class InMemoryTaskManager implements TaskManager {
 
     private int nextId = 1; // Объявление , инициализация начального идентификатора
-    private Map<Integer, Task> tasks = new HashMap<>();
-    private Map<Integer, SubTask> subTasks = new HashMap<>();
-    private Map<Integer, Epic> epics = new HashMap<>();
+    private final Map<Integer, Task> tasks = new HashMap<>();
+    private final Map<Integer, SubTask> subTasks = new HashMap<>();
+    private final Map<Integer, Epic> epics = new HashMap<>();
     private final HistoryManager historyManager = Managers.getDefaultHistory();
 
     // Метод создания простой Задачи task
     @Override
-    public void addTask(Task task) {
+    public int addTask(Task task) {
         task.setId(nextId++);
         tasks.put(task.getId(), task);
+        return task.getId();
     }
 
     // Метод создания Подзадачи subTask
     @Override
-    public void addSubTask(SubTask subTask) {
+    public int addSubTask(SubTask subTask) {
         int epicId = subTask.getEpicId();
         Epic epic = epics.get(epicId);
         subTask.setId(nextId++);
         subTasks.put(subTask.getId(), subTask);
         epic.addSubTask(subTask.getId());
         updateEpicStatus(epic);
+        return epic.getId();
     }
 
     // Метод создания Эпика tasks.Epic
     @Override
-    public void addEpic(Epic epic) {
+    public int addEpic(Epic epic) {
         epic.setId(nextId++);
         epics.put(epic.getId(), epic);
+        return epic.getId();
     }
 
     // Удаление всех Задач
@@ -207,8 +210,8 @@ public class InMemoryTaskManager implements TaskManager {
 
     // История просмотров задач
     @Override
-    public HistoryManager getHistoryManager() {
-        return historyManager;
+    public List<Task> getHistory() {
+        return historyManager.getHistory();
     }
 
     @Override
@@ -217,6 +220,7 @@ public class InMemoryTaskManager implements TaskManager {
                 "historyManager=" + historyManager +
                 '}';
     }
+
 }
 
 

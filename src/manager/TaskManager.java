@@ -10,13 +10,13 @@ import java.util.List;
 public interface TaskManager {
 
     // Метод создания простой Задачи task
-    void addTask(Task task);
+    int addTask(Task task);
 
     // Метод создания Подзадачи subTask
-    void addSubTask(SubTask subTask);
+    int addSubTask(SubTask subTask);
 
     // Метод создания Эпика tasks.Epic
-    void addEpic(Epic epic);
+    int addEpic(Epic epic);
 
     // Удаление всех Задач
     void deleteTasks();
@@ -70,5 +70,5 @@ public interface TaskManager {
     ArrayList<SubTask> getSubTasksOfEpic(int id);
 
     // История просмотров задач
-    HistoryManager getHistoryManager();
+    List<Task> getHistory();
 }
