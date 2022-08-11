@@ -13,12 +13,12 @@ public class InMemoryHistoryManager implements HistoryManager {
     public void add(Task task) {
         tasksHistory.add(task);
         if (tasksHistory.size() > MAX_LIST_SIZE) {
-            tasksHistory.removeFirst();
+            tasksHistory.remove(0);
         }
     }
 
     @Override
-    public LinkedList<Task> getHistory() {
+    public List<Task> getHistory() {
         return tasksHistory;
     }
 
