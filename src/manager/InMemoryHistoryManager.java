@@ -1,6 +1,7 @@
 package manager;
 
 import tasks.Task;
+
 import java.util.List;
 import java.util.LinkedList;
 
@@ -24,9 +25,7 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public String toString() {
-        return "InMemoryHistoryManager{" +
-                "tasksHistory=" + tasksHistory +
-                '}';
+        return "InMemoryHistoryManager{" + "tasksHistory=" + tasksHistory + '}';
     }
 }
 

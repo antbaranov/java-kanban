@@ -83,6 +83,5 @@ public class Main {
 
         taskManager.getByIdSubTask(subTask2Id);
         System.out.println(taskManager.getHistory());
-
     }
 }
