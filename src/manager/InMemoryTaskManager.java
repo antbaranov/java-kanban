@@ -86,22 +86,21 @@ public class InMemoryTaskManager implements TaskManager {
 
     // Получение Задач по идентификатору
     @Override
-    public Task getByIdTask(int id) {
+    public Task getTaskById(int id) {
         historyManager.add(tasks.get(id));
         return tasks.get(id);
     }
 
     // Получение Подзадач по идентификатору
     @Override
-    public SubTask getByIdSubTask(int id) {
+    public SubTask getSubTaskById(int id) {
         historyManager.add(subTasks.get(id));
         return subTasks.get(id);
     }
 
     // Получение Эпика по идентификатору
     @Override
-    public Epic getByIdEpic(int id) {
-
+    public Epic getEpicById(int id) {
         historyManager.add(epics.get(id));
         return epics.get(id);
     }
@@ -172,7 +171,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void deleteByIdSubTask(int id) {
         int epicId = subTasks.get(id).getEpicId();
         SubTask subTask = subTasks.get(id);
-        Epic epic = getByIdEpic(subTask.getEpicId()); // Так имелось ввиду?
+        Epic epic = this.getEpicById(subTask.getEpicId()); // Так имелось ввиду?
         if (subTasks.containsKey(id)) {
             if (epics.containsKey(epic.getId())) {
                 epics.get(epicId).getSubTaskIds().remove((Integer) id);

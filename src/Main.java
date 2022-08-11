@@ -53,7 +53,7 @@ public class Main {
         System.out.println(taskManager.getSubTask());
 
         System.out.println("\nВызов методов");
-        System.out.println(taskManager.getByIdTask(task2Id));
+        System.out.println(taskManager.getTaskById(task2Id));
         System.out.println(taskManager.getHistory());
 
         System.out.println("\nОбновление простой задачи");
@@ -75,13 +75,13 @@ public class Main {
                 Status.DONE, epic2Id));
         System.out.println(taskManager.getHistory());
 
-        taskManager.getByIdTask(task2Id);
+        taskManager.getTaskById(task2Id);
         System.out.println(taskManager.getHistory());
 
-        taskManager.getByIdEpic(epic1Id);
+        taskManager.getEpicById(epic1Id);
         System.out.println(taskManager.getHistory());
 
-        taskManager.getByIdSubTask(subTask2Id);
+        taskManager.getSubTaskById(subTask2Id);
         System.out.println(taskManager.getHistory());
     }
 }

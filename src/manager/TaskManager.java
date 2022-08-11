@@ -37,13 +37,13 @@ public interface TaskManager {
     List<SubTask> getSubTask();
 
     // Получение Задач по идентификатору
-    Task getByIdTask(int id);
+    Task getTaskById(int id);
 
     // Получение Подзадач по идентификатору
-    SubTask getByIdSubTask(int id);
+    SubTask getSubTaskById(int id);
 
     // Получение Эпика по идентификатору
-    Epic getByIdEpic(int id);
+    Epic getEpicById(int id);
 
     // Обновление Задач
     void updateTask(Task task);
