@@ -1,4 +1,4 @@
-package tasks;// Модификаторы доступа установил protected. Наставник на вебинаре говорил, что нужно делать как protected
+package tasks;
 
 public class Task {
     // Объявляем поля класса tasks.Task
