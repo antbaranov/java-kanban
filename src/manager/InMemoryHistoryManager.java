@@ -1,12 +1,12 @@
 package manager;
 
 import tasks.Task;
-
+import java.util.List;
 import java.util.LinkedList;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    private final LinkedList<Task> tasksHistory = new LinkedList<>();
+    private final List<Task> tasksHistory = new LinkedList<>();
     private static final int MAX_LIST_SIZE = 10; // Количество записей в списке истории
 
     @Override
