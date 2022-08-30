@@ -32,6 +32,34 @@ public class InMemoryHistoryManager implements HistoryManager {
     public String toString() {
         return "InMemoryHistoryManager{" + "tasksHistory=" + tasksHistory + '}';
     }
+
+    public class CustomLinkedList<T> {
+        private Node<T> head; // Указатель на первый элемент списка. Он же first
+        private Node<T> tail; // Указатель на последний элемент списка. Он же last
+        private int size = 0; // Длинна списка
+
+        public void linkLast(T element) {
+            final Node<T> oldTail = tail;
+            final Node<T> newNode = new Node<>(tail, element, null);
+            tail = newNode;
+            if (oldTail == null)
+                tail = newNode;
+            else
+                oldTail.next = newNode;
+            size++;
+        }
+
+        public List<T> getTasks() {
+
+        }
+
+        public void removeNode(Node<T> node) {
+
+        }
+
+    }
+
+
 }
 
 
