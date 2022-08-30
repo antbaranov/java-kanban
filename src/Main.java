@@ -22,7 +22,7 @@ public class Main {
         int task3Id = taskManager.addTask(task3);
         System.out.println("id простой задачи номер 3 task3Id: " + task3Id);
 
-        System.out.println("\nСоздание Эпика 1 с 2-мя Подзадачами");
+        System.out.println("\nСоздание Эпика 1 с 3-мя Подзадачами");
         Epic epic1 = new Epic("1 Наименование Эпик 1", "1 Описание Эпик 1", Status.NEW);
         int epic1Id = taskManager.addEpic(epic1);
         System.out.println("id Эпика номер 1 epic1Id: " + epic1Id);
@@ -37,15 +37,20 @@ public class Main {
         int subTask2Id = taskManager.addSubTask(subTask2);
         System.out.println("id Подзадачи номер 2 subTask2Id: " + subTask2Id);
 
-        System.out.println("\nСоздание Эпика 2 с 1-ой Подзадачей");
+        System.out.println("Создание Подзадачи 3 Эпика 1");
+        SubTask subTask3 = new SubTask("3 Наименование Подзадачи 3", "3 Описание Подзадачи 3", Status.NEW, epic1Id);
+        int subTask3Id = taskManager.addSubTask(subTask3);
+        System.out.println("id Подзадачи номер 3 subTask3Id: " + subTask3Id);
+
+        System.out.println("\nСоздание Эпика 2 без задачи");
         Epic epic2 = new Epic("2 Наименование Эпик 2", "2 Описание Эпик 2", Status.NEW);
         int epic2Id = taskManager.addEpic(epic2);
         System.out.println("id Эпика номер 2 epic2Id: " + epic2Id);
 
-        System.out.println("Создание Подзадачи 3 для 2 Эпика");
+        /*System.out.println("Создание Подзадачи 3 для 2 Эпика");
         SubTask subTask3 = new SubTask("Наименование Подзадачи 3", "Описание Подзадачи 3", Status.NEW, epic2Id);
         int subTask3Id = taskManager.addSubTask(subTask3);
-        System.out.println("id Подзадачи номер 3 subTask3Id: " + subTask3Id);
+        System.out.println("id Подзадачи номер 3 subTask3Id: " + subTask3Id);*/
 
         System.out.println("\nВывод списков Эпиков, Задач, Подзадач");
         System.out.println(taskManager.getEpics());
