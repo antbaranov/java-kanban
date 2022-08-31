@@ -163,6 +163,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void deleteByIdTask(int id) {
         if (tasks.containsKey(id)) {
             tasks.remove(id);
+            historyManager.remove(id);
         }
     }
 
@@ -176,6 +177,7 @@ public class InMemoryTaskManager implements TaskManager {
             if (epics.containsKey(epic.getId())) {
                 epics.get(epicId).getSubTaskIds().remove((Integer) id);
                 subTasks.remove((Integer) id);
+                historyManager.remove(id);
                 updateEpicStatus(epic);
             }
         }
@@ -190,6 +192,7 @@ public class InMemoryTaskManager implements TaskManager {
                 subTasks.remove(subTaskId);
             }
             epics.remove(id);
+            historyManager.remove(id);
         }
     }
 
