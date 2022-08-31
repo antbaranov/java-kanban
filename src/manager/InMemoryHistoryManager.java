@@ -22,7 +22,8 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void remove(int id) {
-        tasksHistory.remove(id);
+
+        customList.removeNode(tasksHistory.remove(id)); // Удаление узла
     }
 
     @Override
@@ -38,19 +39,20 @@ public class InMemoryHistoryManager implements HistoryManager {
     public class CustomLinkedList<T> {
         private Node<T> head; // Указатель на первый элемент списка. Он же first
         private Node<T> tail; // Указатель на последний элемент списка. Он же last
-        private int size = 0; // Длинна списка
 
         public void linkLast(T element) {
-            final Node<T> oldTail = tail;
-            final Node<T> newNode = new Node<>(tail, element, null);
-            tail = newNode;
-
-            if (oldTail == null) {
-                tail = newNode;
-            } else {
-                oldTail.next = newNode;
+            if (head == null) {
+                // T value, Node<T> prev, Node<T> next
+                Node<T> currentNode = new Node<>(tail, element, null);
+                head = currentNode;
+                tail = new Node<>(currentNode, null, null);
+                return;
             }
-            size++;
+            Node<T> currentNode = tail;
+            currentNode.data = element;
+            tail = new Node<>(currentNode, null, null);
+            currentNode.prev.next = currentNode;
+            currentNode.next = tail;
         }
 
         public List<T> getTasks() {
@@ -86,9 +88,7 @@ public class InMemoryHistoryManager implements HistoryManager {
             }
             node.data = null; // Зануляем значение узла
         }
-
     }
-
 
 }
 

@@ -76,7 +76,6 @@ public class Main {
                 "Обновили Наименование Подзадачи 1 Эпик 2", "Обновили Описание Подзадачи 1",
                 Status.DONE, epic2Id));
 
-
         System.out.println("\nВызов методов");
         System.out.println(taskManager.getTaskById(task2Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
@@ -86,14 +85,25 @@ public class Main {
         System.out.println("История просмотров: " + taskManager.getHistory());
         System.out.println(taskManager.getTaskById(task3Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
+        taskManager.getTaskById(task3Id);
+        taskManager.getTaskById(task3Id);
+        taskManager.getTaskById(task3Id);
+        taskManager.getTaskById(task2Id);
+        taskManager.getTaskById(task2Id);
+        taskManager.getTaskById(task3Id);
+        taskManager.getTaskById(task3Id);
+        taskManager.getTaskById(task1Id);
+        taskManager.getTaskById(task1Id);
+        System.out.println("\nИстория просмотров несколько: " + taskManager.getHistory());
 
+        System.out.println("\nВызов Эпиков");
         System.out.println(taskManager.getEpicById(epic1Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
         System.out.println(taskManager.getEpicById(epic2Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
 
         System.out.println(taskManager.getSubTaskById(subTask1Id));
-        System.out.println("История просмотров: " + taskManager.getHistory());
+        System.out.println("\nИстория просмотров: " + taskManager.getHistory());
         System.out.println(taskManager.getSubTaskById(subTask3Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
         System.out.println(taskManager.getSubTaskById(subTask2Id));
@@ -102,7 +112,7 @@ public class Main {
         System.out.println("История просмотров: " + taskManager.getHistory());
 
         System.out.println(taskManager.getTaskById(task1Id));
-        System.out.println("История просмотров: " + taskManager.getHistory());
+        System.out.println("\nИстория просмотров: " + taskManager.getHistory());
         System.out.println(taskManager.getTaskById(task3Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
         System.out.println(taskManager.getTaskById(task2Id));
@@ -111,7 +121,7 @@ public class Main {
         System.out.println("История просмотров: " + taskManager.getHistory());
 
         taskManager.deleteByIdTask(task1Id);
-        System.out.println("Удалённая задача: " + taskManager.getTaskById(task1Id));
+        System.out.println("\nУдалённая задача: " + taskManager.getTaskById(task1Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
 
         System.out.println("\nУдаляем Эпик 1 с 3-мя подзадачами");
