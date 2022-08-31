@@ -101,6 +101,11 @@ public class Main {
         System.out.println("История просмотров: " + taskManager.getHistory());
         System.out.println(taskManager.getEpicById(epic2Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
+        taskManager.getEpicById(epic1Id);
+        taskManager.getEpicById(epic1Id);
+        taskManager.getEpicById(epic2Id);
+        taskManager.getEpicById(epic2Id);
+        System.out.println("История просмотров: " + taskManager.getHistory());
 
         System.out.println(taskManager.getSubTaskById(subTask1Id));
         System.out.println("\nИстория просмотров: " + taskManager.getHistory());
@@ -121,12 +126,14 @@ public class Main {
         System.out.println("История просмотров: " + taskManager.getHistory());
 
         taskManager.deleteByIdTask(task1Id);
-        System.out.println("\nУдалённая задача: " + taskManager.getTaskById(task1Id));
+        System.out.println("\nУдалённая задача 1: " + taskManager.getTaskById(task1Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
 
         System.out.println("\nУдаляем Эпик 1 с 3-мя подзадачами");
+        System.out.println("Имеем Эпик 1: " + taskManager.getEpicById(epic1Id));
+        System.out.println("Подзадачи Эпика 1: " + taskManager.getSubTasksOfEpic(epic1Id));
         taskManager.deleteByIdEpic(epic1Id);
-        System.out.println("Удалённый Эпик 1 с 3-мя подзадачами: " + taskManager.getEpicById(epic1Id));
+        System.out.println("Удаляем Эпик 1 с 3-мя подзадачами: " + taskManager.getEpicById(epic1Id));
         System.out.println("Удалённая Подзадача 1 Эпика 1: " + taskManager.getSubTaskById(subTask1Id));
         System.out.println("Удалённая Подзадача 2 Эпика 2: " + taskManager.getSubTaskById(subTask2Id));
         System.out.println("Удалённая Подзадача 3 Эпика 3: " + taskManager.getSubTaskById(subTask3Id));
