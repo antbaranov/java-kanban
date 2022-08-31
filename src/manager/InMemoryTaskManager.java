@@ -176,12 +176,13 @@ public class InMemoryTaskManager implements TaskManager {
         if (subTasks.containsKey(id)) {
             if (epics.containsKey(epic.getId())) {
                 epics.get(epicId).getSubTaskIds().remove((Integer) id);
+                updateEpicStatus(epic);
                 subTasks.remove((Integer) id);
                 historyManager.remove(id);
-                updateEpicStatus(epic);
             }
         }
     }
+
 
     // Удаление Эпика по идентификатору
     @Override
