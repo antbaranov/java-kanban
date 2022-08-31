@@ -6,11 +6,6 @@ import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    @Override
-    public String toString() {
-        return "InMemoryHistoryManager{" + "tasksHistory=" + tasksHistory + '}';
-    }
-
     private final Map<Integer, Node<Task>> tasksHistory = new HashMap<>();
     private final CustomLinkedList<Task> customHistoryList = new CustomLinkedList<>();
 
@@ -69,7 +64,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
 
         public void removeNode(Node<Task> node) {
-            if (node == null) { // <---------------- *** Нужно ли делать проверку? *** -------------
+            if (node == null) { // Проверка
                 return;
             }
 
@@ -91,6 +86,10 @@ public class InMemoryHistoryManager implements HistoryManager {
             node.data = null; // Обнуляем значение узла
         }
 
+    }
+    @Override
+    public String toString() {
+        return "InMemoryHistoryManager{" + "tasksHistory=" + tasksHistory + '}';
     }
 }
 
