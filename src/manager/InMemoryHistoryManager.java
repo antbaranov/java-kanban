@@ -6,6 +6,11 @@ import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
+    @Override
+    public String toString() {
+        return "InMemoryHistoryManager{" + "tasksHistory=" + tasksHistory + '}';
+    }
+
     private final Map<Integer, Node<Task>> tasksHistory = new HashMap<>();
     private final CustomLinkedList<Task> customHistoryList = new CustomLinkedList<>();
 
@@ -23,7 +28,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     @Override
     public void remove(int id) {
         if (tasksHistory.containsKey(id)) {
-            customHistoryList.removeNode(tasksHistory.remove(id));
+            customHistoryList.removeNode(tasksHistory.get(id));
             tasksHistory.remove(id);
         }
     }
@@ -37,14 +42,16 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
     }
 */
+/*
+    @Override
+    public void remove(int id) {
+        customList.removeNode(tasksHistory.remove(id));
+    }
+
+ */
     @Override
     public List<Task> getHistory() {
         return customHistoryList.getTasks();
-    }
-
-    @Override
-    public String toString() {
-        return "InMemoryHistoryManager{" + "tasksHistory=" + tasksHistory + '}';
     }
 
     public class CustomLinkedList<Task> {
