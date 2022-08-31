@@ -47,10 +47,12 @@ public class Main {
         int epic2Id = taskManager.addEpic(epic2);
         System.out.println("id Эпика номер 2 epic2Id: " + epic2Id);
 
-        /*System.out.println("Создание Подзадачи 3 для 2 Эпика");
+        /*
+        System.out.println("Создание Подзадачи 3 для 2 Эпика");
         SubTask subTask3 = new SubTask("Наименование Подзадачи 3", "Описание Подзадачи 3", Status.NEW, epic2Id);
         int subTask3Id = taskManager.addSubTask(subTask3);
-        System.out.println("id Подзадачи номер 3 subTask3Id: " + subTask3Id);*/
+        System.out.println("id Подзадачи номер 3 subTask3Id: " + subTask3Id);
+        */
 
         System.out.println("\nВывод списков Эпиков, Задач, Подзадач");
         System.out.println(taskManager.getEpics());
