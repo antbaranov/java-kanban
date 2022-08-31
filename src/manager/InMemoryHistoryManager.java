@@ -33,22 +33,6 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
     }
 
-    /*
-    @Override
-    public void remove(Task task) {
-        if (tasksHistory.containsKey(task.getId())) {
-            customHistoryList.removeNode(tasksHistory.get(task.getId()));
-            tasksHistory.remove(task.getId());
-        }
-    }
-*/
-/*
-    @Override
-    public void remove(int id) {
-        customList.removeNode(tasksHistory.remove(id));
-    }
-
- */
     @Override
     public List<Task> getHistory() {
         return customHistoryList.getTasks();
@@ -84,7 +68,6 @@ public class InMemoryHistoryManager implements HistoryManager {
             return tasksList;
         }
 
-
         public void removeNode(Node<Task> node) {
             if (node == null) { // <---------------- *** Нужно ли делать проверку? *** -------------
                 return;
@@ -107,7 +90,9 @@ public class InMemoryHistoryManager implements HistoryManager {
             }
             node.data = null; // Обнуляем значение узла
         }
+
     }
 }
+
 
 
