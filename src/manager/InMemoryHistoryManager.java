@@ -33,28 +33,28 @@ public class InMemoryHistoryManager implements HistoryManager {
         return customHistoryList.getTasks();
     }
 
-    public static class CustomLinkedList<Task> {
-        private Node<Task> head; // Указатель на первый элемент списка. Он же first
-        private Node<Task> tail; // Указатель на последний элемент списка. Он же last
+    public static class CustomLinkedList<T> {
+        private Node<T> head; // Указатель на первый элемент списка. Он же first
+        private Node<T> tail; // Указатель на последний элемент списка. Он же last
 
-        public void linkLast(Task task) {
+        public void linkLast(T element) {
             if (head == null) {
 
-                Node<Task> currentNode = new Node<>(tail, task, null);
+                Node<T> currentNode = new Node<>(tail, element, null);
                 head = currentNode;
                 tail = new Node<>(currentNode, null, null);
                 return;
             }
-            Node<Task> currentNode = tail;
-            currentNode.data = task;
+            Node<T> currentNode = tail;
+            currentNode.data = element;
             tail = new Node<>(currentNode, null, null);
             currentNode.prev.next = currentNode;
             currentNode.next = tail;
         }
 
-        public List<Task> getTasks() {
-            List<Task> tasksList = new ArrayList<>();
-            Node<Task> node = head;
+        public List<T> getTasks() {
+            List<T> tasksList = new ArrayList<>();
+            Node<T> node = head;
 
             while (node != null) {
                 tasksList.add(node.data);
@@ -63,13 +63,13 @@ public class InMemoryHistoryManager implements HistoryManager {
             return tasksList;
         }
 
-        public void removeNode(Node<Task> node) {
+        public void removeNode(Node<T> node) {
             if (node == null) { // Проверка
                 return;
             }
 
-            final Node<Task> prev = node.prev; // Ссылка на предыдущую ноду
-            final Node<Task> next = node.next; // Ссылка на следующую ноду
+            final Node<T> prev = node.prev; // Ссылка на предыдущую ноду
+            final Node<T> next = node.next; // Ссылка на следующую ноду
 
             if (prev == null) { // IF предыдущий узел == null, то головой списка становится NEXT узел
                 head = next;
