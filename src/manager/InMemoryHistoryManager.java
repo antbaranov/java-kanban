@@ -33,7 +33,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         return customHistoryList.getTasks();
     }
 
-    public class CustomLinkedList<Task> {
+    public static class CustomLinkedList<Task> {
         private Node<Task> head; // Указатель на первый элемент списка. Он же first
         private Node<Task> tail; // Указатель на последний элемент списка. Он же last
 
@@ -71,16 +71,16 @@ public class InMemoryHistoryManager implements HistoryManager {
             final Node<Task> prev = node.prev; // Ссылка на предыдущую ноду
             final Node<Task> next = node.next; // Ссылка на следующую ноду
 
-            if (prev == null) { // IF предыдущий узел == null, ELSE головой списка становится NEXT узел
+            if (prev == null) { // IF предыдущий узел == null, то головой списка становится NEXT узел
                 head = next;
-            } else { // IF узел находится в центре списка, ELSE:
-                prev.next = next; // ELSE поле NEXT у предыдущей ноды, начинает ссылаться на поле NEXT удаляемой
+            } else { // IF узел находится в центре списка, тогда:
+                prev.next = next; // то поле NEXT у предыдущей ноды, начинает ссылаться на поле NEXT удаляемой
                 node.prev = null; // поле PREV у удаляемой ноды обнуляем, т.к. мы изменили ссылки и сохранили связь
             }
             if (next == null) { // IF следующий узел == null, то хвостом списка становится PREV узел
                 tail = prev;
-            } else { // IF узел находится в центре списка, ELSE:
-                next.prev = prev; // ELSE поле PREV у следующей ноды, начинает ссылаться на поле PREV удаляемой
+            } else { // IF узел находится в центре списка, тогда:
+                next.prev = prev; // то поле PREV у следующей ноды, начинает ссылаться на поле PREV удаляемой
                 node.next = null; // поле NEXT у удаляемой ноды обнуляем, т.к. мы изменили ссылки и сохранили связь
             }
             node.data = null; // Обнуляем значение узла
