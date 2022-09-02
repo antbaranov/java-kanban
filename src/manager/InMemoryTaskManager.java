@@ -35,7 +35,7 @@ public class InMemoryTaskManager implements TaskManager {
         subTasks.put(subTask.getId(), subTask);
         epic.addSubTask(subTask.getId());
         updateEpicStatus(epic);
-        return epic.getId();
+        return subTask.getId();
     }
 
     // Метод создания Эпика tasks.Epic
@@ -191,6 +191,7 @@ public class InMemoryTaskManager implements TaskManager {
             Epic epic = epics.get(id);
             for (int subTaskId : epic.getSubTaskIds()) {
                 subTasks.remove(subTaskId);
+                historyManager.remove(subTaskId);
             }
             epics.remove(id);
             historyManager.remove(id);
