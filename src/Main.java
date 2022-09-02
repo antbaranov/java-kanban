@@ -56,7 +56,7 @@ public class Main {
 
         System.out.println("\nВывод списков Эпиков, Задач, Подзадач");
         System.out.println(taskManager.getEpics());
-        System.out.println(taskManager.getTasks());
+        //     System.out.println(taskManager.getTasks());
         System.out.println(taskManager.getSubTask());
 
         System.out.println("\nОбновление простой задачи");
@@ -105,6 +105,10 @@ public class Main {
         taskManager.getEpicById(epic1Id);
         taskManager.getEpicById(epic2Id);
         taskManager.getEpicById(epic2Id);
+        taskManager.getEpicById(epic2Id);
+        taskManager.getSubTaskById(subTask1Id);
+        taskManager.getSubTaskById(subTask2Id);
+        taskManager.getSubTaskById(subTask2Id);
         System.out.println("История просмотров: " + taskManager.getHistory());
 
         System.out.println(taskManager.getSubTaskById(subTask1Id));
@@ -125,7 +129,7 @@ public class Main {
         System.out.println(taskManager.getTaskById(task1Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
 
-                taskManager.deleteByIdTask(task1Id);
+        taskManager.deleteByIdTask(task1Id);
         taskManager.deleteByIdTask(task2Id);
         taskManager.deleteByIdTask(task3Id);
         System.out.println("\nУдалённая задача 1: " + taskManager.getTaskById(task1Id));
@@ -137,7 +141,7 @@ public class Main {
         taskManager.deleteByIdEpic(epic1Id);
         taskManager.deleteByIdEpic(epic2Id);
         System.out.println("Удаляем Эпик 1 с 3-мя подзадачами: " + taskManager.getEpicById(epic1Id));
-       System.out.println("Удалённая Подзадача 1 Эпика 1: " + taskManager.getSubTaskById(subTask1Id));
+        System.out.println("Удалённая Подзадача 1 Эпика 1: " + taskManager.getSubTaskById(subTask1Id));
         System.out.println("Удалённая Подзадача 2 Эпика 2: " + taskManager.getSubTaskById(subTask2Id));
         System.out.println("Удалённая Подзадача 3 Эпика 3: " + taskManager.getSubTaskById(subTask3Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
