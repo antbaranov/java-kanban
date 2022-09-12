@@ -1,12 +1,13 @@
 package manager;
 
+import TasksManager;
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
 
 import java.io.File;
 
-public class FileBackedTasksManager extends inMemoryTaskManager implements TasksManager {
+public class FileBackedTasksManager implements TasksManager extends inMemoryTaskManager {
     private final File file;
 
     public FileBackedTasksManager(File file) {
@@ -36,11 +37,10 @@ public class FileBackedTasksManager extends inMemoryTaskManager implements Tasks
     }
 
     @Override
-    public void addSubTask(SubTask subTask){
+    public void addSubTask(SubTask subTask) {
         super.addSubTask(subTask);
         save(subTask);
     }
-
 
 
 }
