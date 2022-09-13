@@ -2,40 +2,38 @@ package manager;
 
 import tasks.*;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
-public class FileBackedTasksManager extends InMemoryTaskManager implements TaskManager {
 
-
-
+public class FileBackedTasksManager extends InMemoryTaskManager {
 
     public FileBackedTasksManager() {
+
     }
 
-    String fileName = "file_data.csv";
 
     // Метод сохраняет текущее состояние менеджера в указанный файл
     public void save() {
-        try (FileWriter fileWriter = new FileWriter(fileName, StandardCharsets.UTF_8)) {
-            fileWriter.write("id,type,name,status,description,epic" + "\n"); // Запись шапки с заголовками в файл
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("tasks_file.csv", StandardCharsets.UTF_8))) {
+            //  try (FileWriter fileWriter = new FileWriter("tasks_file.csv", StandardCharsets.UTF_8)) {
+            bufferedWriter.write("id,type,name,status,description,epic" + "\n"); // Запись шапки с заголовками в файл
             for (Task task : getTasks()) {
-                fileWriter.write(taskToString(task) + "\n");
+                bufferedWriter.write(taskToString(task) + "\n");
             }
             for (Epic epic : getEpics()) {
-                fileWriter.write(epicToString(epic) + "\n");
+                bufferedWriter.write(epicToString(epic) + "\n");
             }
             for (SubTask subTask : getSubTask()) {
-                fileWriter.write(subTaskToString(subTask) + "\n");
+                bufferedWriter.write(subTaskToString(subTask) + "\n");
             }
-            fileWriter.write("\n"); // Добавить пустую строку
-            fileWriter.write(historyToString(getHistoryManager())); // Добавить идентификаторы задач из истории просмотров
+            bufferedWriter.write("\n"); // Добавить пустую строку
+            bufferedWriter.write(historyToString(getHistoryManager())); // Добавить идентификаторы задач из истории просмотров
 
         } catch (IOException e) {
-            System.out.println("Произошла ошибка во время записи файла");
-            throw new RuntimeException(e);
+            throw new ManagerSaveException("Произошла ошибка во время записи файла");
         }
 
     }
@@ -48,6 +46,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager implements TaskM
                 + task.getStatus() + ","
                 + task.getDescription();
     }
+
     // Метод сохранения Подзадачи в строку
     public String subTaskToString(SubTask subTask) {
         return subTask.getId() + ","
@@ -57,6 +56,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager implements TaskM
                 + subTask.getDescription() + ","
                 + subTask.getEpicId();
     }
+
     // Метод сохранения Эпика в строку
     public String epicToString(Epic epic) {
         return epic.getId() + ","
@@ -68,9 +68,24 @@ public class FileBackedTasksManager extends InMemoryTaskManager implements TaskM
 
 
     // Метод создания задачи из строки
-//    public Task fromString(String value) {
-//
-//    }
+    public static Task fromString(String value) {
+        String[] params = value.split(",");
+        if (params[1].equals("EPIC")) {
+            Epic epic = new Epic(params[4], params[2], Status.valueOf(params[3].toUpperCase()));
+            epic.setId(Integer.parseInt(params[0]));
+            epic.setStatus(Status.valueOf(params[3].toUpperCase()));
+            return epic;
+        } else if (params[1].equals("SUBTASK")) {
+            SubTask subTask = new SubTask(params[4], params[2], Status.valueOf(params[3].toUpperCase()),
+                    Integer.parseInt(params[5]));
+            subTask.setId(Integer.parseInt(params[0]));
+            return subTask;
+        } else {
+            Task task = new Task(params[4], params[2], Status.valueOf(params[3].toUpperCase()));
+            task.setId(Integer.parseInt(params[0]));
+            return task;
+        }
+    }
 
     // Метод сохранения менеджера в историю в файл CSV
     static String historyToString(HistoryManager manager) {
@@ -93,14 +108,51 @@ public class FileBackedTasksManager extends InMemoryTaskManager implements TaskM
     }
 
     // Метод восстановления менеджера из истории из файла CSV
-    /*static List<Integer> historyFromString(String value) {
-        Files.readString(Path.of(path)); // Способ чтения файла
-    }*/
+    static List<Integer> historyFromString(String value) {
+        List<Integer> list = new ArrayList<>();
+        if (value != null) {
+            String[] val = value.split(",");
+            for (String number : val) {
+                list.add(Integer.parseInt(number));
+            }
+            return list;
+        }
+        return list;
+    }
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
-  /*  static FileBackedTasksManager loadFromFile(File file) {
+    public FileBackedTasksManager loadFromFile(File file) {
+        final FileBackedTasksManager manager = new FileBackedTasksManager();
 
-    }*/
+        try (BufferedReader br = new BufferedReader(new FileReader("tasks_file.csv", StandardCharsets.UTF_8))) {
+            br.readLine();
+            while (br.ready()) {
+                String line = br.readLine();
+
+                if (line.isEmpty() || line.isBlank()) {
+                    break;
+                }
+                Task task = fromString(line);
+
+                if (task instanceof Epic epic) {
+                    addEpic(epic);
+                } else if (task instanceof SubTask subTask) {
+                    addSubTask(subTask);
+                } else {
+                    addTask(task);
+                }
+            }
+            String lineWithHistory = br.readLine();
+            for (int id : historyFromString(lineWithHistory)) {
+                addToHistory(id);
+            }
+
+        } catch (IOException e) {
+            throw new ManagerSaveException("Произошла ошибка во время чтения файла!");
+        }
+
+        return manager;
+    }
 
     /*
      * Теперь достаточно переопределить каждую модифицирующую операцию таким образом,
@@ -129,6 +181,12 @@ public class FileBackedTasksManager extends InMemoryTaskManager implements TaskM
         return subTask.getId();
     }
 
+    // Метод собственное непроверяемое исключение
+    static class ManagerSaveException extends RuntimeException {
+        public ManagerSaveException(final String message) {
+            super(message);
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -166,6 +224,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager implements TaskM
         System.out.println("id Подзадачи номер 3 subTask3Id: " + subTask3Id);
 
         System.out.println(taskManager.getTasks());
+        System.out.println("Вывод менеджера: " + taskManager);
     }
 
 
