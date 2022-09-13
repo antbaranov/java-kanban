@@ -10,15 +10,18 @@ import java.util.List;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
 
-    public FileBackedTasksManager() {
+
+    private FileBackedTasksManager(File file) {
+        super();
 
     }
+
+
 
 
     // Метод сохраняет текущее состояние менеджера в указанный файл
     public void save() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("tasks_file.csv", StandardCharsets.UTF_8))) {
-            //  try (FileWriter fileWriter = new FileWriter("tasks_file.csv", StandardCharsets.UTF_8)) {
             bufferedWriter.write("id,type,name,status,description,epic" + "\n"); // Запись шапки с заголовками в файл
             for (Task task : getTasks()) {
                 bufferedWriter.write(taskToString(task) + "\n");
@@ -121,8 +124,8 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
-    public FileBackedTasksManager loadFromFile(File file) {
-        final FileBackedTasksManager manager = new FileBackedTasksManager();
+    public void loadFromFile(File file) {
+        final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(new File("tasks_file.csv"));
 
         try (BufferedReader br = new BufferedReader(new FileReader("tasks_file.csv", StandardCharsets.UTF_8))) {
             br.readLine();
@@ -151,7 +154,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             throw new ManagerSaveException("Произошла ошибка во время чтения файла!");
         }
 
-        return manager;
+       // return fileBackedTasksManager;
     }
 
     /*
@@ -190,8 +193,8 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
 
     public static void main(String[] args) {
-        TaskManager taskManager = new FileBackedTasksManager();
-
+        TaskManager taskManager = new FileBackedTasksManager(new File("tasks_file.csv"));
+       // FileBackedTasksManager manager = new FileBackedTasksManager(new File("tasks_file.csv"));
         System.out.println("\nСоздание простой задачи");
         Task task1 = new Task("1 Наименование простой задачи 1", "1 Описание простой задачи 1", Status.NEW);
         int task1Id = taskManager.addTask(task1);
@@ -225,7 +228,10 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
         System.out.println(taskManager.getTasks());
         System.out.println("Вывод менеджера: " + taskManager);
+
     }
+
+
 
 
 }
