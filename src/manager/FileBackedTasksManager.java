@@ -124,7 +124,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
-    public void loadFromFile(File file) {
+    public static FileBackedTasksManager loadFromFile(File file) {
         final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(new File("tasks_file.csv"));
 
         try (BufferedReader br = new BufferedReader(new FileReader("tasks_file.csv", StandardCharsets.UTF_8))) {
@@ -154,7 +154,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             throw new ManagerSaveException("Произошла ошибка во время чтения файла!");
         }
 
-       // return fileBackedTasksManager;
+        return fileBackedTasksManager;
     }
 
     /*
