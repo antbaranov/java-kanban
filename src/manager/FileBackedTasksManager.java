@@ -14,6 +14,9 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     Path path = Path.of("tasks_file.csv");
     File file = new File(String.valueOf(path));
 
+    public FileBackedTasksManager() {
+    }
+
     // Метод сохраняет текущее состояние менеджера в указанный файл
     public void save() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
@@ -28,7 +31,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
                 bufferedWriter.write(subTaskToString(subTask) + "\n");
             }
             bufferedWriter.write("\n"); // Добавить пустую строку
-            bufferedWriter.write(historyToString(getHistoryManager())); // Добавить идентификаторы задач из истории просмотров  HistoryManager.historyToString(historyManager)
+            bufferedWriter.write(HistoryManager.historyToString(getHistoryManager())); // Добавить идентификаторы задач из истории просмотров  HistoryManager.historyToString(historyManager)
 
         } catch (IOException e) {
             throw new ManagerSaveException("Произошла ошибка во время записи файла");
@@ -85,25 +88,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         }
     }
 
-    // Метод сохранения менеджера в историю в файл CSV
-    static String historyToString(HistoryManager manager) {
-        List<Task> history = manager.getHistory();
-        StringBuilder str = new StringBuilder();
 
-        if (history.isEmpty()) {
-            return "";
-        }
-
-        for (Task task : history) {
-            str.append(task.getId()).append(",");
-        }
-
-        if (str.length() != 0) {
-            str.deleteCharAt(str.length() - 1);
-        }
-
-        return str.toString();
-    }
 
     // Метод восстановления менеджера из истории из файла CSV
     static List<Integer> historyFromString(String value) {
@@ -120,8 +105,8 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
 
-    public void loadFromFile(File file) {
-
+    public  void loadFromFile(File file) {
+        final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
         try (BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
             br.readLine();
             while (br.ready()) {
@@ -149,7 +134,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             throw new ManagerSaveException("Произошла ошибка во время чтения файла!");
         }
 
-        //return fileBackedTasksManager;
+       // return fileBackedTasksManager;
     }
 
     /*
@@ -158,17 +143,17 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
      * унаследованная от предка,
      * а затем — метод save
      */
+
+    // Переопределение методов
     @Override
     public int addTask(Task task) {
-        // int id = super.addTask(task);
         super.addTask(task);
         save();
-        //return id;
         return task.getId();
     }
 
     @Override
-    public int addEpic(Epic epic) {
+    public  int addEpic(Epic epic) {
         super.addEpic(epic);
         save();
         return epic.getId();
@@ -200,6 +185,26 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     public void deleteEpics() {
         super.deleteEpics();
         save();
+    }
+
+    // Получение списка Эпиков
+    @Override
+    public List<Epic> getEpics() {
+        return super.getEpics();
+    }
+
+    // Получение списка задач
+    @Override
+    public List<Task> getTasks() {
+
+        return super.getTasks();
+    }
+
+    // Получение списка подзадач
+    @Override
+    public List<SubTask> getSubTask() {
+        return super.getSubTask();
+
     }
 
     // Получение Задач по идентификатору
@@ -284,7 +289,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     }
 
-
     // Метод собственное непроверяемое исключение
     static class ManagerSaveException extends RuntimeException {
         public ManagerSaveException(final String message) {
@@ -298,6 +302,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         // FileBackedTasksManager taskManager = new FileBackedTasksManager(Managers.getDefaultHistory(), file);
 
         FileBackedTasksManager taskManager = Managers.getDefaultFileManager();
+
 
         System.out.println("\nСоздание простой задачи");
         Task task1 = new Task("1 Наименование простой задачи 1", "1 Описание простой задачи 1", Status.NEW);
@@ -338,8 +343,12 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         taskManager.getEpicById(epic1Id);
         taskManager.getSubTaskById(subTask1Id);
         taskManager.getSubTaskById(subTask2Id);
-        System.out.println("Вывод менеджера: " + taskManager);
-        taskManager.loadFromFile(file);
+/*
+        System.out.println("Восстановили таски: " + managerFile.getTasks());
+        System.out.println("Восстановили эпики: " + managerFile.getEpics());
+        System.out.println("Восстановили субтаски: " + managerFile.getSubTask());
+        System.out.println("Восстановили историю запросов: " + managerFile.getHistory());
+*/
     }
 
 }

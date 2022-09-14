@@ -1,3 +1,4 @@
+import manager.FileBackedTasksManager;
 import manager.Managers;
 import manager.TaskManager;
 import tasks.Epic;
@@ -5,11 +6,14 @@ import tasks.Status;
 import tasks.SubTask;
 import tasks.Task;
 
+import java.io.File;
+
 public class Main {
 
     public static void main(String[] args) {
 
         TaskManager taskManager = Managers.getDefaultTask();
+        FileBackedTasksManager managerFile = Managers.getDefaultFileManager();
 
         System.out.println("\nСоздание простой задачи");
         Task task1 = new Task("1 Наименование простой задачи 1", "1 Описание простой задачи 1", Status.NEW);
@@ -134,7 +138,7 @@ public class Main {
         taskManager.deleteByIdTask(task3Id);
         System.out.println("\nУдалённая задача 1: " + taskManager.getTaskById(task1Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
-
+/*
         System.out.println("\nУдаляем Эпик 1 с 3-мя подзадачами");
         System.out.println("Имеем Эпик 1: " + taskManager.getEpicById(epic1Id));
         System.out.println("Подзадачи Эпика 1: " + taskManager.getSubTasksOfEpic(epic1Id));
@@ -145,6 +149,12 @@ public class Main {
         System.out.println("Удалённая Подзадача 2 Эпика 2: " + taskManager.getSubTaskById(subTask2Id));
         System.out.println("Удалённая Подзадача 3 Эпика 3: " + taskManager.getSubTaskById(subTask3Id));
         System.out.println("История просмотров: " + taskManager.getHistory());
+*/
+        managerFile.loadFromFile(new File("tasks_file.csv"));
+        System.out.println("\n\n\nВосстановили таски: " + managerFile.getTasks());
+        System.out.println("Восстановили эпики: " + managerFile.getEpics());
+        System.out.println("Восстановили субтаски: " + managerFile.getSubTask());
+        System.out.println("Восстановили историю запросов: " + managerFile.getHistory());
 
     }
 }
