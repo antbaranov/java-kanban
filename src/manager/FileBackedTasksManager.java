@@ -1,5 +1,7 @@
 package manager;
 
+import constants.Status;
+import constants.TaskType;
 import exception.ManagerSaveException;
 import tasks.*;
 
@@ -12,9 +14,10 @@ import java.util.List;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
 
-    Path path = Path.of("tasks_file.csv");
+    Path path = Path.of("src/upload/tasks_file.csv");
     File file = new File(String.valueOf(path));
     public static final String COMMA_SEPARATOR = ",";
+
     public FileBackedTasksManager() {
     }
 
@@ -90,7 +93,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
 
-
     // Метод восстановления менеджера из истории из файла CSV
     static List<Integer> historyFromString(String value) {
         List<Integer> list = new ArrayList<>();
@@ -106,7 +108,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
 
-    public  FileBackedTasksManager loadFromFile(File file) {
+    public FileBackedTasksManager loadFromFile(File file) {
         final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
         try (BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
             br.readLine();
@@ -135,7 +137,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             throw new ManagerSaveException("Произошла ошибка во время чтения файла!");
         }
 
-       return fileBackedTasksManager;
+        return fileBackedTasksManager;
     }
 
     /*
@@ -154,7 +156,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     @Override
-    public  int addEpic(Epic epic) {
+    public int addEpic(Epic epic) {
         super.addEpic(epic);
         save();
         return epic.getId();
@@ -291,12 +293,9 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     public static void main(String[] args) {
-        Path path = Path.of("tasks_file.csv");
-        File file = new File(String.valueOf(path));
+
         FileBackedTasksManager managerFile = new FileBackedTasksManager();
-
         FileBackedTasksManager taskManager = Managers.getDefaultFileManager();
-
 
         System.out.println("\nСоздание простой задачи");
         Task task1 = new Task("1 Наименование простой задачи 1", "1 Описание простой задачи 1", Status.NEW);

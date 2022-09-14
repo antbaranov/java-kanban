@@ -1,4 +1,4 @@
-package tasks;
+package constants;
 
 public enum TaskType {
 

@@ -1,5 +1,8 @@
 package tasks;
 
+import constants.Status;
+import constants.TaskType;
+
 public class Task {
     // Объявляем поля класса tasks.Task
     protected int id; // Уникальный идентификационный номер задачи, по которому её можно будет найти
