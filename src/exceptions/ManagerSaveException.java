@@ -1,4 +1,4 @@
-package exception;
+package exceptions;
 
 // Метод собственное непроверяемое исключение
 public class ManagerSaveException extends RuntimeException {
