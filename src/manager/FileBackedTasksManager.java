@@ -13,7 +13,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     Path path = Path.of("tasks_file.csv");
     File file = new File(String.valueOf(path));
-
+    static final String COMMA_SEPARATOR = ",";
     public FileBackedTasksManager() {
     }
 
@@ -41,42 +41,42 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     // Метод сохранения Задачи в строку
     public String taskToString(Task task) {
-        return task.getId() + ","
-                + TaskType.TASK + ","
-                + task.getName() + ","
-                + task.getStatus() + ","
+        return task.getId() + COMMA_SEPARATOR
+                + TaskType.TASK + COMMA_SEPARATOR
+                + task.getName() + COMMA_SEPARATOR
+                + task.getStatus() + COMMA_SEPARATOR
                 + task.getDescription();
     }
 
     // Метод сохранения Подзадачи в строку
     public String subTaskToString(SubTask subTask) {
-        return subTask.getId() + ","
-                + TaskType.SUBTASK + ","
-                + subTask.getName() + ","
-                + subTask.getStatus() + ","
-                + subTask.getDescription() + ","
+        return subTask.getId() + COMMA_SEPARATOR
+                + TaskType.SUBTASK + COMMA_SEPARATOR
+                + subTask.getName() + COMMA_SEPARATOR
+                + subTask.getStatus() + COMMA_SEPARATOR
+                + subTask.getDescription() + COMMA_SEPARATOR
                 + subTask.getEpicId();
     }
 
     // Метод сохранения Эпика в строку
     public String epicToString(Epic epic) {
-        return epic.getId() + ","
-                + TaskType.EPIC + ","
-                + epic.getName() + ","
-                + epic.getStatus() + ","
+        return epic.getId() + COMMA_SEPARATOR
+                + TaskType.EPIC + COMMA_SEPARATOR
+                + epic.getName() + COMMA_SEPARATOR
+                + epic.getStatus() + COMMA_SEPARATOR
                 + epic.getDescription();
     }
 
 
     // Метод создания задачи из строки
     public static Task fromString(String value) {
-        String[] params = value.split(",");
-        if (params[1].equals("EPIC")) {
+        String[] params = value.split(COMMA_SEPARATOR);
+        if ("EPIC".equals(params[1])) {
             Epic epic = new Epic(params[4], params[2], Status.valueOf(params[3].toUpperCase()));
             epic.setId(Integer.parseInt(params[0]));
             epic.setStatus(Status.valueOf(params[3].toUpperCase()));
             return epic;
-        } else if (params[1].equals("SUBTASK")) {
+        } else if ("SUBTASK".equals(params[1])) {
             SubTask subTask = new SubTask(params[4], params[2], Status.valueOf(params[3].toUpperCase()),
                     Integer.parseInt(params[5]));
             subTask.setId(Integer.parseInt(params[0]));
@@ -94,7 +94,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     static List<Integer> historyFromString(String value) {
         List<Integer> list = new ArrayList<>();
         if (value != null) {
-            String[] val = value.split(",");
+            String[] val = value.split(COMMA_SEPARATOR);
             for (String number : val) {
                 list.add(Integer.parseInt(number));
             }
