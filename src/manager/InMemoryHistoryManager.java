@@ -17,7 +17,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
         remove(task.getId());
         customHistoryList.linkLast(task);
-        tasksHistory.put(task.getId(), customHistoryList.tail.prev);
+        tasksHistory.put(task.getId(), customHistoryList.tail.getPrev());
     }
 
     @Override
@@ -46,10 +46,10 @@ public class InMemoryHistoryManager implements HistoryManager {
                 return;
             }
             Node<T> currentNode = tail;
-            currentNode.data = element;
+            currentNode.setData(element);
             tail = new Node<>(currentNode, null, null);
-            currentNode.prev.next = currentNode;
-            currentNode.next = tail;
+            currentNode.getPrev().setNext(currentNode);
+            currentNode.setNext(tail);
         }
 
         public List<T> getTasks() {
@@ -57,8 +57,8 @@ public class InMemoryHistoryManager implements HistoryManager {
             Node<T> node = head;
 
             while (node != null) {
-                tasksList.add(node.data);
-                node = node.next;
+                tasksList.add(node.getData());
+                node = node.getNext();
             }
             return tasksList;
         }
@@ -68,22 +68,22 @@ public class InMemoryHistoryManager implements HistoryManager {
                 return;
             }
 
-            final Node<T> prev = node.prev; // Ссылка на предыдущую ноду
-            final Node<T> next = node.next; // Ссылка на следующую ноду
+            final Node<T> prev = node.getPrev(); // Ссылка на предыдущую ноду
+            final Node<T> next = node.getNext(); // Ссылка на следующую ноду
 
             if (prev == null) { // IF предыдущий узел == null, то головой списка становится NEXT узел
                 head = next;
             } else { // IF узел находится в центре списка, тогда:
-                prev.next = next; // то поле NEXT у предыдущей ноды, начинает ссылаться на поле NEXT удаляемой
-                node.prev = null; // поле PREV у удаляемой ноды обнуляем, т.к. мы изменили ссылки и сохранили связь
+                prev.setNext(next); // то поле NEXT у предыдущей ноды, начинает ссылаться на поле NEXT удаляемой
+                node.setPrev(null); // поле PREV у удаляемой ноды обнуляем, т.к. мы изменили ссылки и сохранили связь
             }
             if (next == null) { // IF следующий узел == null, то хвостом списка становится PREV узел
                 tail = prev;
             } else { // IF узел находится в центре списка, тогда:
-                next.prev = prev; // то поле PREV у следующей ноды, начинает ссылаться на поле PREV удаляемой
-                node.next = null; // поле NEXT у удаляемой ноды обнуляем, т.к. мы изменили ссылки и сохранили связь
+                next.setPrev(prev); // то поле PREV у следующей ноды, начинает ссылаться на поле PREV удаляемой
+                node.setNext(null); // поле NEXT у удаляемой ноды обнуляем, т.к. мы изменили ссылки и сохранили связь
             }
-            node.data = null; // Обнуляем значение узла
+            node.setData(null); // Обнуляем значение узла
         }
 
     }

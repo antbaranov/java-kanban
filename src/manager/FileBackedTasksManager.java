@@ -1,5 +1,6 @@
 package manager;
 
+import exception.ManagerSaveException;
 import tasks.*;
 
 import java.io.*;
@@ -13,7 +14,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     Path path = Path.of("tasks_file.csv");
     File file = new File(String.valueOf(path));
-    static final String COMMA_SEPARATOR = ",";
+    public static final String COMMA_SEPARATOR = ",";
     public FileBackedTasksManager() {
     }
 
@@ -105,7 +106,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
 
-    public  void loadFromFile(File file) {
+    public  FileBackedTasksManager loadFromFile(File file) {
         final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
         try (BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
             br.readLine();
@@ -134,7 +135,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             throw new ManagerSaveException("Произошла ошибка во время чтения файла!");
         }
 
-       // return fileBackedTasksManager;
+       return fileBackedTasksManager;
     }
 
     /*
@@ -289,17 +290,10 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     }
 
-    // Метод собственное непроверяемое исключение
-    static class ManagerSaveException extends RuntimeException {
-        public ManagerSaveException(final String message) {
-            super(message);
-        }
-    }
-
     public static void main(String[] args) {
         Path path = Path.of("tasks_file.csv");
         File file = new File(String.valueOf(path));
-        // FileBackedTasksManager taskManager = new FileBackedTasksManager(Managers.getDefaultHistory(), file);
+        FileBackedTasksManager managerFile = new FileBackedTasksManager();
 
         FileBackedTasksManager taskManager = Managers.getDefaultFileManager();
 
@@ -343,12 +337,12 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         taskManager.getEpicById(epic1Id);
         taskManager.getSubTaskById(subTask1Id);
         taskManager.getSubTaskById(subTask2Id);
-/*
+
         System.out.println("Восстановили таски: " + managerFile.getTasks());
         System.out.println("Восстановили эпики: " + managerFile.getEpics());
         System.out.println("Восстановили субтаски: " + managerFile.getSubTask());
         System.out.println("Восстановили историю запросов: " + managerFile.getHistory());
-*/
+
     }
 
 }
