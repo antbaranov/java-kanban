@@ -10,20 +10,13 @@ import java.util.List;
 
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
-    private File file;
 
-    public FileBackedTasksManager(HistoryManager historyManager, File file) {
-        super();
-        this.file = file;
-    }
-
-    public FileBackedTasksManager(HistoryManager historyManager) {
-        super();
-    }
+    Path path = Path.of("tasks_file.csv");
+    File file = new File(String.valueOf(path));
 
     // Метод сохраняет текущее состояние менеджера в указанный файл
     public void save() {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("tasks_file.csv", StandardCharsets.UTF_8))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
             bufferedWriter.write("id,type,name,status,description,epic" + "\n"); // Запись шапки с заголовками в файл
             for (Task task : getTasks()) {
                 bufferedWriter.write(taskToString(task) + "\n");
@@ -35,7 +28,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
                 bufferedWriter.write(subTaskToString(subTask) + "\n");
             }
             bufferedWriter.write("\n"); // Добавить пустую строку
-            bufferedWriter.write(historyToString(getHistoryManager())); // Добавить идентификаторы задач из истории просмотров
+            bufferedWriter.write(historyToString(getHistoryManager())); // Добавить идентификаторы задач из истории просмотров  HistoryManager.historyToString(historyManager)
 
         } catch (IOException e) {
             throw new ManagerSaveException("Произошла ошибка во время записи файла");
@@ -167,8 +160,10 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
      */
     @Override
     public int addTask(Task task) {
+        // int id = super.addTask(task);
         super.addTask(task);
         save();
+        //return id;
         return task.getId();
     }
 
@@ -186,6 +181,110 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         return subTask.getId();
     }
 
+    // Удаление всех Задач
+    @Override
+    public void deleteTasks() {
+        super.deleteTasks();
+        save();
+    }
+
+    // Удаление всех ПодЗадач
+    @Override
+    public void deleteSubTasks() {
+        super.deleteSubTasks();
+        save();
+    }
+
+    // Удаление всех Эпиков
+    @Override
+    public void deleteEpics() {
+        super.deleteEpics();
+        save();
+    }
+
+    // Получение Задач по идентификатору
+    @Override
+    public Task getTaskById(int id) {
+        Task task = super.getTaskById(id);
+        save();
+        return task;
+    }
+
+    // Получение Подзадач по идентификатору
+    @Override
+    public SubTask getSubTaskById(int id) {
+        SubTask subTask = super.getSubTaskById(id);
+        save();
+        return subTask;
+    }
+
+    // Получение Эпика по идентификатору
+    @Override
+    public Epic getEpicById(int id) {
+        Epic epic = super.getEpicById(id);
+        save();
+        return epic;
+    }
+
+    // Обновление Задач (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
+    @Override
+    public void updateTask(Task task) {
+        super.updateTask(task);
+        save();
+    }
+
+    // Обновление Подзадач (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
+    @Override
+    public void updateSubTask(SubTask subTask) {
+        super.updateSubTask(subTask);
+        save();
+    }
+
+    // Обновление Эпиков (Обновление. Новая версия объекта с верным идентификатором передаётся в виде параметра)
+    @Override
+    public void updateEpic(Epic epic) {
+        super.updateEpic(epic);
+        save();
+    }
+
+    // Обновление статуса Эпиков
+    @Override
+    public void updateEpicStatus(Epic epic) {
+        super.updateEpicStatus(epic);
+        save();
+    }
+
+    // Удаление Задачи по идентификатору
+    @Override
+    public void deleteByIdTask(int id) {
+        super.deleteByIdTask(id);
+        save();
+    }
+
+    // Удаление Подзадачи по идентификатору
+    @Override
+    public void deleteByIdSubTask(int id) {
+        super.deleteByIdSubTask(id);
+        save();
+    }
+
+    // Удаление Эпика по идентификатору
+    @Override
+    public void deleteByIdEpic(int id) {
+        super.deleteByIdEpic(id);
+        save();
+    }
+
+    // Получение списка всех подзадач определённого эпика
+    @Override
+    public ArrayList<SubTask> getSubTasksOfEpic(int id) {
+        ArrayList<SubTask> subTasksNew = super.getSubTasksOfEpic(id);
+        save();
+        return subTasksNew;
+
+    }
+
+
     // Метод собственное непроверяемое исключение
     static class ManagerSaveException extends RuntimeException {
         public ManagerSaveException(final String message) {
@@ -196,7 +295,9 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     public static void main(String[] args) {
         Path path = Path.of("tasks_file.csv");
         File file = new File(String.valueOf(path));
-        FileBackedTasksManager taskManager = new FileBackedTasksManager(Managers.getDefaultHistory(), file);
+        // FileBackedTasksManager taskManager = new FileBackedTasksManager(Managers.getDefaultHistory(), file);
+
+        FileBackedTasksManager taskManager = Managers.getDefaultFileManager();
 
         System.out.println("\nСоздание простой задачи");
         Task task1 = new Task("1 Наименование простой задачи 1", "1 Описание простой задачи 1", Status.NEW);
@@ -238,6 +339,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         taskManager.getSubTaskById(subTask1Id);
         taskManager.getSubTaskById(subTask2Id);
         System.out.println("Вывод менеджера: " + taskManager);
+        taskManager.loadFromFile(file);
     }
 
 }
