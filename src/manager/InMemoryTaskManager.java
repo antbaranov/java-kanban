@@ -18,6 +18,10 @@ public class InMemoryTaskManager implements TaskManager {
     private static final Map<Integer, Epic> epics = new HashMap<>();
     private static final HistoryManager historyManager = Managers.getDefaultHistory();
 
+    public InMemoryTaskManager() {
+
+    }
+
     // Метод создания простой Задачи task
     @Override
     public int addTask(Task task) {
