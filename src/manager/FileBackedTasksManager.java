@@ -104,7 +104,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
-    public FileBackedTasksManager loadFromFile(File file) {
+    public  FileBackedTasksManager loadFromFile(File file) {
         final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
         try (BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
             br.readLine();
@@ -289,7 +289,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     public static void main(String[] args) {
 
-        FileBackedTasksManager managerFile = Managers.getDefaultFileManager();
+        FileBackedTasksManager managerFile = FileBackedTasksManager.loadFromFile(new File("src/upload/tasks_file.csv"));
 
         System.out.println("\nСоздание простой задачи");
         Task task16 = new Task("16 Наименование простой задачи 1", "1 Описание простой задачи 1", Status.NEW);
