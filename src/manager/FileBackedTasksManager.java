@@ -289,7 +289,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     public static void main(String[] args) {
 
-        TaskManager manager = Managers.getDefault();
+        FileBackedTasksManager manager = Managers.getDefaultFileManager();
 
         System.out.println("\nСоздание простой задачи");
         Task task16 = new Task("16 Наименование простой задачи 1", "1 Описание простой задачи 1", Status.NEW);
@@ -415,14 +415,14 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         System.out.println("\nУдалённая задача 1: " + manager.getTaskById(task16Id));
         System.out.println("История просмотров: " + manager.getHistory());
 
-        FileBackedTasksManager managerFile = FileBackedTasksManager.loadFromFile(new File("src/upload/tasks_file.csv"));
+     /*   FileBackedTasksManager managerFile = FileBackedTasksManager.loadFromFile(new File("src/upload/tasks_file.csv"));
 
         for (Task task : managerFile.getTasks()) {
             boolean res = task.toString().equals(managerFile.getTasks().get(task.getId()).toString());
             if (!res) {
                 System.out.println("Не сходятся объекты из файла");
             }
-        }
+        }*/
     }
 
 }
