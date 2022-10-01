@@ -24,9 +24,10 @@ public class Task {
         this.status = status;
     }
 
-    public Task(String name, String description, TaskType taskType, Instant startTime, long duration) {
+    public Task(String name, String description, Status status, TaskType taskType, Instant startTime, long duration) {
         this.name = name;
         this.description = description;
+        this.status = status;
         this.taskType = taskType;
         this.startTime = startTime;
         this.duration = duration;
@@ -111,9 +112,13 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id == task.id && duration == task.duration && Objects.equals(name, task.name)
-                && Objects.equals(description, task.description) && status == task.status
-                && taskType == task.taskType && Objects.equals(startTime, task.startTime);
+        return id == task.id
+                && duration == task.duration
+                && Objects.equals(name, task.name)
+                && Objects.equals(description, task.description)
+                && status == task.status
+                && taskType == task.taskType
+                && Objects.equals(startTime, task.startTime);
     }
 
     @Override
