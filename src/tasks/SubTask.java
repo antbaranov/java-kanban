@@ -1,21 +1,22 @@
 package tasks;
 
-import constants.Status;
-import constants.TaskType;
+import constants.TaskStatus;
+import constants.Types;
 
-import java.time.Instant;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class SubTask extends Task {
     private int epicId;
 
-    public SubTask(String name, String description, Status status, int epicId) {
-        super(name, description, status);
+    public SubTask(String name,  String description, TaskStatus status, int epicId, LocalDateTime startTime, Duration duration) {
+        super(name,  description, status, startTime, duration);
         this.epicId = epicId;
     }
 
-    public SubTask(String name, String description, Status status, TaskType taskType, Instant startTime, long duration, int epicId) {
-        super(name, description, status, taskType, startTime, duration);
+    public SubTask(int id, Types taskType, String name, TaskStatus status, String description, int epicId, LocalDateTime startTime, Duration duration) {
+        super(id, taskType, name, status, description, startTime, duration);
         this.epicId = epicId;
     }
 
@@ -25,6 +26,21 @@ public class SubTask extends Task {
 
     public void setEpicId(int epicId) {
         this.epicId = epicId;
+    }
+
+    @Override
+    public String toString() {
+        return "SubTask{" +
+                "epicId=" + epicId +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", taskType=" + taskType +
+                ", duration=" + duration +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
     }
 
     @Override
@@ -41,15 +57,4 @@ public class SubTask extends Task {
         return Objects.hash(super.hashCode(), epicId);
     }
 
-    @Override
-    public String toString() {
-        return "SubTask{" +
-                "epicId=" + epicId +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", status=" + status +
-                ", taskType=" + taskType +
-                '}';
-    }
 }

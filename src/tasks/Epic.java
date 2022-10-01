@@ -1,7 +1,7 @@
 package tasks;
 
-import constants.Status;
-import constants.TaskType;
+import constants.TaskStatus;
+import constants.Types;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -11,15 +11,14 @@ import java.util.Objects;
 public class Epic extends Task {
     private List<Integer> subTaskIds;
     private Instant endTime;
-    public Epic(String name, String description, Status status) {
-        super(name, description, status);
+    public Epic(String name, String description, TaskStatus status)  {
+        super(name,  description, status, null, null);
         subTaskIds = new ArrayList<>();
     }
 
-    public Epic(String name, String description, Status status, TaskType taskType, Instant startTime, long duration) {
-        super(name, description, status, taskType, startTime, duration);
+    public Epic(int id, Types taskType, String name, TaskStatus status, String description) {
+        super(id, taskType, name, status, description, null, null);
         subTaskIds = new ArrayList<>();
-        this.endTime = super.getEndTime();
     }
 
     @Override
@@ -30,6 +29,8 @@ public class Epic extends Task {
     public void setEndTime(Instant endTime) {
         this.endTime = endTime;
     }
+
+
 
     public void addSubTask(int subTaskId) {
 
@@ -46,6 +47,7 @@ public class Epic extends Task {
         this.subTaskIds = subTaskIds;
     }
 
+
     @Override
     public String toString() {
         return "Epic{" +
@@ -56,9 +58,11 @@ public class Epic extends Task {
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 ", taskType=" + taskType +
+                ", duration=" + duration +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
                 '}';
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

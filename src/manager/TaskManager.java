@@ -6,6 +6,7 @@ import tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public interface TaskManager {
 
@@ -69,6 +70,19 @@ public interface TaskManager {
     // Получение списка всех подзадач определённого эпика
     ArrayList<SubTask> getSubTasksOfEpic(int id);
 
+    // Удаление всех эпиков и подзадач
+    void deleteAllEpicsAndSubTasks();
+
     // История просмотров задач
     List<Task> getHistory();
+    void intersectionCheck();
+
+    Set<Task> getPrioritizedTasks();
+
+    void getTaskEndTime(Task task);
+
+    void getEpicTimesAndDuration(Epic epic);
+
+    void getSubtaskEndTime(SubTask subtask);
+
 }

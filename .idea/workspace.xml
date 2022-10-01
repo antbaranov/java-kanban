@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/TaskStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/TaskType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Types.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/TaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/EpicTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SubTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
     </list>
@@ -78,6 +85,8 @@
       <recent name="tasks" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="tests" />
+      <recent name="manager" />
       <recent name="tasks" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -90,7 +99,7 @@
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="manager.*" />
+          <option name="PATTERN" value="tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
