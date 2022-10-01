@@ -12,7 +12,7 @@ import java.util.*;
 
 public class InMemoryTaskManager implements TaskManager {
 
-    private int idCounter = 1; // Объявление , инициализация начального идентификатора
+    private static int idCounter = 1; // Объявление , инициализация начального идентификатора
     private static final Map<Integer, Task> tasks = new HashMap<>();
     private static final Map<Integer, SubTask> subTasks = new HashMap<>();
     private static final Map<Integer, Epic> epics = new HashMap<>();
@@ -32,10 +32,12 @@ public class InMemoryTaskManager implements TaskManager {
         return 0;
     });
 
-    public static void setIdCounter(int i) {
+    public static int getIdCounter() {
+        return idCounter;
     }
 
-    public static int getIdCounter() {
+    public static void setIdCounter(int idCounter) {
+        InMemoryTaskManager.idCounter = idCounter;
     }
 
     // Метод создания простой Задачи task
@@ -112,21 +114,21 @@ public class InMemoryTaskManager implements TaskManager {
     // Получение Задач по идентификатору
     @Override
     public Task getTaskById(int id) {
-        historyManager.add(tasks.get(id));
+        historyManager.addHistory(tasks.get(id));
         return tasks.get(id);
     }
 
     // Получение Подзадач по идентификатору
     @Override
     public SubTask getSubTaskById(int id) {
-        historyManager.add(subTasks.get(id));
+        historyManager.addHistory(subTasks.get(id));
         return subTasks.get(id);
     }
 
     // Получение Эпика по идентификатору
     @Override
     public Epic getEpicById(int id) {
-        historyManager.add(epics.get(id));
+        historyManager.addHistory(epics.get(id));
         return epics.get(id);
     }
 
@@ -256,11 +258,11 @@ public class InMemoryTaskManager implements TaskManager {
 
     public static void addToHistory(int id) {
         if (epics.containsKey(id)) {
-            historyManager.add(epics.get(id));
+            historyManager.addHistory(epics.get(id));
         } else if (subTasks.containsKey(id)) {
-            historyManager.add(subTasks.get(id));
+            historyManager.addHistory(subTasks.get(id));
         } else if (tasks.containsKey(id)) {
-            historyManager.add(tasks.get(id));
+            historyManager.addHistory(tasks.get(id));
         }
     }
 

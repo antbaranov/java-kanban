@@ -11,7 +11,7 @@ public class InMemoryHistoryManager implements HistoryManager {
 
 
     @Override
-    public void add(Task task) {
+    public void addHistory(Task task) {
         if (task == null) { // Проверка
             return;
         }
