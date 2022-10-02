@@ -1,6 +1,5 @@
 package tests;
 
-import constants.TaskStatus;
 import constants.Types;
 import exceptions.ManagerSaveException;
 import manager.FileBackedTasksManager;
@@ -17,6 +16,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static constants.TaskStatus.NEW;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,12 +29,12 @@ public class FileBackedTasksManagerTest extends TaskManagerTest<FileBackedTasksM
 
     @Test
     void loadedFromFileTasksManagerTest() {
-        Epic epic = new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description");
-        SubTask s1 = new SubTask(2, Types.SUBTASK, "subtask 1", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 20, 0), Duration.ofMinutes(30));
-        SubTask s2 = new SubTask(3, Types.SUBTASK, "subtask 2", TaskStatus.NEW, "test description",
+        Epic epic = new Epic(1, Types.EPIC, "Новый epic", NEW, "test description");
+        SubTask s1 = new SubTask(2, Types.SUBTASK, "subtask 1", NEW, "test description",
+                1, LocalDateTime.of(2022, 9, 26, 20, 0), Duration.ofMinutes(10));
+        SubTask s2 = new SubTask(3, Types.SUBTASK, "subtask 2", NEW, "test description",
                 1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
-        SubTask s3 = new SubTask(4, Types.SUBTASK, "subtask 3", TaskStatus.NEW, "test description",
+        SubTask s3 = new SubTask(4, Types.SUBTASK, "subtask 3", NEW, "test description",
                 1, LocalDateTime.of(2022, 9, 26, 19, 0), Duration.ofMinutes(45));
 
         manager.addEpic(epic);
@@ -49,11 +49,11 @@ public class FileBackedTasksManagerTest extends TaskManagerTest<FileBackedTasksM
 
 
         String[] lines;
-        final String PATH = "resources/data.csv";
+        final String PATH = "src/upload/tasks_file.csv";
         try {
             lines = Files.readString(Path.of(PATH)).split("\n");
         } catch (IOException e) {
-            throw new ManagerSaveException("Не удалось считать файл");
+            throw new ManagerSaveException("Не удалось загрузить файл");
         }
         assertEquals(7, lines.length);
 
@@ -66,7 +66,7 @@ public class FileBackedTasksManagerTest extends TaskManagerTest<FileBackedTasksM
         List<Task> history = fileManagerFromFile.getHistory();
         Integer[] historyFromFile = {history.get(0).getId(), history.get(1).getId(), history.get(2).getId()};
 
-        assertEquals("new epic", fileManagerFromFile.getEpics().get(1).getName());
+        assertEquals("Новый epic", fileManagerFromFile.getEpics().get(1).getName());
         assertEquals("subtask 1", fileManagerFromFile.getSubTask().get(2).getName());
         assertEquals("subtask 2", fileManagerFromFile.getSubTask().get(3).getName());
         assertEquals("subtask 3", fileManagerFromFile.getSubTask().get(4).getName());

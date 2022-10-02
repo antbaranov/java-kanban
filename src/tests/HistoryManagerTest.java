@@ -19,20 +19,20 @@ public class HistoryManagerTest extends InMemoryHistoryManager {
     @Test
     void addHistoryAndRemoveHistoryAndGetHistoryTest() {
         HistoryManager manager = new InMemoryHistoryManager();
-        Epic epic = new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description");
+        Epic epic = new Epic(1, Types.EPIC, "Создание epic", TaskStatus.NEW, "test description");
         SubTask s1 = new SubTask(2, Types.SUBTASK, "subtask 1", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 20, 0), Duration.ofMinutes(30));
+                1, LocalDateTime.of(2022, 10, 1, 17, 0), Duration.ofMinutes(30));
         SubTask s2 = new SubTask(3, Types.SUBTASK, "subtask 2", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
         SubTask s3 = new SubTask(4, Types.SUBTASK, "subtask 3", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 19, 0), Duration.ofMinutes(45));
+                1, LocalDateTime.of(2022, 10, 1, 19, 0), Duration.ofMinutes(45));
         manager.addHistory(epic);
         manager.addHistory(s1);
         manager.addHistory(s2);
         manager.addHistory(s3);
         assertEquals(4, manager.getHistory().size());
 
-        manager.remove(1);
+        manager.remove(4);
 
         assertEquals(3, manager.getHistory().size());
         assertFalse(manager.getHistory().contains(epic));

@@ -1,6 +1,7 @@
 package tests;
 
 import constants.TaskStatus;
+import constants.Types;
 import exceptions.ManagerSaveException;
 import manager.TaskManager;
 import org.junit.jupiter.api.Assertions;
@@ -41,7 +42,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void addEpicAndGetEpicByIdTest() {
-        Epic epic = new Epic(1, EPIC, "Epic", TaskStatus.NEW, "Test description");
+        Epic epic = new Epic(1, EPIC, "Наименование Epic", TaskStatus.NEW, "Test description");
         manager.addEpic(epic);
         assertFalse(manager.getEpics().isEmpty());
         assertEquals(1, manager.getEpics().size());
@@ -60,20 +61,20 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void getAllTasksEpicsSubtasksTest() {
-        Task task = new Task(1, TASK, "Test task", TaskStatus.NEW, "Test description",
+        Task task = new Task(1, Types.TASK, "Test task", TaskStatus.NEW, "Test description",
                 LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        Epic epic = new Epic(2, EPIC, "Epic", TaskStatus.NEW, "Test description");
-        SubTask subtask = new SubTask(3, SUBTASK, "Test task", TaskStatus.NEW, "Test description",
+        Epic epic = new Epic(2, Types.EPIC, "Epic", TaskStatus.NEW, "Test description");
+        SubTask subTask = new SubTask(3, Types.SUBTASK, "Test task", TaskStatus.NEW, "Test description",
                 0, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
         manager.addTask(task);
         manager.addEpic(epic);
-        manager.addSubTask(subtask);
+        manager.addSubTask(subTask);
         assertEquals(1, manager.getTasks().size());
         assertEquals(1, manager.getEpics().size());
         assertEquals(1, manager.getSubTask().size());
-        assertEquals(task, manager.getTasks().get(0));
-        assertEquals(epic, manager.getEpics().get(0));
-        assertEquals(subtask, manager.getSubTask().get(0));
+        assertEquals(task, manager.getTaskById(1));
+        assertEquals(epic, manager.getEpicById(2));
+        assertEquals(subTask, manager.getSubTaskById(3));
     }
 
     @Test
