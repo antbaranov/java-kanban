@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/HistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +88,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FileBackedTasksManager">
+  <component name="RunManager" selected="JUnit.FileBackedTasksManagerTest">
     <configuration name="FileBackedTasksManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="manager.FileBackedTasksManager" />
       <module name="java-kanban" />
@@ -107,8 +109,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FileBackedTasksManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.FileBackedTasksManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InMemoryTaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.InMemoryTaskManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FileBackedTasksManagerTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
         <item itemvalue="Application.FileBackedTasksManager" />
         <item itemvalue="Application.Main" />
       </list>

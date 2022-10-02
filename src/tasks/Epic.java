@@ -21,17 +21,6 @@ public class Epic extends Task {
         subTaskIds = new ArrayList<>();
     }
 
-    @Override
-    public Instant getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Instant endTime) {
-        this.endTime = endTime;
-    }
-
-
-
     public void addSubTask(int subTaskId) {
 
         this.subTaskIds.add(subTaskId);
@@ -75,5 +64,8 @@ public class Epic extends Task {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), subTaskIds, endTime);
+    }
+
+    public void setStatus(TaskStatus aNew) {
     }
 }
