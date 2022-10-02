@@ -27,8 +27,6 @@ public class FileBackedTasksManagerTest extends TaskManagerTest<FileBackedTasksM
         return new FileBackedTasksManager();
     }
 
-    // падает
-
     @Test
     void loadedFromFileTasksManagerTest() {
         Epic epic = new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description");

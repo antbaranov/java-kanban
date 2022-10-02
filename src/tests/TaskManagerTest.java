@@ -1,7 +1,6 @@
 package tests;
 
 import constants.TaskStatus;
-import constants.Types;
 import exceptions.ManagerSaveException;
 import manager.TaskManager;
 import org.junit.jupiter.api.Assertions;
@@ -16,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constants.Types.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 abstract class TaskManagerTest<T extends TaskManager> {
@@ -31,8 +31,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void addTaskAndGetTaskByIdTest() {
-        Task task = new Task(1, Types.TASK, "Test task", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
+        Task task = new Task(1, TASK, "Test task", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
         manager.addTask(task);
         assertFalse(manager.getTasks().isEmpty());
         assertEquals(1, manager.getTasks().size());
@@ -41,7 +41,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void addEpicAndGetEpicByIdTest() {
-        Epic epic = new Epic(1, Types.EPIC, "Epic", TaskStatus.NEW, "test description");
+        Epic epic = new Epic(1, EPIC, "Epic", TaskStatus.NEW, "Test description");
         manager.addEpic(epic);
         assertFalse(manager.getEpics().isEmpty());
         assertEquals(1, manager.getEpics().size());
@@ -50,8 +50,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void addSubtaskAndGetSubtaskIdTest() {
-        SubTask subtask = new SubTask(1, Types.SUBTASK, "Test task", TaskStatus.NEW, "test description",
-                0, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
+        SubTask subtask = new SubTask(1, SUBTASK, "Test task", TaskStatus.NEW, "Test description",
+                0, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
         manager.addSubTask(subtask);
         assertFalse(manager.getSubTask().isEmpty());
         assertEquals(1, manager.getSubTask().size());
@@ -60,28 +60,28 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void getAllTasksEpicsSubtasksTest() {
-        Task task = new Task(1, Types.TASK, "Test task", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
-        Epic epic = new Epic(2, Types.EPIC, "Epic", TaskStatus.NEW, "test description");
-        SubTask subtask = new SubTask(3, Types.SUBTASK, "Test task", TaskStatus.NEW, "test description",
-                0, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
+        Task task = new Task(1, TASK, "Test task", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
+        Epic epic = new Epic(2, EPIC, "Epic", TaskStatus.NEW, "Test description");
+        SubTask subtask = new SubTask(3, SUBTASK, "Test task", TaskStatus.NEW, "Test description",
+                0, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
         manager.addTask(task);
         manager.addEpic(epic);
         manager.addSubTask(subtask);
         assertEquals(1, manager.getTasks().size());
         assertEquals(1, manager.getEpics().size());
         assertEquals(1, manager.getSubTask().size());
-        assertEquals(task, manager.getTasks().get(1));
-        assertEquals(epic, manager.getEpics().get(2));
-        assertEquals(subtask, manager.getSubTask().get(3));
+        assertEquals(task, manager.getTasks().get(0));
+        assertEquals(epic, manager.getEpics().get(0));
+        assertEquals(subtask, manager.getSubTask().get(0));
     }
 
     @Test
     void updateTaskTest() {
-        Task taskOld = new Task(1, Types.TASK, "TaskOld", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
-        Task taskNew = new Task(1, Types.TASK, "TaskNew", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
+        Task taskOld = new Task(1, TASK, "TaskOld", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
+        Task taskNew = new Task(1, TASK, "TaskNew", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
         manager.addTask(taskOld);
         manager.updateTask(taskNew);
         assertEquals("TaskNew", manager.getTaskById(1).getName());
@@ -89,8 +89,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void updateEpicTest() {
-        Epic epicOld = new Epic(1, Types.EPIC, "old epic", TaskStatus.NEW, "test description");
-        Epic epicNew = new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description");
+        Epic epicOld = new Epic(1, EPIC, "old epic", TaskStatus.NEW, "Test description");
+        Epic epicNew = new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description");
         manager.addEpic(epicOld);
         manager.updateEpic(epicNew);
         assertEquals("new epic", manager.getEpicById(1).getName());
@@ -98,11 +98,11 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void updateSubtaskTest() {
-        Epic epic = new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description");
-        SubTask subtaskOld = new SubTask(2, Types.SUBTASK, "old subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
-        SubTask subtaskNew = new SubTask(2, Types.SUBTASK, "new subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
+        Epic epic = new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description");
+        SubTask subtaskOld = new SubTask(2, SUBTASK, "old subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
+        SubTask subtaskNew = new SubTask(2, SUBTASK, "new subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
         manager.addEpic(epic);
         manager.addSubTask(subtaskOld);
         manager.updateSubTask(subtaskNew);
@@ -111,64 +111,64 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void updateEpicStatusBySubtasksTest() {
-        Epic epic = new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description");
+        Epic epic = new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description");
         manager.addEpic(epic);
         assertEquals(TaskStatus.NEW, manager.getEpics().get(1).getStatus());
 
-        manager.addSubTask(new SubTask(2, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
-        manager.addSubTask(new SubTask(3, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
+        manager.addSubTask(new SubTask(2, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
+        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
 
         assertEquals(TaskStatus.NEW, manager.getEpics().get(1).getStatus());
 
-        manager.addSubTask(new SubTask(4, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
-        manager.updateSubTask(new SubTask(2, Types.SUBTASK, "new subtask", TaskStatus.IN_PROGRESS, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
+        manager.addSubTask(new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
+        manager.updateSubTask(new SubTask(2, SUBTASK, "new subtask", TaskStatus.IN_PROGRESS, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
         assertEquals(TaskStatus.IN_PROGRESS, manager.getEpics().get(1).getStatus());
 
-        manager.updateSubTask(new SubTask(2, Types.SUBTASK, "new subtask", TaskStatus.DONE, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
-        manager.updateSubTask(new SubTask(3, Types.SUBTASK, "new subtask", TaskStatus.DONE, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
+        manager.updateSubTask(new SubTask(2, SUBTASK, "new subtask", TaskStatus.DONE, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
+        manager.updateSubTask(new SubTask(3, SUBTASK, "new subtask", TaskStatus.DONE, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
         assertEquals(TaskStatus.IN_PROGRESS, manager.getEpics().get(1).getStatus());
 
-        manager.updateSubTask(new SubTask(4, Types.SUBTASK, "subtask", TaskStatus.DONE, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
+        manager.updateSubTask(new SubTask(4, SUBTASK, "subtask", TaskStatus.DONE, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
         assertEquals(TaskStatus.DONE, manager.getEpics().get(1).getStatus());
     }
 
     @Test
     void removeAllTasksTest() {
-        manager.addTask(new Task(1, Types.TASK, "Task1", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
-        manager.addTask(new Task(2, Types.TASK, "Task2", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
+        manager.addTask(new Task(1, TASK, "Task1", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
+        manager.addTask(new Task(2, TASK, "Task2", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
         manager.deleteSubTasks();
         assertTrue(manager.getTasks().isEmpty());
     }
 
     @Test
     void removeAllEpicsAndSubtasksTest() {
-        manager.addEpic(new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description"));
-        manager.addSubTask(new SubTask(2, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
-        manager.addSubTask(new SubTask(3, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
-        manager.addSubTask(new SubTask(4, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
+        manager.addEpic(new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description"));
+        manager.addSubTask(new SubTask(2, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
+        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
+        manager.addSubTask(new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
         manager.deleteAllEpicsAndSubTasks();
         assertTrue(manager.getEpics().isEmpty() && manager.getSubTask().isEmpty());
     }
 
     @Test
     void removeTaskByIdAndEpicByIdAndSubtaskById() {
-        manager.addTask(new Task(1, Types.TASK, "Task1", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
-        manager.addEpic(new Epic(2, Types.EPIC, "new epic", TaskStatus.NEW, "test description"));
-        manager.addSubTask(new SubTask(3, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                2, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
+        manager.addTask(new Task(1, TASK, "Task1", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
+        manager.addEpic(new Epic(2, EPIC, "new epic", TaskStatus.NEW, "Test description"));
+        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                2, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
         manager.deleteByIdTask(1);
         assertTrue(manager.getTasks().isEmpty());
         manager.deleteByIdSubTask(3);
@@ -179,13 +179,13 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void getAllSubtasksByEpicTest() {
-        manager.addEpic(new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description"));
-        SubTask s1 = new SubTask(2, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
-        SubTask s2 = new SubTask(3, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
-        SubTask s3 = new SubTask(4, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
+        manager.addEpic(new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description"));
+        SubTask s1 = new SubTask(2, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
+        SubTask s2 = new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
+        SubTask s3 = new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
         manager.addSubTask(s1);
         manager.addSubTask(s2);
         manager.addSubTask(s3);
@@ -197,11 +197,11 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void getHistoryAndDuplicatesInHistoryTest() {
-        manager.addTask(new Task(1, Types.TASK, "Task1", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
-        manager.addEpic(new Epic(2, Types.EPIC, "new epic", TaskStatus.NEW, "test description"));
-        manager.addSubTask(new SubTask(3, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                2, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
+        manager.addTask(new Task(1, TASK, "Task1", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
+        manager.addEpic(new Epic(2, EPIC, "new epic", TaskStatus.NEW, "Test description"));
+        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                2, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
 
         manager.getTaskById(1);
         manager.getSubTaskById(3);
@@ -215,11 +215,11 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void intersectionCheckTest() {
-        manager.addTask(new Task(1, Types.TASK, "Task1", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
-        manager.addEpic(new Epic(2, Types.EPIC, "new epic", TaskStatus.NEW, "test description"));
-        manager.addSubTask(new SubTask(3, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                2, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30)));
+        manager.addTask(new Task(1, TASK, "Task1", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
+        manager.addEpic(new Epic(2, EPIC, "new epic", TaskStatus.NEW, "Test description"));
+        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                2, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
         ManagerSaveException ex = Assertions.assertThrows(
                 ManagerSaveException.class,
                 () -> manager.intersectionCheck()
@@ -229,14 +229,14 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void getPrioritizedTasksTest() {
-        Task task1 = new Task(1, Types.TASK, "task1", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
-        Task task2 = new Task(1, Types.TASK, "task1", TaskStatus.NEW, "test description",
+        Task task1 = new Task(1, TASK, "task1", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
+        Task task2 = new Task(1, TASK, "task1", TaskStatus.NEW, "Test description",
                 null, null);
-        SubTask subtask1 = new SubTask(3, Types.SUBTASK, "subtask1", TaskStatus.NEW, "test description",
-                2, LocalDateTime.of(2022, 9, 27, 19, 0), Duration.ofMinutes(30));
-        SubTask subtask2 = new SubTask(4, Types.SUBTASK, "subtask2", TaskStatus.NEW, "test description",
-                2, LocalDateTime.of(2022, 9, 25, 20, 0), Duration.ofMinutes(30));
+        SubTask subtask1 = new SubTask(3, SUBTASK, "subtask1", TaskStatus.NEW, "Test description",
+                2, LocalDateTime.of(2022, 10, 2, 19, 0), Duration.ofMinutes(30));
+        SubTask subtask2 = new SubTask(4, SUBTASK, "subtask2", TaskStatus.NEW, "Test description",
+                2, LocalDateTime.of(2022, 10, 2, 20, 0), Duration.ofMinutes(30));
         manager.addTask(task1);
         manager.addTask(task2);
         manager.addSubTask(subtask1);
@@ -255,29 +255,29 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void getTaskEndTimeTest() {
-        Task task = new Task(1, Types.TASK, "task1", TaskStatus.NEW, "test description",
-                LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
+        Task task = new Task(1, TASK, "task1", TaskStatus.NEW, "Test description",
+                LocalDateTime.of(2022, 10, 3, 18, 0), Duration.ofMinutes(30));
         manager.getTaskEndTime(task);
         assertEquals(task.getStartTime().plusMinutes(30), task.getEndTime());
     }
 
     @Test
     void getSubtaskEndTimeTest() {
-        SubTask subtask = new SubTask(3, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                2, LocalDateTime.of(2022, 9, 27, 19, 0), Duration.ofMinutes(30));
+        SubTask subtask = new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                2, LocalDateTime.of(2022, 10, 2, 19, 0), Duration.ofMinutes(30));
         manager.getSubtaskEndTime(subtask);
         assertEquals(subtask.getStartTime().plusMinutes(30), subtask.getEndTime());
     }
 
     @Test
     void getEpicTimesAndDurationTest() {
-        manager.addEpic(new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description"));
-        SubTask s1 = new SubTask(2, Types.SUBTASK, "epic end", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 20, 0), Duration.ofMinutes(30));
-        SubTask s2 = new SubTask(3, Types.SUBTASK, "epic start", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
-        SubTask s3 = new SubTask(4, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 19, 0), Duration.ofMinutes(45));
+        manager.addEpic(new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description"));
+        SubTask s1 = new SubTask(2, SUBTASK, "epic end", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 20, 0), Duration.ofMinutes(30));
+        SubTask s2 = new SubTask(3, SUBTASK, "epic start", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 2, 18, 0), Duration.ofMinutes(30));
+        SubTask s3 = new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 19, 0), Duration.ofMinutes(45));
         manager.addSubTask(s1);
         manager.addSubTask(s2);
         manager.addSubTask(s3);
@@ -289,13 +289,13 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     void getHistoryTest() {
-        Epic epic = new Epic(1, Types.EPIC, "new epic", TaskStatus.NEW, "test description");
-        SubTask s1 = new SubTask(2, Types.SUBTASK, "epic end", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 20, 0), Duration.ofMinutes(30));
-        SubTask s2 = new SubTask(3, Types.SUBTASK, "epic start", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 18, 0), Duration.ofMinutes(30));
-        SubTask s3 = new SubTask(4, Types.SUBTASK, "subtask", TaskStatus.NEW, "test description",
-                1, LocalDateTime.of(2022, 9, 26, 19, 0), Duration.ofMinutes(45));
+        Epic epic = new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description");
+        SubTask s1 = new SubTask(2, SUBTASK, "epic end", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 20, 0), Duration.ofMinutes(30));
+        SubTask s2 = new SubTask(3, SUBTASK, "epic start", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 2, 18, 0), Duration.ofMinutes(30));
+        SubTask s3 = new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
+                1, LocalDateTime.of(2022, 10, 1, 19, 0), Duration.ofMinutes(45));
         manager.addEpic(epic);
         manager.addSubTask(s1);
         manager.addSubTask(s2);

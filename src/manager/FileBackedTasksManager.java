@@ -8,6 +8,7 @@ import tasks.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,17 +76,34 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     public static Task fromString(String value) {
         String[] params = value.split(COMMA_SEPARATOR);
         if ("EPIC".equals(params[1])) {
-            Epic epic = new Epic(params[4], params[2], TaskStatus.valueOf(params[3].toUpperCase()));
+            Epic epic = new Epic(
+                    params[4],
+                    params[2],
+                    TaskStatus.valueOf(params[3].toUpperCase())
+            );
             epic.setId(Integer.parseInt(params[0]));
             epic.setStatus(TaskStatus.valueOf(params[3].toUpperCase()));
             return epic;
         } else if ("SUBTASK".equals(params[1])) {
-            SubTask subTask = new SubTask(params[4], params[2], TaskStatus.valueOf(params[3].toUpperCase()),
-                    Integer.parseInt(params[5]));
+            SubTask subTask = new SubTask(
+                    params[4],
+                    TaskStatus.valueOf(params[3].toUpperCase()),
+                    params[2],
+                    Integer.parseInt(params[5]),
+                    LocalDateTime.of(2022, 10, 1, 0, 0),
+                    Duration.ofMinutes(45)
+            );
             subTask.setId(Integer.parseInt(params[0]));
             return subTask;
         } else {
-            Task task = new Task(Types.TASK, params[4], params[2], TaskStatus.valueOf(params[3].toUpperCase()), LocalDateTime.now(), 0L);
+            Task task = new Task(
+                    getIdCounter(),
+                    Types.TASK,
+                    params[4],
+                    TaskStatus.valueOf(params[3].toUpperCase()),
+                    params[2],
+                    LocalDateTime.now(),
+                    Duration.ofMinutes(4));
             task.setId(Integer.parseInt(params[0]));
             return task;
         }

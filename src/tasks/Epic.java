@@ -9,38 +9,38 @@ import java.util.List;
 import java.util.Objects;
 
 public class Epic extends Task {
-    private List<Integer> subTaskIds;
+    private List<Integer> subTaskId;
     private Instant endTime;
     public Epic(String name, String description, TaskStatus status)  {
-        super(name,  description, status, null, null);
-        subTaskIds = new ArrayList<>();
+        super(name, status,  description,  null, null);
+        subTaskId = new ArrayList<>();
     }
 
     public Epic(int id, Types taskType, String name, TaskStatus status, String description) {
         super(id, taskType, name, status, description, null, null);
-        subTaskIds = new ArrayList<>();
+        subTaskId = new ArrayList<>();
     }
 
     public void addSubTask(int subTaskId) {
 
-        this.subTaskIds.add(subTaskId);
+        this.subTaskId.add(subTaskId);
     }
 
-    public List<Integer> getSubTaskIds() {
+    public List<Integer> getSubTaskId() {
 
-        return subTaskIds;
+        return subTaskId;
     }
 
-    public void setSubTaskIds(List<Integer> subTaskIds) {
+    public void setSubTaskId(List<Integer> subTaskId) {
 
-        this.subTaskIds = subTaskIds;
+        this.subTaskId = subTaskId;
     }
 
 
     @Override
     public String toString() {
         return "Epic{" +
-                "subTaskIds=" + subTaskIds +
+                "subTaskIds=" + subTaskId +
                 ", endTime=" + endTime +
                 ", id=" + id +
                 ", name='" + name + '\'' +
@@ -58,12 +58,12 @@ public class Epic extends Task {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Epic epic = (Epic) o;
-        return Objects.equals(subTaskIds, epic.subTaskIds) && Objects.equals(endTime, epic.endTime);
+        return Objects.equals(subTaskId, epic.subTaskId) && Objects.equals(endTime, epic.endTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), subTaskIds, endTime);
+        return Objects.hash(super.hashCode(), subTaskId, endTime);
     }
 
     public void setStatus(TaskStatus aNew) {

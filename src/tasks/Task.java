@@ -18,7 +18,13 @@ public class Task {
     Duration duration;
     LocalDateTime endTime;
 
-    public Task(String name, String description, TaskStatus status, LocalDateTime startTime, Duration duration) {
+    public Task(
+            String name,
+            TaskStatus status,
+            String description,
+            LocalDateTime startTime,
+            Duration duration
+    ) {
         this.name = name;
         this.description = description;
         this.status = status;
@@ -26,13 +32,16 @@ public class Task {
         this.duration = duration;
     }
 
-    public Task(Types taskType,
+    public Task(
+                int id,
+                Types taskType,
                 String name,
-                String description,
                 TaskStatus status,
+                String description,
                 LocalDateTime startTime,
-                Duration duration) {
-      //  this.id = id;
+                Duration duration
+    ) {
+        this.id = id;
         this.taskType = taskType;
         this.name = name;
         this.description = description;
