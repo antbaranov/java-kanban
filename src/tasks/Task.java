@@ -4,6 +4,7 @@ import constants.TaskStatus;
 import constants.Types;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class Task {
@@ -48,6 +49,9 @@ public class Task {
         this.status = status;
         this.startTime = startTime;
         this.duration = duration;
+    }
+
+    public Task(String title, String description, TaskStatus aNew, Instant now, int i) {
     }
 
     public int getId() {

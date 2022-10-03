@@ -13,6 +13,7 @@ import tasks.SubTask;
 import tasks.Task;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,16 @@ abstract class TaskManagerTest<T extends TaskManager> {
     T manager;
 
     protected abstract T createManager();
+    protected Task createTask() {
+        return new Task("Title", "Description",  TaskStatus.NEW, Instant.now(), 0);
+    }
+    protected Epic createEpic() {
+
+        return new Epic("Title", "Description",  TaskStatus.NEW, Instant.now(), 0);
+    }
+    protected SubTask createSubtask(Epic epic) {
+        return new SubTask( "Title", "Description", TaskStatus.NEW, epic.getId(), Instant.now(), 0);
+    }
 
     @BeforeEach
     void getManager() {
@@ -33,6 +44,16 @@ abstract class TaskManagerTest<T extends TaskManager> {
     @AfterEach
     public void clear() {
         manager = null;
+    }
+
+    @Test
+    public void addTaskTest() {
+        Task task = createTask();
+        manager.addTask(task);
+        List<Task> tasks = manager.getTasks();
+        assertNotNull(task.getStatus());
+        assertEquals(TaskStatus.NEW, task.getStatus());
+        assertEquals(List.of(task), tasks);
     }
 
     @Test

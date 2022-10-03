@@ -4,6 +4,7 @@ import constants.TaskStatus;
 import constants.Types;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -33,6 +34,11 @@ public class SubTask extends Task {
             Duration duration
     ) {
         super(id, taskType, name, status, description, startTime, duration);
+        this.epicId = epicId;
+    }
+
+    public SubTask(String title, String description, TaskStatus aNew, int epicId, Instant now, int i) {
+        super(title, description, aNew, now, i);
         this.epicId = epicId;
     }
 

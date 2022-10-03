@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tests/FileBackedTasksManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/tests/FileBackedTasksManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tests/InMemoryTaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/tests/InMemoryTaskManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tests/TaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/tests/TaskManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/upload/tasks_file.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/upload/tasks_file.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/TaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/upload/tasks_file.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/upload/tasks_file.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +87,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.InMemoryTaskManagerTest">
+  <component name="RunManager" selected="JUnit.InMemoryTaskManagerTest.addTaskTest">
     <configuration name="HistoryManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
@@ -120,7 +118,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InMemoryTaskManagerTest.removeAllEpicsAndSubtasksTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InMemoryTaskManagerTest.addTaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
@@ -130,7 +128,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.InMemoryTaskManagerTest" />
-      <option name="METHOD_NAME" value="removeAllEpicsAndSubtasksTest" />
+      <option name="METHOD_NAME" value="addTaskTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.addTaskTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.addTaskTest" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest" />
         <item itemvalue="JUnit.HistoryManagerTest" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.removeTaskByIdAndEpicByIdAndSubtaskById" />
       </list>
     </recent_temporary>
   </component>
