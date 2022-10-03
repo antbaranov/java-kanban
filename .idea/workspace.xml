@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SubTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,9 +166,9 @@
       <list>
         <item itemvalue="JUnit.InMemoryTaskManagerTest.addTaskTest" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest.addTaskTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.addTaskTest" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest" />
         <item itemvalue="JUnit.HistoryManagerTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
       </list>
     </recent_temporary>
   </component>
