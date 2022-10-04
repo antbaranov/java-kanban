@@ -1,340 +1,332 @@
-package tests;
+package manager;
 
-import constants.TaskStatus;
-import constants.Types;
-import exceptions.ManagerSaveException;
-import manager.TaskManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import status.Status;
 import tasks.Epic;
-import tasks.SubTask;
+import tasks.Subtask;
 import tasks.Task;
 
-import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static constants.Types.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 abstract class TaskManagerTest<T extends TaskManager> {
-
-    T manager;
-
-    protected abstract T createManager();
+    protected T manager;
     protected Task createTask() {
-        return new Task("Title", "Description",  TaskStatus.NEW, Instant.now(), 0);
+        return new Task("Description", "Title", Status.NEW, Instant.now(), 0);
     }
     protected Epic createEpic() {
 
-        return new Epic("Title", "Description",  TaskStatus.NEW, Instant.now(), 0);
+        return new Epic("Description", "Title", Status.NEW, Instant.now(), 0);
     }
-    protected SubTask createSubtask(Epic epic) {
-        return new SubTask( "Title", "Description", TaskStatus.NEW, epic.getId(), Instant.now(), 0);
-    }
-
-    @BeforeEach
-    void getManager() {
-        manager = createManager();
-    }
-    @AfterEach
-    public void clear() {
-        manager = null;
+    protected Subtask createSubtask(Epic epic) {
+        return new Subtask("Description", "Title", Status.NEW, epic.getId(), Instant.now(), 0);
     }
 
     @Test
-    public void addTaskTest() {
+    public void shouldCreateTask() {
         Task task = createTask();
-        manager.addTask(task);
-        List<Task> tasks = manager.getTasks();
+        manager.createTask(task);
+        List<Task> tasks = manager.getAllTasks();
         assertNotNull(task.getStatus());
-        assertEquals(TaskStatus.NEW, task.getStatus());
+        assertEquals(Status.NEW, task.getStatus());
         assertEquals(List.of(task), tasks);
     }
 
     @Test
-    void addTaskAndGetTaskByIdTest() {
-        Task task = new Task(1, TASK, "Test task", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        manager.addTask(task);
-        assertFalse(manager.getTasks().isEmpty());
-        assertEquals(1, manager.getTasks().size());
-        assertEquals(task, manager.getTaskById(1));
+    public void shouldCreateEpic() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        List<Epic> epics = manager.getAllEpics();
+        assertNotNull(epic.getStatus());
+        assertEquals(Status.NEW, epic.getStatus());
+        assertEquals(Collections.EMPTY_LIST, epic.getSubtaskIds());
+        assertEquals(List.of(epic), epics);
     }
 
     @Test
-    void addEpicAndGetEpicByIdTest() {
-        Epic epic = new Epic(1, EPIC, "Наименование Epic", TaskStatus.NEW, "Test description");
-        manager.addEpic(epic);
-        assertFalse(manager.getEpics().isEmpty());
-//        assertEquals(1, manager.getEpics().size());
-        assertEquals(epic, manager.getEpicById(1));
+    public void shouldCreateSubtask() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        Subtask subtask = createSubtask(epic);
+        manager.createSubtask(subtask);
+        List<Subtask> subtasks = manager.getAllSubtasks();
+        assertNotNull(subtask.getStatus());
+        assertEquals(epic.getId(), subtask.getEpicId());
+        assertEquals(Status.NEW, subtask.getStatus());
+        assertEquals(List.of(subtask), subtasks);
+        assertEquals(List.of(subtask.getId()), epic.getSubtaskIds());
+    }
+/*
+    @Test
+    void shouldReturnNullWhenCreateTaskNull() {
+        Task task = manager.createTask(null);
+        assertNull(task);
     }
 
     @Test
-    void addSubtaskAndGetSubtaskIdTest() {
-        SubTask subtask = new SubTask(1, SUBTASK, "Test task", TaskStatus.NEW, "Test description",
-                0, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        manager.addSubTask(subtask);
-        assertFalse(manager.getSubTask().isEmpty());
-        assertEquals(1, manager.getSubTask().size());
-        assertEquals(subtask, manager.getSubTaskById(1));
+    void shouldReturnNullWhenCreateEpicNull() {
+        Epic epic = manager.createEpic(null);
+        assertNull(epic);
     }
 
     @Test
-    void getAllTasksEpicsSubtasksTest() {
-        Task task = new Task(1, Types.TASK, "Test task", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        Epic epic = new Epic(2, Types.EPIC, "Epic", TaskStatus.NEW, "Test description");
-        SubTask subTask = new SubTask(3, Types.SUBTASK, "Test task", TaskStatus.NEW, "Test description",
-                0, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        manager.addTask(task);
-        manager.addEpic(epic);
-        manager.addSubTask(subTask);
-        assertEquals(1, manager.getTasks().size());
-        assertEquals(1, manager.getEpics().size());
-        assertEquals(1, manager.getSubTask().size());
-        assertEquals(task, manager.getTaskById(1));
-        assertEquals(epic, manager.getEpicById(2));
-        assertEquals(subTask, manager.getSubTaskById(3));
+    void shouldReturnNullWhenCreateSubtaskNull() {
+        Subtask subtask = manager.createSubtask(null);
+        assertNull(subtask);
     }
 
     @Test
-    void updateTaskTest() {
-        Task taskOld = new Task(1, TASK, "TaskOld", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        Task taskNew = new Task(1, TASK, "TaskNew", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        manager.addTask(taskOld);
-        manager.updateTask(taskNew);
-        assertEquals("TaskNew", manager.getTaskById(1).getName());
+    public void shouldUpdateTaskStatusToInProgress() {
+        Task task = createTask();
+        manager.createTask(task);
+        task.setStatus(Status.IN_PROGRESS);
+        manager.updateTask(task);
+        assertEquals(Status.IN_PROGRESS, manager.getTaskById(task.getId()).getStatus());
     }
 
     @Test
-    void updateEpicTest() {
-        Epic epicOld = new Epic(1, EPIC, "old epic", TaskStatus.NEW, "Test description");
-        Epic epicNew = new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description");
-        manager.addEpic(epicOld);
-        manager.updateEpic(epicNew);
-        assertEquals("new epic", manager.getEpicById(1).getName());
+    public void shouldUpdateEpicStatusToInProgress() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        epic.setStatus(Status.IN_PROGRESS);
+        assertEquals(Status.IN_PROGRESS, manager.getEpicById(epic.getId()).getStatus());
     }
 
     @Test
-    void updateSubtaskTest() {
-        Epic epic = new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description");
-        SubTask subtaskOld = new SubTask(2, SUBTASK, "old subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        SubTask subtaskNew = new SubTask(2, SUBTASK, "new subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        manager.addEpic(epic);
-        manager.addSubTask(subtaskOld);
-        manager.updateSubTask(subtaskNew);
-        assertEquals("new subtask", manager.getSubTaskById(2).getName());
+    public void shouldUpdateSubtaskStatusToInProgress() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        Subtask subtask = createSubtask(epic);
+        manager.createSubtask(subtask);
+        subtask.setStatus(Status.IN_PROGRESS);
+        manager.updateSubtask(subtask);
+        assertEquals(Status.IN_PROGRESS, manager.getSubtaskById(subtask.getId()).getStatus());
+        assertEquals(Status.IN_PROGRESS, manager.getEpicById(epic.getId()).getStatus());
     }
 
     @Test
-    void updateEpicStatusBySubtasksTest() {
-        Epic epic = new Epic(1, EPIC, "Новый epic", TaskStatus.NEW, "Test description");
-        manager.addEpic(epic);
-        assertEquals(TaskStatus.NEW, manager.getEpics().get(1).getStatus());
-
-        manager.addSubTask(new SubTask(2, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-
-        assertEquals(TaskStatus.NEW, manager.getEpics().get(1).getStatus());
-
-        manager.addSubTask(new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.updateSubTask(new SubTask(2, SUBTASK, "new subtask", TaskStatus.IN_PROGRESS, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        assertEquals(TaskStatus.IN_PROGRESS, manager.getEpics().get(1).getStatus());
-
-        manager.updateSubTask(new SubTask(2, SUBTASK, "new subtask", TaskStatus.DONE, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.updateSubTask(new SubTask(3, SUBTASK, "new subtask", TaskStatus.DONE, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        assertEquals(TaskStatus.IN_PROGRESS, manager.getEpics().get(1).getStatus());
-
-        manager.updateSubTask(new SubTask(4, SUBTASK, "subtask", TaskStatus.DONE, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        assertEquals(TaskStatus.DONE, manager.getEpics().get(1).getStatus());
+    public void shouldUpdateTaskStatusToInDone() {
+        Task task = createTask();
+        manager.createTask(task);
+        task.setStatus(Status.DONE);
+        manager.updateTask(task);
+        assertEquals(Status.DONE, manager.getTaskById(task.getId()).getStatus());
     }
 
     @Test
-    void removeAllTasksTest() {
-        manager.addTask(new Task(1, TASK, "Task1", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.addTask(new Task(2, TASK, "Task2", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.deleteTasks();
-        assertTrue(manager.getTasks().isEmpty());
+    public void shouldUpdateEpicStatusToInDone() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        epic.setStatus(Status.DONE);
+        assertEquals(Status.DONE, manager.getEpicById(epic.getId()).getStatus());
     }
 
     @Test
-    void removeAllEpicsAndSubtasksTest() {
-        manager.addEpic(new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description"));
-        manager.addSubTask(new SubTask(2, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.addSubTask(new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.deleteAllEpicsAndSubTasks();
-        assertTrue(manager.getEpics().isEmpty() && manager.getSubTask().isEmpty());
+    public void shouldUpdateSubtaskStatusToInDone() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        Subtask subtask = createSubtask(epic);
+        manager.createSubtask(subtask);
+        subtask.setStatus(Status.DONE);
+        manager.updateSubtask(subtask);
+        assertEquals(Status.DONE, manager.getSubtaskById(subtask.getId()).getStatus());
+        assertEquals(Status.DONE, manager.getEpicById(epic.getId()).getStatus());
     }
 
     @Test
-    void removeTaskByIdAndEpicByIdAndSubtaskById() {
-        manager.addTask(new Task(1, TASK, "Task1", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.addEpic(new Epic(2, EPIC, "new epic", TaskStatus.NEW, "Test description"));
-        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                2, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.deleteByIdTask(1);
-        assertTrue(manager.getTasks().isEmpty());
-        manager.deleteByIdSubTask(3);
-        assertTrue(manager.getSubTask().isEmpty());
-        manager.deleteByIdEpic(2);
-        assertTrue(manager.getEpics().isEmpty());
+    public void shouldNotUpdateTaskIfNull() {
+        Task task = createTask();
+        manager.createTask(task);
+        manager.updateTask(null);
+        assertEquals(task, manager.getTaskById(task.getId()));
     }
 
     @Test
-    void getAllSubtasksByEpicTest() {
-        manager.addEpic(new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description"));
-        SubTask s1 = new SubTask(2, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        SubTask s2 = new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        SubTask s3 = new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        manager.addSubTask(s1);
-        manager.addSubTask(s2);
-        manager.addSubTask(s3);
-        List<SubTask> testList = List.of(s1, s2, s3);
-        for (int i = 0; i < manager.getSubTasksOfEpic(1).size(); i++) {
-            assertEquals(testList.get(i), manager.getSubTasksOfEpic(1).get(i));
-        }
+    public void shouldNotUpdateEpicIfNull() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        manager.updateEpic(null);
+        assertEquals(epic, manager.getEpicById(epic.getId()));
     }
 
     @Test
-    void getHistoryAndDuplicatesInHistoryTest() {
-        manager.addTask(new Task(1, TASK, "Task1", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.addEpic(new Epic(2, EPIC, "new epic", TaskStatus.NEW, "Test description"));
-        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                2, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-
-        manager.getTaskById(1);
-        manager.getSubTaskById(3);
-        manager.getEpicById(2);
-        manager.getSubTaskById(3);
-        assertEquals(3, manager.getHistory().size());
-        for (int i = 0; i < manager.getHistory().size(); i++) {
-            assertEquals(i + 1, manager.getHistory().get(i).getId());
-        }
+    public void shouldNotUpdateSubtaskIfNull() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        Subtask subtask = createSubtask(epic);
+        manager.createSubtask(subtask);
+        manager.updateSubtask(null);
+        assertEquals(subtask, manager.getSubtaskById(subtask.getId()));
     }
 
     @Test
-    void intersectionCheckTest() {
-        manager.addTask(new Task(1, TASK, "Task1", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        manager.addEpic(new Epic(2, EPIC, "new epic", TaskStatus.NEW, "Test description"));
-        manager.addSubTask(new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                2, LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30)));
-        ManagerSaveException ex = Assertions.assertThrows(
-                ManagerSaveException.class,
-                () -> manager.intersectionCheck()
-        );
-        assertEquals("Найдено пересечение времени задач, проверьте корректность данных", ex.getMessage());
+    public void shouldDeleteAllTasks() {
+        Task task = createTask();
+        manager.createTask(task);
+        manager.deleteAllTasks();
+        assertEquals(Collections.EMPTY_LIST, manager.getAllTasks());
     }
 
     @Test
-    void getPrioritizedTasksTest() {
-        Task task1 = new Task(1, TASK, "task1", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 1, 18, 0), Duration.ofMinutes(30));
-        Task task2 = new Task(1, TASK, "task1", TaskStatus.NEW, "Test description",
-                null, null);
-        SubTask subtask1 = new SubTask(3, SUBTASK, "subtask1", TaskStatus.NEW, "Test description",
-                2, LocalDateTime.of(2022, 10, 2, 19, 0), Duration.ofMinutes(30));
-        SubTask subtask2 = new SubTask(4, SUBTASK, "subtask2", TaskStatus.NEW, "Test description",
-                2, LocalDateTime.of(2022, 10, 2, 20, 0), Duration.ofMinutes(30));
-        manager.addTask(task1);
-        manager.addTask(task2);
-        manager.addSubTask(subtask1);
-        manager.addSubTask(subtask2);
-        List<Task> prioritizedTasksTest = new ArrayList<>();
-        prioritizedTasksTest.add(subtask2);
-        prioritizedTasksTest.add(task1);
-        prioritizedTasksTest.add(subtask1);
-        prioritizedTasksTest.add(task2);
-        assertEquals(4, manager.getPrioritizedTasks().size());
-        int i = 0;
-        for (Task task : manager.getPrioritizedTasks()) {
-            assertEquals(task, prioritizedTasksTest.get(i++));
-        }
+    public void shouldDeleteAllEpics() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        manager.deleteAllEpics();
+        assertEquals(Collections.EMPTY_LIST, manager.getAllEpics());
     }
 
     @Test
-    void getTaskEndTimeTest() {
-        Task task = new Task(1, TASK, "task1", TaskStatus.NEW, "Test description",
-                LocalDateTime.of(2022, 10, 3, 18, 0), Duration.ofMinutes(30));
-        manager.getTaskEndTime(task);
-        assertEquals(task.getStartTime().plusMinutes(30), task.getEndTime());
+    public void shouldDeleteAllSubtasks() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        Subtask subtask = createSubtask(epic);
+        manager.createSubtask(subtask);
+        manager.deleteAllSubtasks();
+        assertTrue(epic.getSubtaskIds().isEmpty());
+        assertTrue(manager.getAllSubtasks().isEmpty());
     }
 
     @Test
-    void getSubtaskEndTimeTest() {
-        SubTask subtask = new SubTask(3, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                2, LocalDateTime.of(2022, 10, 2, 19, 0), Duration.ofMinutes(30));
-        manager.getSubtaskEndTime(subtask);
-        assertEquals(subtask.getStartTime().plusMinutes(30), subtask.getEndTime());
+    public void shouldDeleteAllSubtasksByEpic() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        Subtask subtask = createSubtask(epic);
+        manager.createSubtask(subtask);
+        manager.deleteAllSubtasksByEpic(epic);
+        assertTrue(epic.getSubtaskIds().isEmpty());
+        assertTrue(manager.getAllSubtasks().isEmpty());
     }
 
     @Test
-    void getEpicTimesAndDurationTest() {
-        manager.addEpic(new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description"));
-        SubTask s1 = new SubTask(2, SUBTASK, "epic end", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 20, 0), Duration.ofMinutes(30));
-        SubTask s2 = new SubTask(3, SUBTASK, "epic start", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 2, 18, 0), Duration.ofMinutes(30));
-        SubTask s3 = new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 19, 0), Duration.ofMinutes(45));
-        manager.addSubTask(s1);
-        manager.addSubTask(s2);
-        manager.addSubTask(s3);
-
-        assertEquals(manager.getEpics().get(1).getStartTime(), manager.getSubTask().get(3).getStartTime());
-        assertEquals(manager.getEpics().get(1).getEndTime(), manager.getSubTask().get(2).getEndTime());
-        assertEquals(Duration.ofMinutes(150), manager.getEpics().get(1).getDuration());
+    public void shouldDeleteTaskById() {
+        Task task = createTask();
+        manager.createTask(task);
+        manager.deleteTaskById(task.getId());
+        assertEquals(Collections.EMPTY_LIST, manager.getAllTasks());
     }
 
     @Test
-    void getHistoryTest() {
-        Epic epic = new Epic(1, EPIC, "new epic", TaskStatus.NEW, "Test description");
-        SubTask s1 = new SubTask(2, SUBTASK, "epic end", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 20, 0), Duration.ofMinutes(30));
-        SubTask s2 = new SubTask(3, SUBTASK, "epic start", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 2, 18, 0), Duration.ofMinutes(30));
-        SubTask s3 = new SubTask(4, SUBTASK, "subtask", TaskStatus.NEW, "Test description",
-                1, LocalDateTime.of(2022, 10, 1, 19, 0), Duration.ofMinutes(45));
-        manager.addEpic(epic);
-        manager.addSubTask(s1);
-        manager.addSubTask(s2);
-        manager.addSubTask(s3);
-
-        manager.getEpicById(1);
-        manager.getSubTaskById(4);
-        manager.getEpicById(1);
-        manager.getSubTaskById(2);
-        Task[] historyTest = {s3, epic, s1};
-
-        Assertions.assertArrayEquals(historyTest, manager.getHistory().toArray());
-
+    public void shouldDeleteEpicById() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        manager.deleteEpicById(epic.getId());
+        assertEquals(Collections.EMPTY_LIST, manager.getAllEpics());
     }
+
+    @Test
+    public void shouldNotDeleteTaskIfBadId() {
+        Task task = createTask();
+        manager.createTask(task);
+        manager.deleteTaskById(999);
+        assertEquals(List.of(task), manager.getAllTasks());
+    }
+
+    @Test
+    public void shouldNotDeleteEpicIfBadId() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        manager.deleteEpicById(999);
+        assertEquals(List.of(epic), manager.getAllEpics());
+    }
+
+    @Test
+    public void shouldNotDeleteSubtaskIfBadId() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        Subtask subtask = createSubtask(epic);
+        manager.createSubtask(subtask);
+        manager.deleteSubtaskById(999);
+        assertEquals(List.of(subtask), manager.getAllSubtasks());
+        assertEquals(List.of(subtask.getId()), manager.getEpicById(epic.getId()).getSubtaskIds());
+    }
+
+    @Test
+    public void shouldDoNothingIfTaskHashMapIsEmpty(){
+        manager.deleteAllTasks();
+        manager.deleteTaskById(999);
+        assertEquals(0, manager.getAllTasks().size());
+    }
+
+    @Test
+    public void shouldDoNothingIfEpicHashMapIsEmpty(){
+        manager.deleteAllEpics();
+        manager.deleteEpicById(999);
+        assertTrue(manager.getAllEpics().isEmpty());
+    }
+
+    @Test
+    public void shouldDoNothingIfSubtaskHashMapIsEmpty(){
+        manager.deleteAllEpics();
+        manager.deleteSubtaskById(999);
+        assertEquals(0, manager.getAllSubtasks().size());
+    }
+
+    @Test
+    void shouldReturnEmptyListWhenGetSubtaskByEpicIdIsEmpty() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        List<Subtask> subtasks = manager.getAllSubtasksByEpicId(epic.getId());
+        assertTrue(subtasks.isEmpty());
+    }
+
+    @Test
+    public void shouldReturnEmptyListTasksIfNoTasks() {
+        assertTrue(manager.getAllTasks().isEmpty());
+    }
+
+    @Test
+    public void shouldReturnEmptyListEpicsIfNoEpics() {
+        assertTrue(manager.getAllEpics().isEmpty());
+    }
+
+    @Test
+    public void shouldReturnEmptyListSubtasksIfNoSubtasks() {
+        assertTrue(manager.getAllSubtasks().isEmpty());
+    }
+
+    @Test
+    public void shouldReturnNullIfTaskDoesNotExist() {
+        assertNull(manager.getTaskById(999));
+    }
+
+    @Test
+    public void shouldReturnNullIfEpicDoesNotExist() {
+        assertNull(manager.getEpicById(999));
+    }
+
+    @Test
+    public void shouldReturnNullIfSubtaskDoesNotExist() {
+        assertNull(manager.getSubtaskById(999));
+    }
+
+    @Test
+    public void shouldReturnEmptyHistory() {
+        assertEquals(Collections.EMPTY_LIST, manager.getHistory());
+    }
+
+    @Test
+    public void shouldReturnEmptyHistoryIfTasksNotExist() {
+        manager.getTaskById(999);
+        manager.getSubtaskById(999);
+        manager.getEpicById(999);
+        assertTrue(manager.getHistory().isEmpty());
+    }
+
+    @Test
+    public void shouldReturnHistoryWithTasks() {
+        Epic epic = createEpic();
+        manager.createEpic(epic);
+        Subtask subtask = createSubtask(epic);
+        manager.createSubtask(subtask);
+        manager.getEpicById(epic.getId());
+        manager.getSubtaskById(subtask.getId());
+        List<Task> list = manager.getHistory();
+        assertEquals(2, list.size());
+        assertTrue(list.contains(subtask));
+        assertTrue(list.contains(epic));
+    }
+*/
 }
