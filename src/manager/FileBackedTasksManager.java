@@ -44,7 +44,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
                 bufferedWriter.write(subTaskToString(subTask) + "\n");
             }
             bufferedWriter.write("\n"); // Добавить пустую строку
-            bufferedWriter.write(HistoryManager.historyToString(getHistoryManager()));
+            bufferedWriter.write(historyToString(getHistoryManager()));
         } catch (IOException e) {
             throw new ManagerSaveException("Произошла ошибка во время записи файла");
         }
@@ -97,6 +97,25 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             task.setId(Integer.parseInt(params[0]));
             return task;
         }
+    }
+    // Метод для сохранения истории в CSV
+    static String historyToString(HistoryManager manager) {
+        List<Task> history = manager.getHistory();
+        StringBuilder str = new StringBuilder();
+
+        if (history.isEmpty()) {
+            return "";
+        }
+
+        for (Task task : history) {
+            str.append(task.getId()).append(",");
+        }
+
+        if (str.length() != 0) {
+            str.deleteCharAt(str.length() - 1);
+        }
+
+        return str.toString();
     }
 
     // Метод восстановления менеджера из истории из файла CSV

@@ -10,33 +10,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     private final CustomLinkedList<Task> customHistoryList = new CustomLinkedList<>();
 
 
-    public void add(Task task) {
-        customHistoryList.linkLast(task);
-    }
-    @Override
-    public void addHistory(Task task) {
-        if (task == null) { // Проверка
-            return;
-        }
-        remove(task.getId());
-        customHistoryList.linkLast(task);
-        tasksHistory.put(task.getId(), customHistoryList.tail.getPrev());
-    }
-
-    @Override
-    public void remove(int id) {
-        if (tasksHistory.containsKey(id)) {
-            customHistoryList.removeNode(tasksHistory.get(id));
-            tasksHistory.remove(id);
-        }
-    }
-
-    @Override
-    public List<Task> getHistory() {
-        return customHistoryList.getTasks();
-    }
-
-    public static class CustomLinkedList<T> {
+        public static class CustomLinkedList<T> {
         private Node<T> head; // Указатель на первый элемент списка. Он же first
         private Node<T> tail; // Указатель на последний элемент списка. Он же last
 
@@ -90,9 +64,37 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
 
     }
+
+    @Override
+    public void add(Task task) {
+        if (task == null) {
+            return;
+        }
+        remove(task.getId());
+        customHistoryList.linkLast(task);
+        tasksHistory.put(task.getId(), customHistoryList.tail.getPrev());
+    }
+
+    @Override
+    public void remove(int id) {
+        if (tasksHistory.containsKey(id)) {
+            customHistoryList.removeNode(tasksHistory.get(id));
+            tasksHistory.remove(id);
+        }
+    }
+
+    @Override
+    public List<Task> getHistory() {
+
+            return customHistoryList.getTasks();
+    }
+
     @Override
     public String toString() {
-        return "InMemoryHistoryManager{" + "tasksHistory=" + tasksHistory + '}';
+        return "InMemoryHistoryManager{" +
+                "tasksHistory=" + tasksHistory +
+                ", customHistoryList=" + customHistoryList +
+                '}';
     }
 }
 
