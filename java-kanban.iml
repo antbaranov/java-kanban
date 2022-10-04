@@ -6,7 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/tests/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/manager" isTestSource="true" />
     </content>
     <orderEntry type="jdk" jdkName="openjdk-18" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

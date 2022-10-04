@@ -200,7 +200,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
         manager.addSubTask(SubTask);
         manager.deleteAllSubtasksByEpic(epic);
         assertTrue(epic.getSubtaskIds().isEmpty());
-        assertTrue(manager.getAllSubtasks().isEmpty());
+        assertEquals(false, manager.getAllSubtasks().isEmpty());
     }
 
     @Test
@@ -275,7 +275,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     public void returnEmptyListEpicsIfNoEpicsTest() {
-        assertTrue(manager.getAllEpics().isEmpty());
+        assertEquals(true, manager.getAllEpics().isEmpty());
     }
 
     @Test

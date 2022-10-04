@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/TaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-kanban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-kanban.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/TaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/TaskManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/FileBackedTasksManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/FileBackedTasksManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/InMemoryTaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/InMemoryTaskManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/TaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/TaskManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/FileBackedTasksManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/InMemoryHistoryManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/InMemoryTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +97,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.InMemoryTaskManagerTest">
+  <component name="RunManager" selected="JUnit.InMemoryTaskManagerTest.returnHistoryWithTasksTest">
     <configuration name="InMemoryTaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
@@ -99,21 +107,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InMemoryTaskManagerTest.deleteEpicByIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InMemoryTaskManagerTest.returnEmptyListEpicsIfNoEpicsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
-      <option name="METHOD_NAME" value="deleteEpicByIdTest" />
+      <option name="METHOD_NAME" value="returnEmptyListEpicsIfNoEpicsTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InMemoryTaskManagerTest.notDeleteTaskIfBadIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InMemoryTaskManagerTest.returnEmptyListSubTasksIfNoSubTasksTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
-      <option name="METHOD_NAME" value="notDeleteTaskIfBadIdTest" />
+      <option name="METHOD_NAME" value="returnEmptyListSubTasksIfNoSubTasksTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -155,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.returnHistoryWithTasksTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.returnEmptyListEpicsIfNoEpicsTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.returnEmptyListSubTasksIfNoSubTasksTest" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.deleteEpicByIdTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.deleteEpicByIdTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.deleteEpicByIdTest" />
       </list>
     </recent_temporary>
   </component>
