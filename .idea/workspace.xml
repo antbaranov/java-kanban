@@ -6,41 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-kanban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-kanban.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/constants/TaskStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/constants/TaskType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/FileBackedTasksManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/FileBackedTasksManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/HistoryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/HistoryManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager$CustomLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager$CustomLinkedList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryTaskManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/Managers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/Managers.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/TaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/TaskManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tasks/Epic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/tasks/Epic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tasks/SubTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/tasks/SubTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tasks/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/tasks/Task.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tests/FileBackedTasksManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tests/HistoryManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tests/InMemoryTaskManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tests/TaskManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/upload/tasks_file.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/HistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/Managers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/TaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SubTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/FileBackedTasksManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/InMemoryHistoryManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/InMemoryTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/TaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/upload/tasks_file.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +55,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "last_directory_selection": "C:/Users/HP/dev/java-kanban/tests/manager",
+    "last_directory_selection": "C:/Users/HP/dev/java-kanban/src/tests",
     "last_opened_file_path": "C:/Users/HP/dev/java-kanban-sprint7-BUDAEV",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -190,10 +156,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.InMemoryTaskManagerTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.deleteEpicByIdTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.deleteEpicByIdTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.deleteEpicByIdTest" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.deleteEpicByIdTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.deleteEpicByIdTest" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.deleteEpicByIdTest" />
       </list>
     </recent_temporary>
   </component>
