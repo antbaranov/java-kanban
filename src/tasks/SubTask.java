@@ -1,44 +1,20 @@
 package tasks;
 
-import constants.TaskStatus;
-import constants.Types;
+import constants.Status;
 
-import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class SubTask extends Task {
     private int epicId;
 
-    public SubTask(
-            String name,
-            TaskStatus status,
-            String description,
-            int epicId,
-            LocalDateTime startTime,
-            Duration duration
-    ) {
-        super(name, status, description, startTime, duration);
+    public SubTask(String name, String description, Status status, int epicId) {
+        super(name, description, status);
         this.epicId = epicId;
     }
 
-    public SubTask(
-            int id,
-            Types taskType,
-            String name,
-            TaskStatus status,
-            String description,
-            int epicId,
-            LocalDateTime startTime,
-            Duration duration
-    ) {
-        super(id, taskType, name, status, description, startTime, duration);
-        this.epicId = epicId;
-    }
-
-    public SubTask(String title, String description, TaskStatus aNew, int epicId, Instant now, int i) {
-        super(title, description, aNew, now, i);
+    public SubTask(String name, String description, Status status, int epicId, Instant startTime, long duration) {
+        super(name, description, status, startTime, duration);
         this.epicId = epicId;
     }
 
@@ -59,9 +35,6 @@ public class SubTask extends Task {
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 ", taskType=" + taskType +
-                ", duration=" + duration +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
                 '}';
     }
 
@@ -78,5 +51,4 @@ public class SubTask extends Task {
     public int hashCode() {
         return Objects.hash(super.hashCode(), epicId);
     }
-
 }

@@ -1,15 +1,15 @@
 package manager;
 
-import constants.TaskStatus;
+import constants.Status;
 import constants.Types;
 import exceptions.ManagerSaveException;
-import tasks.*;
+import tasks.Epic;
+import tasks.SubTask;
+import tasks.Task;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,20 +20,27 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     File file = new File(String.valueOf(path));
     public static final String COMMA_SEPARATOR = ",";
 
-    public FileBackedTasksManager() {
+    public FileBackedTasksManager(HistoryManager historyManager) {
+        super(historyManager);
+
     }
+    public FileBackedTasksManager(HistoryManager historyManager, File file) {
+        super(historyManager);
+        this.file = file;
+    }
+
 
     // Метод сохраняет текущее состояние менеджера в указанный файл
     public void save() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
             bufferedWriter.write("id,type,name,status,description,epic" + "\n"); // Запись шапки с заголовками в файл
-            for (Task task : getTasks()) {
+            for (Task task : getAllTasks()) {
                 bufferedWriter.write(taskToString(task) + "\n");
             }
-            for (Epic epic : getEpics()) {
+            for (Epic epic : this.getAllEpics()) {
                 bufferedWriter.write(epicToString(epic) + "\n");
             }
-            for (SubTask subTask : getSubTask()) {
+            for (SubTask subTask : getAllSubtasks()) {
                 bufferedWriter.write(subTaskToString(subTask) + "\n");
             }
             bufferedWriter.write("\n"); // Добавить пустую строку
@@ -76,34 +83,17 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     public static Task fromString(String value) {
         String[] params = value.split(COMMA_SEPARATOR);
         if ("EPIC".equals(params[1])) {
-            Epic epic = new Epic(
-                    params[4],
-                    params[2],
-                    TaskStatus.valueOf(params[3].toUpperCase())
-            );
+            Epic epic = new Epic(params[4], params[2], Status.valueOf(params[3].toUpperCase()));
             epic.setId(Integer.parseInt(params[0]));
-            epic.setStatus(TaskStatus.valueOf(params[3].toUpperCase()));
+            epic.setStatus(Status.valueOf(params[3].toUpperCase()));
             return epic;
         } else if ("SUBTASK".equals(params[1])) {
-            SubTask subTask = new SubTask(
-                    params[4],
-                    TaskStatus.valueOf(params[3].toUpperCase()),
-                    params[2],
-                    Integer.parseInt(params[5]),
-                    LocalDateTime.of(2022, 10, 1, 0, 0),
-                    Duration.ofMinutes(45)
-            );
+            SubTask subTask = new SubTask(params[4], params[2], Status.valueOf(params[3].toUpperCase()),
+                    Integer.parseInt(params[5]));
             subTask.setId(Integer.parseInt(params[0]));
             return subTask;
         } else {
-            Task task = new Task(
-                    getIdCounter(),
-                    Types.TASK,
-                    params[4],
-                    TaskStatus.valueOf(params[3].toUpperCase()),
-                    params[2],
-                    LocalDateTime.now(),
-                    Duration.ofMinutes(4));
+            Task task = new Task(params[4], params[2], Status.valueOf(params[3].toUpperCase()));
             task.setId(Integer.parseInt(params[0]));
             return task;
         }
@@ -123,8 +113,8 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
-    public  FileBackedTasksManager loadFromFile() {
-        final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
+    public  void loadFromFile() {
+       // final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
         try (BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
             br.readLine();
             while (br.ready()) {
@@ -151,7 +141,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         } catch (IOException e) {
             throw new ManagerSaveException("Произошла ошибка во время чтения файла!");
         }
-        return fileBackedTasksManager;
+       // return fileBackedTasksManager;
     }
 
     /*
@@ -163,69 +153,64 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     // Переопределение методов
     @Override
-    public int addTask(Task task) {
+    public Task addTask(Task task) {
         super.addTask(task);
         save();
-        return task.getId();
+        return task;
     }
 
     @Override
-    public int addEpic(Epic epic) {
+    public Epic addEpic(Epic epic) {
         super.addEpic(epic);
         save();
-        return epic.getId();
+        return epic;
     }
 
     @Override
-    public int addSubTask(SubTask subTask) {
+    public SubTask addSubTask(SubTask subTask) {
         super.addSubTask(subTask);
         save();
-        return subTask.getId();
+        return subTask;
     }
 
     // Удаление всех Задач
     @Override
-    public void deleteTasks() {
-        super.deleteTasks();
+    public void deleteAllTasks() {
+        super.deleteAllTasks();
         save();
     }
 
     // Удаление всех ПодЗадач
     @Override
-    public void deleteSubTasks() {
-        super.deleteSubTasks();
+    public void deleteAllSubtasks() {
+        super.deleteAllSubtasks();
         save();
     }
-// Удаление всех эпиокв и всех подзадач
-    @Override
-    public void deleteAllEpicsAndSubTasks() {
-        super.deleteAllEpicsAndSubTasks();
-        save();
-    }
+
     // Удаление всех Эпиков
     @Override
-    public void deleteEpics() {
-        super.deleteEpics();
+    public void deleteAllEpics() {
+        super.deleteAllEpics();
         save();
     }
 
     // Получение списка Эпиков
     @Override
-    public List<Epic> getEpics() {
-        return super.getEpics();
+    public List<Epic> getAllEpics() {
+        return super.getAllEpics();
     }
 
     // Получение списка задач
     @Override
-    public List<Task> getTasks() {
+    public List<Task> getAllTasks() {
 
-        return super.getTasks();
+        return super.getAllTasks();
     }
 
     // Получение списка подзадач
     @Override
-    public List<SubTask> getSubTask() {
-        return super.getSubTask();
+    public List<SubTask> getAllSubtasks() {
+        return super.getAllSubtasks();
 
     }
 
@@ -276,44 +261,37 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     // Обновление статуса Эпиков
     @Override
-    public void updateEpicStatus(Epic epic) {
-        super.updateEpicStatus(epic);
+    public void updateStatusEpic(Epic epic) {
+        super.updateStatusEpic(epic);
         save();
     }
 
     // Удаление Задачи по идентификатору
     @Override
-    public void deleteByIdTask(int id) {
-        super.deleteByIdTask(id);
+    public void deleteTaskById(int id) {
+        super.deleteTaskById(id);
         save();
     }
 
     // Удаление Подзадачи по идентификатору
     @Override
-    public void deleteByIdSubTask(int id) {
-        super.deleteByIdSubTask(id);
+    public void deleteSubtaskById(int id) {
+        super.deleteSubtaskById(id);
         save();
     }
 
     // Удаление Эпика по идентификатору
     @Override
-    public void deleteByIdEpic(int id) {
-        super.deleteByIdEpic(id);
+    public void deleteEpicById(int id) {
+        super.deleteEpicById(id);
         save();
     }
 
-    // Получение списка всех подзадач определённого эпика
-    @Override
-    public ArrayList<SubTask> getSubTasksOfEpic(int id) {
-        ArrayList<SubTask> subTasksNew = super.getSubTasksOfEpic(id);
-        save();
-        return subTasksNew;
 
-    }
 
     public static void main(String[] args) {
 
-        FileBackedTasksManager manager = Managers.getDefaultFileManager();
+
 
 
     }

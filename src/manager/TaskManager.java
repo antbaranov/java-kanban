@@ -4,38 +4,39 @@ import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public interface TaskManager {
 
     // Метод создания простой Задачи task
-    int addTask(Task task);
+    Task addTask(Task task);
 
     // Метод создания Подзадачи subTask
-    int addSubTask(SubTask subTask);
+    SubTask addSubTask(SubTask subTask);
 
     // Метод создания Эпика tasks.Epic
-    int addEpic(Epic epic);
+    Epic addEpic(Epic epic);
 
     // Удаление всех Задач
-    void deleteTasks();
+    void deleteAllTasks();
 
     // Удаление всех ПодЗадач
-    void deleteSubTasks();
+    void deleteAllSubtasks();
 
     // Удаление всех Эпиков
-    void deleteEpics();
+    void deleteAllEpics();
+
+    // Удалить все подзадачи по эпику
+    void deleteAllSubtasksByEpic(Epic epic);
 
     // Получение списка Эпиков
-    List<Epic> getEpics();
+    List<Epic> getAllEpics();
 
     // Получение списка задач
-    List<Task> getTasks();
+    List<Task> getAllTasks();
 
     // Получение списка подзадач
-    List<SubTask> getSubTask();
+    List<SubTask> getAllSubtasks();
 
     // Получение Задач по идентификатору
     Task getTaskById(int id);
@@ -56,33 +57,32 @@ public interface TaskManager {
     void updateEpic(Epic epic);
 
     // Обновление статуса Эпиков
-    void updateEpicStatus(Epic epic);
+    void updateStatusEpic(Epic epic);
 
     // Удаление Задачи по идентификатору
-    void deleteByIdTask(int id);
+    void deleteTaskById(int id);
 
     // Удаление Подзадачи по идентификатору
-    void deleteByIdSubTask(int id);
+    void deleteSubtaskById(int id);
 
     // Удаление Эпика по идентификатору
+    void deleteEpicById(int id);
+    void removeEpicById(int id);
     void deleteByIdEpic(int id);
 
     // Получение списка всех подзадач определённого эпика
-    ArrayList<SubTask> getSubTasksOfEpic(int id);
+   List<SubTask> getAllSubtasksByEpicId(int id);
+    void remove(int id);
 
-    // Удаление всех эпиков и подзадач
-    void deleteAllEpicsAndSubTasks();
+    void printTasks();
+
+    void printEpics();
+
+    void printSubtasks();
+
 
     // История просмотров задач
     List<Task> getHistory();
-    void intersectionCheck();
 
-    Set<Task> getPrioritizedTasks();
-
-    void getTaskEndTime(Task task);
-
-    void getEpicTimesAndDuration(Epic epic);
-
-    void getSubtaskEndTime(SubTask subtask);
 
 }

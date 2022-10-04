@@ -10,6 +10,9 @@ public class InMemoryHistoryManager implements HistoryManager {
     private final CustomLinkedList<Task> customHistoryList = new CustomLinkedList<>();
 
 
+    public void add(Task task) {
+        customHistoryList.linkLast(task);
+    }
     @Override
     public void addHistory(Task task) {
         if (task == null) { // Проверка

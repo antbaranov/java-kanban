@@ -1,7 +1,6 @@
 package tasks;
 
-import constants.TaskStatus;
-import constants.Types;
+import constants.Status;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -9,67 +8,67 @@ import java.util.List;
 import java.util.Objects;
 
 public class Epic extends Task {
-    private List<Integer> subTaskId;
+    private List<Integer> subTaskIds = new ArrayList<>();
     private Instant endTime;
-    public Epic(String name, String description, TaskStatus status)  {
-        super(name, status,  description,  null, null);
-        subTaskId = new ArrayList<>();
+
+    @Override
+    public Instant getEndTime() {
+        return endTime;
     }
 
-    public Epic(int id, Types taskType, String name, TaskStatus status, String description) {
-        super(id, taskType, name, status, description, null, null);
-        subTaskId = new ArrayList<>();
+    public void setEndTime(Instant endTime) {
+        this.endTime = endTime;
     }
 
-    public Epic(String title, String description, TaskStatus aNew, Instant now, int i) {
-        super(title, description, aNew, now, i);
+    public Epic(String name, String description, Status status)  {
+        super(name,  description, status);
+
+    }
+
+    public Epic( String name, String description, Status status, Instant startTime, long duration) {
+        super( name, description, status, startTime, duration);
+        this.endTime = super.getEndTime();
     }
 
     public void addSubTask(int subTaskId) {
 
-        this.subTaskId.add(subTaskId);
+        this.subTaskIds.add(subTaskId);
     }
 
-    public List<Integer> getSubTaskId() {
+    public List<Integer> getSubtaskIds() {
 
-        return subTaskId;
+        return subTaskIds;
     }
 
-    public void setSubTaskId(List<Integer> subTaskId) {
+    public void setSubtaskIds(int id) {
 
-        this.subTaskId = subTaskId;
+        subTaskIds.add(id);
     }
-
 
     @Override
     public String toString() {
         return "Epic{" +
-                "subTaskIds=" + subTaskId +
+                "subTaskIds=" + subTaskIds +
                 ", endTime=" + endTime +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 ", taskType=" + taskType +
-                ", duration=" + duration +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
                 '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Epic epic = (Epic) o;
-        return Objects.equals(subTaskId, epic.subTaskId) && Objects.equals(endTime, epic.endTime);
+        return Objects.equals(subTaskIds, epic.subTaskIds) && Objects.equals(endTime, epic.endTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), subTaskId, endTime);
-    }
-
-    public void setStatus(TaskStatus aNew) {
+        return Objects.hash(super.hashCode(), subTaskIds, endTime);
     }
 }

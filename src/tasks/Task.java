@@ -1,57 +1,42 @@
 package tasks;
 
-import constants.TaskStatus;
-import constants.Types;
+import com.sun.jdi.Type;
+import constants.Status;
 
-import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Task {
     // Объявляем поля класса tasks.Task
     protected int id; // Уникальный идентификационный номер задачи, по которому её можно будет найти
-    protected Types taskType; // Тип задачи
     protected String name; // Название, кратко описывающее суть задачи (например, «Переезд»)
     protected String description; // Описание, в котором раскрываются детали
-    protected TaskStatus status; //Статус, отображающий её прогресс
+    protected Status status; //Статус, отображающий её прогресс
 
-    LocalDateTime startTime;
-    Duration duration;
-    LocalDateTime endTime;
 
-    public Task(
-            String name,
-            TaskStatus status,
-            String description,
-            LocalDateTime startTime,
-            Duration duration
-    ) {
+    /* Мы будем выделять следующие этапы жизни задачи:
+            NEW — задача только создана, но к её выполнению ещё не приступили.
+            IN_PROGRESS — над задачей ведётся работа.
+            DONE — задача выполнена */
+    protected Type taskType; // Тип задачи
+    private Instant startTime;
+    private long duration;
+
+
+    public Task(String name, String description, Status status) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+    }
+
+    // Конструктор для тестов
+    public Task(String name, String description, Status status, Instant startTime, long duration) {
+
         this.name = name;
         this.description = description;
         this.status = status;
         this.startTime = startTime;
         this.duration = duration;
-    }
-
-    public Task(
-                int id,
-                Types taskType,
-                String name,
-                TaskStatus status,
-                String description,
-                LocalDateTime startTime,
-                Duration duration
-    ) {
-        this.id = id;
-        this.taskType = taskType;
-        this.name = name;
-        this.description = description;
-        this.status = status;
-        this.startTime = startTime;
-        this.duration = duration;
-    }
-
-    public Task(String title, String description, TaskStatus aNew, Instant now, int i) {
     }
 
     public int getId() {
@@ -78,41 +63,60 @@ public class Task {
         this.description = description;
     }
 
-    public TaskStatus getStatus() {
+
+    public Status getStatus() {
         return status;
     }
 
-    public Duration getDuration() {
-        return duration;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public void setDuration(Duration duration) {
-        this.duration = duration;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public LocalDateTime getStartTime() {
+    public Instant getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(Instant startTime) {
         this.startTime = startTime;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    public Instant getEndTime() {
+        long SECONDS_IN_MINUTE = 60L;
+        Instant endTime = startTime.plusSeconds(duration * SECONDS_IN_MINUTE);
+        return endTime;
     }
 
     @Override
     public String toString() {
-        return id + "," +
-                Types.TASK + "," +
-                name + "," +
-                description + "," +
-                startTime + "," +
-                duration;
+        return "Task{" +
+                "id=" + id +
+                ", taskType=" + taskType +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", startTime=" + startTime +
+                ", duration=" + duration +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id && duration == task.duration && taskType == task.taskType && Objects.equals(name, task.name) && Objects.equals(description, task.description) && status == task.status && Objects.equals(startTime, task.startTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, taskType, name, description, status, startTime, duration);
     }
 }
