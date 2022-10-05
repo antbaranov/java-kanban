@@ -12,10 +12,10 @@ import java.util.*;
 public class InMemoryTaskManager implements TaskManager {
 
     private static int getIdCounter = 1; // Объявление , инициализация начального идентификатора
-    private  final Map<Integer, Task> tasks = new HashMap<>();
-    private  final Map<Integer, SubTask> subTasks = new HashMap<>();
-    private  final Map<Integer, Epic> epics = new HashMap<>();
-    private final  HistoryManager historyManager;
+    private final Map<Integer, Task> tasks = new HashMap<>();
+    private final Map<Integer, SubTask> subTasks = new HashMap<>();
+    private final Map<Integer, Epic> epics = new HashMap<>();
+    private final HistoryManager historyManager;
 
     private final Comparator<Task> taskComparator = Comparator.comparing(Task::getStartTime);
 
@@ -245,9 +245,12 @@ public class InMemoryTaskManager implements TaskManager {
     public void deleteTaskById(int id) {
         if (tasks.containsKey(id)) {
             prioritizedTasks.removeIf(task -> task.getId() == id);
-            tasks.remove(id);
             historyManager.remove(id);
-        } // Проверка на если не найдено?
+            tasks.remove(id);
+
+        } else {
+            System.out.println("Task not found");
+        }
     }
 
     // Удаление Подзадачи по идентификатору
@@ -330,6 +333,7 @@ public class InMemoryTaskManager implements TaskManager {
     public HistoryManager getHistoryManager() {
         return historyManager;
     }
+
     @Override
     public void remove(int id) {
         historyManager.remove(id);

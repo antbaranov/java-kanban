@@ -1,6 +1,6 @@
 package constants;
 
-public enum Types {
+public enum TaskType {
 
     TASK,
     EPIC,

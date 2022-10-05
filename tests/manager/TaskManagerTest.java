@@ -319,15 +319,16 @@ abstract class TaskManagerTest<T extends TaskManager> {
     }
 
     @Test
-    public void returnHistoryWithTasksTest() {
+    public void returnHistoryTasksTest() {
         Epic epic = addEpic();
         manager.addEpic(epic);
         SubTask SubTask = addSubTask(epic);
         manager.addSubTask(SubTask);
         manager.getEpicById(epic.getId());
         manager.getSubTaskById(SubTask.getId());
+        manager.getSubTaskById(SubTask.getId());
         List<Task> list = manager.getHistory();
-        assertEquals(2, list.size());
+        assertEquals(3, list.size());
         assertTrue(list.contains(SubTask));
         assertTrue(list.contains(epic));
     }

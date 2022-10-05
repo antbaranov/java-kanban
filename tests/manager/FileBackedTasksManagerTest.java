@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
  class FileBackedTasksManagerTest extends TaskManagerTest<InMemoryTaskManager> {
-    public static final Path path = Path.of("src/upload/tasks_file.csv");
+    public static final Path path = Path.of("data_test.csv");
     File file = new File(String.valueOf(path));
     @BeforeEach
     public void beforeEach() {
@@ -36,9 +36,9 @@ import java.util.List;
 
     @Test
     public void saveAndLoadTest(){
-        Task task = new Task("Description", "Title", Status.NEW, Instant.now(), 0);
+        Task task = new Task( "Title", "Description", Status.NEW, Instant.now(), 0);
         manager.addTask(task);
-        Epic epic = new Epic("Description", "Title", Status.NEW, Instant.now(), 0);
+        Epic epic = new Epic( "Title", "Description", Status.NEW, Instant.now(), 0);
         manager.addEpic(epic);
         FileBackedTasksManager fileManager = new FileBackedTasksManager(Managers.getDefaultHistory(), file);
         fileManager.loadFromFile();

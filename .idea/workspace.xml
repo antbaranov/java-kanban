@@ -7,16 +7,21 @@
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/FileBackedTasksManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/FileBackedTasksManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/HistoryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/HistoryManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager$CustomLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager$CustomLinkedList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryHistoryManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/InMemoryTaskManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/manager/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/manager/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tasks/Epic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/tasks/Epic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/tasks/SubTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/tasks/SubTask.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/test/java-kanban/TaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/TaskManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Types.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/TaskType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/FileBackedTasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/HistoryManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/manager/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/FileBackedTasksManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/manager/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/InMemoryHistoryManagerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/manager/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,26 +59,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "last_directory_selection": "C:/Users/HP/dev/java-kanban/src/tests",
-    "last_opened_file_path": "C:/Users/HP/dev/java-kanban-sprint7-BUDAEV",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/HP/dev/java-kanban/src/tests&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/dev/java-kanban-sprint7-BUDAEV&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="manager" />
@@ -100,7 +105,26 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.InMemoryHistoryManagerTest.addTasksToHistoryTest">
+  <component name="RunManager" selected="JUnit.InMemoryHistoryManagerTest.removeTaskTest">
+    <configuration name="FileBackedTasksManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FileBackedTasksManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileBackedTasksManagerTest.saveAndLoadTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FileBackedTasksManagerTest" />
+      <option name="METHOD_NAME" value="saveAndLoadTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="InMemoryHistoryManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
@@ -110,46 +134,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InMemoryHistoryManagerTest.addTasksToHistoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InMemoryHistoryManagerTest.removeTaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="InMemoryHistoryManagerTest" />
-      <option name="METHOD_NAME" value="addTasksToHistoryTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InMemoryTaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-kanban" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InMemoryTaskManagerTest.notDeleteSubTaskIfBadIdTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-kanban" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
-      <option name="METHOD_NAME" value="notDeleteSubTaskIfBadIdTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TaskManagerTest.addTaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-kanban" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value=".*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TaskManagerTest" />
-      <option name="METHOD_NAME" value="addTaskTest" />
+      <option name="METHOD_NAME" value="removeTaskTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -165,11 +154,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.InMemoryHistoryManagerTest.addTasksToHistoryTest" />
+        <item itemvalue="JUnit.InMemoryHistoryManagerTest.removeTaskTest" />
         <item itemvalue="JUnit.InMemoryHistoryManagerTest" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
-        <item itemvalue="JUnit.tests in java-kanban" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
+        <item itemvalue="JUnit.FileBackedTasksManagerTest" />
+        <item itemvalue="JUnit.FileBackedTasksManagerTest.saveAndLoadTest" />
+        <item itemvalue="JUnit.FileBackedTasksManagerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -201,7 +190,12 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tests/manager/InMemoryHistoryManagerTest.java</url>
           <line>46</line>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/manager/FileBackedTasksManager.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

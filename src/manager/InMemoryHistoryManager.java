@@ -7,10 +7,11 @@ import java.util.*;
 public class InMemoryHistoryManager implements HistoryManager {
 
     private final Map<Integer, Node<Task>> tasksHistory = new HashMap<>();
-    private final CustomLinkedList<Task> customHistoryList = new CustomLinkedList<>();
+    private final CustomLinkedList<Task> customList = new CustomLinkedList<>();
 
 
         public static class CustomLinkedList<T> {
+           // private final Map<Integer, Node<Task>> tasksHistory = new HashMap<>();
         private Node<T> head; // Указатель на первый элемент списка. Он же first
         private Node<T> tail; // Указатель на последний элемент списка. Он же last
 
@@ -65,37 +66,32 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     }
 
+    // Добавление нового просмотра задачи в историю
     @Override
     public void add(Task task) {
         if (task == null) {
             return;
         }
         remove(task.getId());
-        customHistoryList.linkLast(task);
-        tasksHistory.put(task.getId(), customHistoryList.tail.getPrev());
+        customList.linkLast(task);
+        tasksHistory.put(task.getId(), customList.tail.getPrev());
     }
-
+    // Удаление просмотра из истории
     @Override
     public void remove(int id) {
         if (tasksHistory.containsKey(id)) {
-            customHistoryList.removeNode(tasksHistory.get(id));
+            customList.removeNode(tasksHistory.get(id));
             tasksHistory.remove(id);
         }
     }
-
+    // Получение истории просмотров
     @Override
     public List<Task> getHistory() {
 
-            return customHistoryList.getTasks();
+            return customList.getTasks();
     }
 
-    @Override
-    public String toString() {
-        return "InMemoryHistoryManager{" +
-                "tasksHistory=" + tasksHistory +
-                ", customHistoryList=" + customHistoryList +
-                '}';
-    }
+
 }
 
 

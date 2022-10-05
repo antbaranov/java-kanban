@@ -61,8 +61,8 @@ class InMemoryHistoryManagerTest {
         manager.add(task1);
         manager.add(task2);
         manager.add(task3);
-        manager.remove(task2.getId());
-        assertEquals(List.of(task1, task3), manager.getHistory());
+        manager.remove(task3.getId());
+        assertEquals(List.of(task1, task2), manager.getHistory());
     }
 
     @Test

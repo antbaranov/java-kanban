@@ -6,7 +6,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 public class SubTask extends Task {
-    private int epicId;
+    private final int epicId;
 
     public SubTask(String name, String description, Status status, int epicId) {
         super(name, description, status);
@@ -22,19 +22,18 @@ public class SubTask extends Task {
         return epicId;
     }
 
-    public void setEpicId(int epicId) {
-        this.epicId = epicId;
-    }
 
     @Override
     public String toString() {
-        return "SubTask{" +
-                "epicId=" + epicId +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", status=" + status +
-                ", taskType=" + taskType +
+        return "Subtask{" +
+                "epicId=" + getEpicId() +
+                ", id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", status=" + getStatus() + '\'' +
+                ", startTime='" + getStartTime().toEpochMilli() + '\'' +
+                ", endTime='" + getEndTime().toEpochMilli() + '\'' +
+                ", duration='" + getDuration() +
                 '}';
     }
 
