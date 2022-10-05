@@ -19,7 +19,7 @@ class InMemoryHistoryManagerTest {
         return ++getIdCounter;
     }
 
-    protected Task createTask() {
+    protected Task addTask() {
 
         return new Task( "Title", "Description", Status.NEW, Instant.now(), 0);
     }
@@ -32,13 +32,13 @@ class InMemoryHistoryManagerTest {
 
     @Test
     public void addTasksToHistoryTest() {
-        Task task1 = createTask();
+        Task task1 = addTask();
         int newTaskId1 = generateId();
         task1.setId(newTaskId1);
-        Task task2 = createTask();
+        Task task2 = addTask();
         int newTaskId2 = generateId();
         task2.setId(newTaskId2);
-        Task task3 = createTask();
+        Task task3 = addTask();
         int newTaskId3 = generateId();
         task3.setId(newTaskId3);
         manager.add(task1);
@@ -49,13 +49,13 @@ class InMemoryHistoryManagerTest {
 
     @Test
     public void removeTaskTest() {
-        Task task1 = createTask();
+        Task task1 = addTask();
         int newTaskId1 = generateId();
         task1.setId(newTaskId1);
-        Task task2 = createTask();
+        Task task2 = addTask();
         int newTaskId2 = generateId();
         task2.setId(newTaskId2);
-        Task task3 = createTask();
+        Task task3 = addTask();
         int newTaskId3 = generateId();
         task3.setId(newTaskId3);
         manager.add(task1);
@@ -67,7 +67,7 @@ class InMemoryHistoryManagerTest {
 
     @Test
     public void removeOnlyOneTaskTest() {
-        Task task = createTask();
+        Task task = addTask();
         int newTaskId = generateId();
         task.setId(newTaskId);
         manager.add(task);
@@ -77,13 +77,13 @@ class InMemoryHistoryManagerTest {
 
     @Test
     public void historyIsEmptyTest() {
-        Task task1 = createTask();
+        Task task1 = addTask();
         int newTaskId1 = generateId();
         task1.setId(newTaskId1);
-        Task task2 = createTask();
+        Task task2 = addTask();
         int newTaskId2 = generateId();
         task2.setId(newTaskId2);
-        Task task3 = createTask();
+        Task task3 = addTask();
         int newTaskId3 = generateId();
         task3.setId(newTaskId3);
         manager.remove(task1.getId());
@@ -94,7 +94,7 @@ class InMemoryHistoryManagerTest {
 
     @Test
     public void notRemoveTaskWithBadIdTest() {
-        Task task = createTask();
+        Task task = addTask();
         int newTaskId = generateId();
         task.setId(newTaskId);
         manager.add(task);
