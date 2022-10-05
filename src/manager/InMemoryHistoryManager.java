@@ -5,94 +5,119 @@ import tasks.Task;
 import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
+    private static class CustomLinkedList {
+        private final Map<Integer, Node> nodeMap = new HashMap<>();
+        private Node head;
+        private Node tail;
 
-    private final Map<Integer, Node<Task>> tasksHistory = new HashMap<>();
-    private final CustomLinkedList<Task> customList = new CustomLinkedList<>();
+        private void linkLast(Task task) {
+            Node element = new Node();
+            element.setTask(task);
 
+            if (nodeMap.containsKey(task.getId())) {
+                removeNode(nodeMap.get(task.getId()));
+            }
 
-        public static class CustomLinkedList<T> {
-           // private final Map<Integer, Node<Task>> tasksHistory = new HashMap<>();
-        private Node<T> head; // Указатель на первый элемент списка. Он же first
-        private Node<T> tail; // Указатель на последний элемент списка. Он же last
-
-        public void linkLast(T element) {
             if (head == null) {
-
-                Node<T> currentNode = new Node<>(tail, element, null);
-                head = currentNode;
-                tail = new Node<>(currentNode, null, null);
-                return;
+                tail = element;
+                head = element;
+                element.setNext(null);
+                element.setPrev(null);
+            } else {
+                element.setPrev(tail);
+                element.setNext(null);
+                tail.setNext(element);
+                tail = element;
             }
-            Node<T> currentNode = tail;
-            currentNode.setData(element);
-            tail = new Node<>(currentNode, null, null);
-            currentNode.getPrev().setNext(currentNode);
-            currentNode.setNext(tail);
+
+            nodeMap.put(task.getId(), element);
         }
 
-        public List<T> getTasks() {
-            List<T> tasksList = new ArrayList<>();
-            Node<T> node = head;
-
-            while (node != null) {
-                tasksList.add(node.getData());
-                node = node.getNext();
+        private List<Task> getTasks() {
+            List<Task> result = new ArrayList<>();
+            Node element = head;
+            while (element != null) {
+                result.add(element.getTask());
+                element = element.getNext();
             }
-            return tasksList;
+            return result;
         }
 
-        public void removeNode(Node<T> node) {
-            if (node == null) { // Проверка
-                return;
-            }
+        private void removeNode(Node node) {
+            if (node != null) {
+                nodeMap.remove(node.getTask().getId());
+                Node prev = node.getPrev();
+                Node next = node.getNext();
 
-            final Node<T> prev = node.getPrev(); // Ссылка на предыдущую ноду
-            final Node<T> next = node.getNext(); // Ссылка на следующую ноду
+                if (head == node) {
+                    head = node.getNext();
+                }
+                if (tail == node) {
+                    tail = node.getPrev();
+                }
 
-            if (prev == null) { // IF предыдущий узел == null, то головой списка становится NEXT узел
-                head = next;
-            } else { // IF узел находится в центре списка, тогда:
-                prev.setNext(next); // то поле NEXT у предыдущей ноды, начинает ссылаться на поле NEXT удаляемой
-                node.setPrev(null); // поле PREV у удаляемой ноды обнуляем, т.к. мы изменили ссылки и сохранили связь
+                if (prev != null) {
+                    prev.setNext(next);
+                }
+
+                if (next != null) {
+                    next.setPrev(prev);
+                }
             }
-            if (next == null) { // IF следующий узел == null, то хвостом списка становится PREV узел
-                tail = prev;
-            } else { // IF узел находится в центре списка, тогда:
-                next.setPrev(prev); // то поле PREV у следующей ноды, начинает ссылаться на поле PREV удаляемой
-                node.setNext(null); // поле NEXT у удаляемой ноды обнуляем, т.к. мы изменили ссылки и сохранили связь
-            }
-            node.setData(null); // Обнуляем значение узла
         }
 
+        private Node getNode(int id) {
+            return nodeMap.get(id);
+        }
     }
+
+    private final CustomLinkedList list = new CustomLinkedList();
 
     // Добавление нового просмотра задачи в историю
     @Override
     public void add(Task task) {
-        if (task == null) {
-            return;
-        }
-        remove(task.getId());
-        customList.linkLast(task);
-        tasksHistory.put(task.getId(), customList.tail.getPrev());
+        list.linkLast(task);
     }
+
     // Удаление просмотра из истории
     @Override
     public void remove(int id) {
-        if (tasksHistory.containsKey(id)) {
-            customList.removeNode(tasksHistory.get(id));
-            tasksHistory.remove(id);
-        }
+        list.removeNode(list.getNode(id));
     }
+
     // Получение истории просмотров
     @Override
     public List<Task> getHistory() {
-
-            return customList.getTasks();
+        return list.getTasks();
     }
-
-
 }
 
+class Node {
+    private Task task;
+    private Node prev;
+    private Node next;
 
+    public Node getNext() {
+        return next;
+    }
 
+    public Node getPrev() {
+        return prev;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setNext(Node next) {
+        this.next = next;
+    }
+
+    public void setPrev(Node prev) {
+        this.prev = prev;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+}

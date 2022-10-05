@@ -291,33 +291,9 @@ abstract class TaskManagerTest<T extends TaskManager> {
     }
 
     @Test
-    public void returnNullIfTaskDoesNotExistTest() {
-        assertNull(manager.getTaskById(-1));
-    }
-
-    @Test
-    public void returnNullIfEpicDoesNotExistTest() {
-        assertNull(manager.getEpicById(-1));
-    }
-
-    @Test
-    public void returnNullIfSubTaskDoesNotExistTest() {
-        assertNull(manager.getSubTaskById(-1));
-    }
-
-    @Test
     public void returnEmptyHistoryTest() {
         assertEquals(Collections.EMPTY_LIST, manager.getHistory());
     }
-
-    @Test
-    public void returnEmptyHistoryIfTasksNotExistTest() {
-        manager.getTaskById(-1);
-        manager.getSubTaskById(-1);
-        manager.getEpicById(-1);
-        assertTrue(manager.getHistory().isEmpty());
-    }
-
     @Test
     public void returnHistoryTasksTest() {
         Epic epic = addEpic();
@@ -326,9 +302,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
         manager.addSubTask(SubTask);
         manager.getEpicById(epic.getId());
         manager.getSubTaskById(SubTask.getId());
-        manager.getSubTaskById(SubTask.getId());
         List<Task> list = manager.getHistory();
-        assertEquals(3, list.size());
+        assertEquals(2, list.size());
         assertTrue(list.contains(SubTask));
         assertTrue(list.contains(epic));
     }

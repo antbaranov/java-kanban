@@ -9,7 +9,7 @@ import tasks.Task;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +17,9 @@ import java.util.List;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
 
-    // Path path = Path.of("src/upload/tasks_file.csv");
-   // File file = new File(String.valueOf(path));
-    private File file;
+    Path path = Path.of("src/upload/tasks_file.csv");
+    File file = new File(String.valueOf(path));
+    //private File file;
     public static final String COMMA_SEPARATOR = ",";
 
     public FileBackedTasksManager(HistoryManager historyManager) {
@@ -33,37 +33,24 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
 
     // Метод сохраняет текущее состояние менеджера в указанный файл "id,type,name,status,description,epic" + "\n"
-    public void save() {
-        try {
-            if (Files.exists(file.toPath())) {
-                Files.delete(file.toPath());
+          public void save() {
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
+                bufferedWriter.write("id,type,name,status,description,epic" + "\n"); // Запись шапки с заголовками в файл
+                for (Task task : getAllTasks()) {
+                    bufferedWriter.write(toString(task) + "\n");
+                }
+                for (Epic epic : getAllEpics()) {
+                    bufferedWriter.write(toString(epic) + "\n");
+                }
+                for (SubTask subTask : getAllSubtasks()) {
+                    bufferedWriter.write(toString(subTask) + "\n");
+                }
+                bufferedWriter.write("\n"); // Добавить пустую строку
+                bufferedWriter.write(historyToString(getHistoryManager()));
+            } catch (IOException e) {
+                throw new ManagerSaveException("Произошла ошибка во время записи файла");
             }
-            Files.createFile(file.toPath());
-        } catch (IOException e) {
-            throw new ManagerSaveException("Не удалось найти файл для записи данных");
         }
-
-        try (FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8)) {
-            writer.write("id,type,name,status,description,epic" + "\n");
-
-            for (Task task : getAllTasks()) {
-                writer.write(toString(task) + "\n");
-            }
-
-            for (Epic epic : getAllEpics()) {
-                writer.write(toString(epic) + "\n");
-            }
-
-            for (SubTask subtask : getAllSubtasks()) {
-                writer.write(toString(subtask) + "\n");
-            }
-
-            writer.write("\n");
-            writer.write(historyToString(getHistoryManager()));
-        } catch (IOException e) {
-            throw new ManagerSaveException("Произошла ошибка во время записи файла");
-        }
-    }
 
     private String getParentEpicId(Task task) {
         if (task instanceof SubTask) {

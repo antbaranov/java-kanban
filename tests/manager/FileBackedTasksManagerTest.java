@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
  class FileBackedTasksManagerTest extends TaskManagerTest<InMemoryTaskManager> {
-    public static final Path path = Path.of("data_test.csv");
+    public static final Path path = Path.of("src/upload/tasks_file.csv");
     File file = new File(String.valueOf(path));
     @BeforeEach
     public void beforeEach() {

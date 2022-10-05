@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class InMemoryHistoryManagerTest {
+class InMemoryHistoryManagerTest  extends InMemoryHistoryManager{
     HistoryManager manager;
     private static int getIdCounter = 0;
 
