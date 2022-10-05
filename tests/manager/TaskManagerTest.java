@@ -212,7 +212,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
     }
 
     @Test
-    public void shouldDeleteEpicById() {
+    public void deleteEpicById() {
         Epic epic = addEpic();
         manager.addEpic(epic);
         manager.deleteEpicById(epic.getId());
@@ -282,7 +282,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
 
     @Test
     public void returnEmptyListEpicsIfNoEpicsTest() {
-        assertEquals(true, manager.getAllEpics().isEmpty());
+        assertTrue(manager.getAllEpics().isEmpty());
     }
 
     @Test

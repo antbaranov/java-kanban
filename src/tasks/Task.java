@@ -22,16 +22,7 @@ public class Task {
     private Instant startTime;
     private long duration;
 
-/*
-    public Task(String name, String description, Status status) {
-        this.name = name;
-        this.description = description;
-        this.status = status;
-    }*/
-
-    // Конструктор для тестов
     public Task(String name, String description, Status status, Instant startTime, long duration) {
-       // this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
@@ -90,8 +81,7 @@ public class Task {
 
     public Instant getEndTime() {
         long SECONDS_IN_MINUTE = 60L;
-        Instant endTime = startTime.plusSeconds(duration * SECONDS_IN_MINUTE);
-        return endTime;
+        return startTime.plusSeconds(duration * SECONDS_IN_MINUTE);
     }
 
     @Override

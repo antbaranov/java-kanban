@@ -18,8 +18,8 @@ import java.util.Collections;
 import java.util.List;
 
  class FileBackedTasksManagerTest extends TaskManagerTest<InMemoryTaskManager> {
-    public static final Path path = Path.of("src/upload/tasks_file.csv");
-    File file = new File(String.valueOf(path));
+    public static final Path PATH = Path.of("test_tasks_file.csv");
+    File file = new File(String.valueOf(PATH));
     @BeforeEach
     public void beforeEach() {
         manager = new FileBackedTasksManager(Managers.getDefaultHistory(), file);
@@ -28,7 +28,7 @@ import java.util.List;
     @AfterEach
     public void afterEach() {
         try {
-            Files.delete(path);
+            Files.delete(PATH);
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
         }

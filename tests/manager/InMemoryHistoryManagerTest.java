@@ -11,11 +11,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class InMemoryHistoryManagerTest  extends InMemoryHistoryManager{
-    HistoryManager manager;
+class InMemoryHistoryManagerTest {
+    private HistoryManager manager;
     private static int getIdCounter = 0;
 
-    public int generateId() {
+    private int generateId() {
         return ++getIdCounter;
     }
 
