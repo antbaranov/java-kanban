@@ -139,22 +139,31 @@ public class InMemoryTaskManager implements TaskManager {
     // Получение Задач по идентификатору
     @Override
     public Task getTaskById(int id) {
-        historyManager.add(tasks.get(id));
-        return tasks.get(id);
+        Task task = tasks.get(id);
+        if (task != null) {
+            historyManager.add(task);
+        }
+        return task;
     }
 
     // Получение Подзадач по идентификатору
     @Override
     public SubTask getSubTaskById(int id) {
-        historyManager.add(subTasks.get(id));
-        return subTasks.get(id);
+        SubTask subTask = subTasks.get(id);
+        if (subTask != null) {
+            historyManager.add(subTask);
+        }
+        return subTask;
     }
 
     // Получение Эпика по идентификатору
     @Override
     public Epic getEpicById(int id) {
-        historyManager.add(epics.get(id));
-        return epics.get(id);
+        Epic epic = epics.get(id);
+        if (epic != null) {
+            historyManager.add(epic);
+        }
+        return epic;
     }
 
 

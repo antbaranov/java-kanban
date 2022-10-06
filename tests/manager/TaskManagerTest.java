@@ -291,9 +291,33 @@ abstract class TaskManagerTest<T extends TaskManager> {
     }
 
     @Test
+    public void returnNullIfTaskDoesNotExist() {
+        assertNull(manager.getTaskById(-1));
+    }
+
+    @Test
+    public void returnNullIfEpicDoesNotExist() {
+        assertNull(manager.getEpicById(-1));
+    }
+
+    @Test
+    public void returnNullIfSubtaskDoesNotExist() {
+        assertNull(manager.getSubTaskById(-1));
+    }
+
+    @Test
     public void returnEmptyHistoryTest() {
         assertEquals(Collections.EMPTY_LIST, manager.getHistory());
     }
+
+    @Test
+    public void returnEmptyHistoryIfTasksNotExist() {
+        manager.getTaskById(-1);
+        manager.getSubTaskById(-1);
+        manager.getEpicById(-1);
+        assertTrue(manager.getHistory().isEmpty());
+    }
+
     @Test
     public void returnHistoryTasksTest() {
         Epic epic = addEpic();

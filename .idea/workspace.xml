@@ -7,13 +7,7 @@
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/FileBackedTasksManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/FileBackedTasksManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/InMemoryHistoryManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/InMemoryHistoryManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/TaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/TaskManagerTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/manager/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/FileBackedTasksManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/manager/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/InMemoryHistoryManagerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/manager/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/manager/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,29 +92,42 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.manager in java-kanban">
-    <configuration name="FileBackedTasksManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileBackedTasksManagerTest.returnNullIfTaskDoesNotExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="FileBackedTasksManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="returnNullIfTaskDoesNotExist" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InMemoryHistoryManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-kanban" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InMemoryHistoryManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InMemoryTaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InMemoryTaskManagerTest.returnEmptyHistoryIfTasksNotExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="returnEmptyHistoryIfTasksNotExist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InMemoryTaskManagerTest.returnNullIfTaskDoesNotExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
+      <option name="METHOD_NAME" value="returnNullIfTaskDoesNotExist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InMemoryTaskManagerTest.shouldReturnNullIfTaskDoesNotExist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
+      <option name="METHOD_NAME" value="shouldReturnNullIfTaskDoesNotExist" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -133,21 +140,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="tests in java-kanban" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-kanban" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/tests" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.manager in java-kanban" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
-        <item itemvalue="JUnit.InMemoryHistoryManagerTest" />
-        <item itemvalue="JUnit.FileBackedTasksManagerTest" />
-        <item itemvalue="JUnit.tests in java-kanban" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.returnEmptyHistoryIfTasksNotExist" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.returnNullIfTaskDoesNotExist" />
+        <item itemvalue="JUnit.FileBackedTasksManagerTest.returnNullIfTaskDoesNotExist" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.shouldReturnNullIfTaskDoesNotExist" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +180,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteEpicByIdTest.ic" NAME="InMemoryTaskManagerTest.deleteEpicByIdTest Coverage Results" MODIFIED="1664897719087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/java_kanban$Main.ic" NAME="Main Coverage Results" MODIFIED="1661937377639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/java_kanban$InMemoryTaskManagerTest_deleteEpicByIdTest.ic" NAME="InMemoryTaskManagerTest.deleteEpicByIdTest Coverage Results" MODIFIED="1664897719087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
