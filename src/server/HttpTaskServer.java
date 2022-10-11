@@ -30,7 +30,8 @@ public class HttpTaskServer {
         final HttpTaskServer server = new HttpTaskServer();
         server.startServer();
     }
-    public void startServer(){
+
+    public void startServer() {
         System.out.println("HTTP-cервер запущен на " + PORT + " порту!");
         System.out.println("HTTP server running on " + PORT + " port!");
         System.out.println("http://localhost:" + PORT + "/tasks/");
@@ -50,7 +51,12 @@ public class HttpTaskServer {
             String path = h.getRequestURI().getPath().replaceFirst("/tasks/", "");
             String query = h.getRequestURI().getQuery();
 
-            
+
+        } catch (Exception exception) {
+            System.out.println("Ошибка при обработке запроса");
+            System.out.println("Error processing request");
+        } finally {
+            h.close();
         }
     }
 
