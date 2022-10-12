@@ -54,6 +54,11 @@ public class HttpTaskServer {
     }
 
 
+    public static void main(String[] args) throws IOException, InterruptedException {
+         new HttpTaskServer().start();
+     }
+
+
     public class TasksHandler implements HttpHandler {
         private final Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Instant.class, new InstantAdapter())
@@ -72,7 +77,7 @@ public class HttpTaskServer {
             String method = httpExchange.getRequestMethod();
             String path = String.valueOf(httpExchange.getRequestURI());
 
-            System.out.println("Обрабатывается запрос " + path + " с методом " + method);
+            System.out.println("Обрабатывается запрос " + path + " методом " + method);
 
             switch (method) {
                 case "GET":
@@ -80,7 +85,7 @@ public class HttpTaskServer {
                     response = gson.toJson(taskManager.getPrioritizedTasks());
                     break;
                 default:
-                    response = "Некорректный запрос";
+                    response = "Неверный запрос";
             }
 
             httpExchange.getResponseHeaders().set("Content-Type", "text/plain; charset=" + DEFAULT_CHARSET);
@@ -108,7 +113,7 @@ public class HttpTaskServer {
             String method = httpExchange.getRequestMethod();
             String path = String.valueOf(httpExchange.getRequestURI());
 
-            System.out.println("Обрабатывается запрос " + path + " с методом " + method);
+            System.out.println("Обрабатывается запрос " + path + " методом " + method);
 
             switch (method) {
                 case "GET":
@@ -270,7 +275,7 @@ public class HttpTaskServer {
                             statusCode = 200;
                         } catch (StringIndexOutOfBoundsException e) {
                             statusCode = 400;
-                            response = "В запросе отсутствует необходимый параметр id";
+                            response = "В запросе отсутствует параметр id";
                         } catch (NumberFormatException e) {
                             statusCode = 400;
                             response = "Неверный формат id";
@@ -320,7 +325,7 @@ public class HttpTaskServer {
                             if (subtask != null) {
                                 response = gson.toJson(subtask);
                             } else {
-                                response = "Подзадача с данным id не найдена";
+                                response = "подЗадача с данным id не найдена";
                             }
                             statusCode = 200;
                         } catch (StringIndexOutOfBoundsException e) {
@@ -340,14 +345,14 @@ public class HttpTaskServer {
                         if (taskManager.getSubTaskById(id) != null) {
                             taskManager.updateTask(subtask);
                             statusCode = 200;
-                            response = "Подзадача с id=" + id + " обновлена";
+                            response = "ПодЗадача с id=" + id + " обновлена";
                         } else {
                             System.out.println("CREATED");
                             SubTask subtaskCreated = taskManager.addSubTask(subtask);
                             System.out.println("CREATED SUBTASK: " + subtaskCreated);
                             int idCreated = subtaskCreated.getId();
                             statusCode = 201;
-                            response = "Создана подзадача с id=" + idCreated;
+                            response = "Создана подЗадача с id=" + idCreated;
                         }
                     } catch (JsonSyntaxException e) {
                         response = "Неверный формат запроса";
@@ -466,6 +471,12 @@ public class HttpTaskServer {
                 os.write(response.getBytes());
             }
         }
+    }
+    
+    private static int parserId(String query) {
+        String[] queryArray = query.split("=");
+        int id = Integer.parseInt(queryArray[1]);
+        return id;
     }
 }
 
