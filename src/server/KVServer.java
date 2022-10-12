@@ -16,15 +16,15 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 /***
  * В классе Main , как запустить сервер правильно.
-import java.io.IOException;
+ import java.io.IOException;
 
-public class Main {
+ public class Main {
 
-    public static void main(String[] args) throws IOException {
-        new KVServer().start();
-    }
-}
-*/
+ public static void main(String[] args) throws IOException {
+ new KVServer().start();
+ }
+ }
+ */
 public class KVServer {
     public static final int PORT = 8078;
     private final String apiToken;
@@ -39,8 +39,38 @@ public class KVServer {
         server.createContext("/load", this::load);
     }
 
-    private void load(HttpExchange h) {
+    private void load(HttpExchange h) throws IOException {
         // TODO Добавьте получение значения по ключу
+        try {
+            System.out.println("\n/load");
+            if (!hasAuth(h)) {
+                System.out.println("Запрос неавторизован, нужен параметр в query API_TOKEN со значением апи-ключа");
+                h.sendResponseHeaders(403, 0);
+                return;
+            }
+            if ("GET".equals(h.getRequestMethod())) {
+                String key = h.getRequestURI().getPath().substring("/load/".length());
+                if (key.isEmpty()) {
+                    System.out.println("Ключ для сохранения пустой. Ключ указывается в пути: /load/{key}");
+                    h.sendResponseHeaders(400, 0);
+                    return;
+                }
+                if (!data.containsKey(key)) {
+                    System.out.println("Нет данных для ключа " + key);
+                    h.sendResponseHeaders(404, 0);
+                    return;
+                }
+
+                sendText(h, data.get(key));
+                System.out.println("Значение для ключа " + key + " успешно отправлено!");
+                h.sendResponseHeaders(200, 0);
+            } else {
+                System.out.println("/load ждёт GET-запрос, а получил: " + h.getRequestMethod());
+                h.sendResponseHeaders(405, 0);
+            }
+        } finally {
+            h.close();
+        }
     }
 
     private void save(HttpExchange h) throws IOException {

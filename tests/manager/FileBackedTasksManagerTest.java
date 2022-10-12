@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,9 +37,9 @@ import java.util.List;
 
     @Test
     public void saveAndLoadTest(){
-        Task task = new Task( "Title", "Description", Status.NEW, Instant.now(), 0);
+        Task task = new Task( "Title", "Description", Status.NEW, LocalDateTime.now(), 0);
         manager.addTask(task);
-        Epic epic = new Epic( "Title", "Description", Status.NEW, Instant.now(), 0);
+        Epic epic = new Epic( "Title", "Description", Status.NEW, LocalDateTime.now(), 0);
         manager.addEpic(epic);
         FileBackedTasksManager fileManager = new FileBackedTasksManager(Managers.getDefaultHistory(), file);
         fileManager.loadFromFile();

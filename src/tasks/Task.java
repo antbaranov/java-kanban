@@ -88,7 +88,7 @@ public class Task {
     public String toString() {
         return "Task{" +
                 "id=" + id +
-               // ", taskType=" + taskType +
+                // ", taskType=" + taskType +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +

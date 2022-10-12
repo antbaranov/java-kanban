@@ -33,24 +33,24 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
 
     // Метод сохраняет текущее состояние менеджера в указанный файл "id,type,name,status,description,epic" + "\n"
-          public void save() {
-            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
-                bufferedWriter.write("id,type,name,status,description,epic" + "\n"); // Запись шапки с заголовками в файл
-                for (Task task : getAllTasks()) {
-                    bufferedWriter.write(toString(task) + "\n");
-                }
-                for (Epic epic : getAllEpics()) {
-                    bufferedWriter.write(toString(epic) + "\n");
-                }
-                for (SubTask subTask : getAllSubtasks()) {
-                    bufferedWriter.write(toString(subTask) + "\n");
-                }
-                bufferedWriter.write("\n"); // Добавить пустую строку
-                bufferedWriter.write(historyToString(getHistoryManager()));
-            } catch (IOException e) {
-                throw new ManagerSaveException("Произошла ошибка во время записи файла");
+    public void save() {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
+            bufferedWriter.write("id,type,name,status,description,epic" + "\n"); // Запись шапки с заголовками в файл
+            for (Task task : getAllTasks()) {
+                bufferedWriter.write(toString(task) + "\n");
             }
+            for (Epic epic : getAllEpics()) {
+                bufferedWriter.write(toString(epic) + "\n");
+            }
+            for (SubTask subTask : getAllSubtasks()) {
+                bufferedWriter.write(toString(subTask) + "\n");
+            }
+            bufferedWriter.write("\n"); // Добавить пустую строку
+            bufferedWriter.write(historyToString(getHistoryManager()));
+        } catch (IOException e) {
+            throw new ManagerSaveException("Произошла ошибка во время записи файла");
         }
+    }
 
     private String getParentEpicId(Task task) {
         if (task instanceof SubTask) {
@@ -138,7 +138,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
     public  void loadFromFile() {
-       // final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
+        // final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
         try (BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
             br.readLine();
             while (br.ready()) {
@@ -165,7 +165,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         } catch (IOException e) {
             throw new ManagerSaveException("Произошла ошибка во время чтения файла!");
         }
-       // return fileBackedTasksManager;
+        // return fileBackedTasksManager;
     }
 
     /*

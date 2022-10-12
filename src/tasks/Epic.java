@@ -10,12 +10,12 @@ import java.util.Objects;
 public class Epic extends Task {
     private final List<Integer> subTaskIds = new ArrayList<>();
     private Instant endTime;
-/*
-    public Epic(String name, String description, Status status)  {
-        super(name,  description, status);
+    /*
+        public Epic(String name, String description, Status status)  {
+            super(name,  description, status);
 
-    }
-*/
+        }
+    */
     public Epic( String name, String description, Status status, Instant startTime, long duration) {
         super( name, description, status, startTime, duration);
         this.endTime = super.getEndTime();
