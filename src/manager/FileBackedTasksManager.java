@@ -17,14 +17,12 @@ import java.util.List;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
 
-    Path path = Path.of("src/upload/tasks_file.csv");
-    File file = new File(String.valueOf(path));
-    //private File file;
+    private final Path PATH = Path.of("src/upload/tasks_file.csv");
+    private File file = new File(String.valueOf(PATH));
     public static final String COMMA_SEPARATOR = ",";
 
     public FileBackedTasksManager(HistoryManager historyManager) {
         super(historyManager);
-
     }
     public FileBackedTasksManager(HistoryManager historyManager, File file) {
         super(historyManager);

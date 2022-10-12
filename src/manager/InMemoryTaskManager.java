@@ -391,6 +391,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     public List<Task> getPrioritizedTasks() {
+
         return prioritizedTasks.stream().toList();
     }
 
@@ -435,7 +436,7 @@ public class InMemoryTaskManager implements TaskManager {
             return;
         }
         for (SubTask subtask : subTasks.values()) {
-            System.out.println("Subtask{" +
+            System.out.println("SubTask{" +
                     "epicId=" + subtask.getEpicId() +
                     ", description='" + subtask.getDescription() + '\'' +
                     ", id=" + subtask.getId() +

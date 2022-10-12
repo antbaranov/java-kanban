@@ -1,5 +1,6 @@
 package tasks;
 
+import com.sun.jdi.Type;
 import constants.Status;
 
 import java.time.Instant;
@@ -10,14 +11,13 @@ import java.util.Objects;
 public class Epic extends Task {
     private final List<Integer> subTaskIds = new ArrayList<>();
     private Instant endTime;
-    /*
-        public Epic(String name, String description, Status status)  {
-            super(name,  description, status);
 
-        }
-    */
-    public Epic( String name, String description, Status status, Instant startTime, long duration) {
-        super( name, description, status, startTime, duration);
+    public Epic(String name, String description, Status status, Instant startTime, long duration) {
+        super(name, description, status, startTime, duration);
+        this.endTime = super.getEndTime();
+    }
+    public Epic(Type taskType, String name, String description, Status status, Instant startTime, long duration) {
+        super(taskType, name, description, status, startTime, duration);
         this.endTime = super.getEndTime();
     }
 

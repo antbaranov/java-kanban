@@ -1,7 +1,10 @@
-import constants.TaskType;
-import server.HTTPTaskManager;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import constants.Status;
+import manager.HistoryManager;
 import manager.Managers;
 import manager.TaskManager;
+import server.InstantAdapter;
 import server.KVServer;
 import tasks.Epic;
 import tasks.SubTask;
@@ -9,35 +12,57 @@ import tasks.Task;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        new KVServer().start();
-        TaskManager manager = Managers.getDefault();
+        KVServer server;
+        try {
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(Instant.class, new InstantAdapter())
+                    .create();
 
-        Task task = new Task(TaskType.TASK,"Title Task 1", "Description Task 1",  Instant.now(),0L);
-        manager.addTask(task);
+            server = new KVServer();
+            server.start();
+            HistoryManager historyManager = Managers.getDefaultHistory();
+            TaskManager httpTaskManager = Managers.getDefault(historyManager);
 
-        Epic epic = new Epic(TaskType.TASK,"Title Epic 1", "Description Epic 1",  Instant.now(),0L);
-        manager.addEpic(epic);
+            Task task1 = new Task("Title Task 1", "Description Task 1", Status.NEW, Instant.now(), 15);
+            httpTaskManager.addTask(task1);
+            Task task2 = new Task("Title Task 2", "Description Task 2", Status.NEW, Instant.now(), 15);
+            httpTaskManager.addTask(task2);
 
-        SubTask subTask = new SubTask(TaskType.TASK,"Title SubTask 1", "Description Subtask 1",   epic.getId(), Instant.now(), 0L);
-        manager.addSubTask(subTask);
+            Epic epic1 = new Epic("Title Epic 1", "Description Epic 1", Status.NEW, Instant.now(), 45);
+            httpTaskManager.addEpic(epic1);
 
-        manager.getTaskById(task.getId());
-        manager.getEpicById(epic.getId());
-        manager.getSubTaskById(subTask.getId());
+            SubTask subTask1 = new SubTask(
+                    "Title SubTask 1", "Description SubTask 1", Status.NEW, epic1.getId(), Instant.now(), 15);
+            httpTaskManager.addSubTask(subTask1);
+            SubTask subTask2 = new SubTask(
+                    "Title SubTask 2", "Description SubTask 2", Status.NEW, epic1.getId(), Instant.now(), 15);
+            httpTaskManager.addSubTask(subTask2);
+            SubTask subTask3 = new SubTask(
+                    "Title SubTask 3", "Description SubTask 3", Status.NEW, epic1.getId(), Instant.now(), 15);
+            httpTaskManager.addSubTask(subTask3);
 
-        TaskManager newManager = HTTPTaskManager.loadFromServer(KVServer.PORT);
 
-        final List<Task> tasks = newManager.getAllTasks();
-        final List<Epic> epics = newManager.getAllEpics();
-        final List<SubTask> subtasks = newManager.getAllSubtasks();
-        System.out.println("tasks = " + tasks);
-        System.out.println("epics = " + epics);
-        System.out.println("subtasks = " + subtasks);
-        System.out.println("History = " + manager.getHistory());
+            httpTaskManager.getTaskById(task1.getId());
+            httpTaskManager.getEpicById(epic1.getId());
+            httpTaskManager.getSubTaskById(subTask1.getId());
+            httpTaskManager.getSubTaskById(subTask2.getId());
+            httpTaskManager.getSubTaskById(subTask3.getId());
+
+            System.out.println("\nВывод всех задач");
+            System.out.println(gson.toJson(httpTaskManager.getAllTasks()));
+            System.out.println("\nВывод всех эпиков");
+            System.out.println(gson.toJson(httpTaskManager.getAllEpics()));
+            System.out.println("\nВывод всех подзадач");
+            System.out.println(gson.toJson(httpTaskManager.getAllSubtasks()));
+            System.out.println("\nЗагруженный менеджер");
+            System.out.println(httpTaskManager);
+            server.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

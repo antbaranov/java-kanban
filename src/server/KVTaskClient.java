@@ -1,69 +1,77 @@
 package server;
 
-import exceptions.ManagerSaveException;
-
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
+import java.nio.charset.StandardCharsets;
 
 public class KVTaskClient {
-    private String url;
-    private String apiToken;
-    private HttpClient client = HttpClient.newHttpClient();
 
-    public KVTaskClient(int port){
-        this.url = "http://localhost:" + port + "/";
-        this.apiToken = register(url);
+    private final String apiToken;
+
+    private final String serverURL;
+
+    public KVTaskClient(String serverURL) throws IOException, InterruptedException {
+        this.serverURL = serverURL;
+
+        URI uri = URI.create(this.serverURL + "/register");
+
+        HttpRequest request = HttpRequest
+                .newBuilder()
+                .GET()
+                .uri(uri)
+                .header("Content-Type", "application/json")
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = client.send(request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+        apiToken = response.body();
     }
-    private String register(String url) {
+
+    public void put(String key, String json) {
+        URI uri = URI.create(this.serverURL + "/save/" + key + "?API_TOKEN=" + apiToken);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .uri(uri)
+                .header("Content-Type", "application/json")
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url + "register/"))
-                    .GET()
-                    .build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8)
+            );
             if (response.statusCode() != 200) {
-                throw new ManagerSaveException("Can't register a request, statusCode = " + response.statusCode());
+                System.out.println("Не удалось сохранить данные");
             }
-            return response.body();
-        } catch (Exception exception) {
-            throw new ManagerSaveException(exception.toString());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
     public String load(String key) {
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url + "load/" + key + "?API_TOKEN=" + this.apiToken))
-                    .GET()
-                    .build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() != 200) {
-                throw new ManagerSaveException("Can't register a request, statusCode = " + response.statusCode());
-            }
-            return response.body();
-        } catch (Exception e) {
-            throw new ManagerSaveException(e.toString());
-        }
-    }
+        URI uri = URI.create(this.serverURL + "/load/" + key + "?API_TOKEN=" + apiToken);
 
-    public void put(String key, String json) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(uri)
+                .header("Content-Type", "application/json")
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
         try {
-            HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json, UTF_8);
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url + "save/" + key + "?API_TOKEN=" + this.apiToken))
-                    .POST(body)
-                    .build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() != 200) {
-                throw new ManagerSaveException("Can't register a request, statusCode = " + response.statusCode());
-            }
-            return;
-        } catch (Exception exception) {
-            throw new ManagerSaveException(exception.toString());
+            HttpResponse<String> response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8)
+            );
+            return response.body();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return "Во время запроса произошла ошибка";
         }
     }
 }

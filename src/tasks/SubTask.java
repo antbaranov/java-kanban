@@ -1,5 +1,6 @@
 package tasks;
 
+import com.sun.jdi.Type;
 import constants.Status;
 
 import java.time.Instant;
@@ -15,6 +16,10 @@ public class SubTask extends Task {
     */
     public SubTask(String name, String description, Status status, int epicId, Instant startTime, long duration) {
         super(name, description, status, startTime, duration);
+        this.epicId = epicId;
+    }
+    public SubTask(Type taskType, String name, String description, Status status, int epicId, Instant startTime, long duration) {
+        super(taskType, name, description, status, startTime, duration);
         this.epicId = epicId;
     }
 

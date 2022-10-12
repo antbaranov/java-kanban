@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import tasks.Task;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,7 +21,7 @@ class InMemoryHistoryManagerTest {
 
     protected Task addTask() {
 
-        return new Task( "Title", "Description", Status.NEW, LocalDateTime.now(), 0);
+        return new Task( "Title", "Description", Status.NEW, Instant.now(), 0);
     }
 
     @BeforeEach
