@@ -22,15 +22,14 @@ import java.time.Instant;
 
 
 public class HttpTaskServer {
-    public static final int PORT = 8080;
+    private static final int PORT = 8080;
     private final HttpServer httpServer;
-    private  Gson gson;
-    private TaskManager taskManager;
 
     public HttpTaskServer() throws IOException, InterruptedException {
         HistoryManager historyManager = Managers.getDefaultHistory();
         TaskManager taskManager = Managers.getDefault(historyManager);
-        this.httpServer = HttpServer.create(new InetSocketAddress(PORT), 0);
+        this.httpServer = HttpServer.create();
+        httpServer.bind(new InetSocketAddress(PORT), 0);
         httpServer.createContext("/tasks/", new TasksHandler(taskManager));
         httpServer.createContext("/tasks/task/", new TaskHandler(taskManager));
         httpServer.createContext("/tasks/epic/", new EpicHandler(taskManager));
@@ -48,15 +47,15 @@ public class HttpTaskServer {
     }
 
     public void stop() {
-        httpServer.stop(0);
+        httpServer.stop(1);
         System.out.println("HTTP-cервер остановлен на " + PORT + " порту!");
         System.out.println("HTTP server stopped on " + PORT + " port!");
     }
 
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+/*    public static void main(String[] args) throws IOException, InterruptedException {
          new HttpTaskServer().start();
-     }
+     }*/
 
 
     public class TasksHandler implements HttpHandler {
@@ -103,6 +102,7 @@ public class HttpTaskServer {
         private final TaskManager taskManager;
 
         public TaskHandler(TaskManager taskManager) {
+
             this.taskManager = taskManager;
         }
 
@@ -113,7 +113,7 @@ public class HttpTaskServer {
             String method = httpExchange.getRequestMethod();
             String path = String.valueOf(httpExchange.getRequestURI());
 
-            System.out.println("Обрабатывается запрос " + path + " методом " + method);
+            System.out.println("Обрабатывается запрос: " + path + " методом: " + method);
 
             switch (method) {
                 case "GET":
@@ -121,7 +121,7 @@ public class HttpTaskServer {
                     if (query == null) {
                         statusCode = 200;
                         String jsonString = gson.toJson(taskManager.getAllTasks());
-                        System.out.println("GET TASKS: " + jsonString);
+                        System.out.println("GET Все задачи: " + jsonString);
                         response = gson.toJson(jsonString);
                     } else {
                         try {
@@ -153,7 +153,7 @@ public class HttpTaskServer {
                             response = "Задача с id=" + id + " обновлена";
                         } else {
                             Task taskCreated = taskManager.addTask(task);
-                            System.out.println("CREATED TASK: " + taskCreated);
+                            System.out.println("Создана задача: " + taskCreated);
                             int idCreated = taskCreated.getId();
                             statusCode = 201;
                             response = "Создана задача с id=" + idCreated;
@@ -219,7 +219,7 @@ public class HttpTaskServer {
                     if (query == null) {
                         statusCode = 200;
                         String jsonString = gson.toJson(taskManager.getAllEpics());
-                        System.out.println("GET EPICS: " + jsonString);
+                        System.out.println("GET Все Эпики: " + jsonString);
                         response = gson.toJson(jsonString);
                     } else {
                         try {
@@ -250,9 +250,9 @@ public class HttpTaskServer {
                             statusCode = 200;
                             response = "Эпик с id=" + id + " обновлен";
                         } else {
-                            System.out.println("CREATED");
+                            System.out.println("Создан");
                             Epic epicCreated = taskManager.addEpic(epic);
-                            System.out.println("CREATED EPIC: " + epicCreated);
+                            System.out.println("Создан EPIC: " + epicCreated);
                             int idCreated = epicCreated.getId();
                             statusCode = 201;
                             response = "Создан эпик с id=" + idCreated;
@@ -325,7 +325,7 @@ public class HttpTaskServer {
                             if (subtask != null) {
                                 response = gson.toJson(subtask);
                             } else {
-                                response = "подЗадача с данным id не найдена";
+                                response = "ПодЗадача с данным id не найдена";
                             }
                             statusCode = 200;
                         } catch (StringIndexOutOfBoundsException e) {
@@ -347,9 +347,9 @@ public class HttpTaskServer {
                             statusCode = 200;
                             response = "ПодЗадача с id=" + id + " обновлена";
                         } else {
-                            System.out.println("CREATED");
+                            System.out.println("Создана");
                             SubTask subtaskCreated = taskManager.addSubTask(subtask);
-                            System.out.println("CREATED SUBTASK: " + subtaskCreated);
+                            System.out.println("Создана ПодЗадача: " + subtaskCreated);
                             int idCreated = subtaskCreated.getId();
                             statusCode = 201;
                             response = "Создана подЗадача с id=" + idCreated;
@@ -472,11 +472,12 @@ public class HttpTaskServer {
             }
         }
     }
-    
+/*
     private static int parserId(String query) {
         String[] queryArray = query.split("=");
         int id = Integer.parseInt(queryArray[1]);
         return id;
     }
+    */
 }
 

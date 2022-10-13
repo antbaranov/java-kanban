@@ -12,13 +12,14 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * Постман: https://www.getpostman.com/collections/a83b61d9e1c81c10575c
- *
- *
+ * <p>
+ * <p>
  * public class Main {
- *
- *     public static void main(String[] args) throws IOException {
- *         new KVServer().start();
- *     }
+ * <p>
+ * public static void main(String[] args) throws IOException {
+ * new KVServer().start();
+ * }
+ * }
  */
 public class KVServer {
     public static final int PORT = 8078;
@@ -35,7 +36,7 @@ public class KVServer {
     }
 
     private void load(HttpExchange httpExchange) {
-        // TODO Добавьте получение значения по ключу
+        // TODO Добавьте получение значения по ключу (Шаблон)
         try (httpExchange) {
             System.out.println("\n/load");
             if (!hasAuth(httpExchange)) {

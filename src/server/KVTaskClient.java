@@ -13,6 +13,8 @@ public class KVTaskClient {
 
     private final String serverURL;
 
+
+
     public KVTaskClient(String serverURL) throws IOException, InterruptedException {
         this.serverURL = serverURL;
 
@@ -35,7 +37,8 @@ public class KVTaskClient {
     public void put(String key, String json) {
         URI uri = URI.create(this.serverURL + "/save/" + key + "?API_TOKEN=" + apiToken);
 
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest
+                .newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .uri(uri)
                 .header("Content-Type", "application/json")
@@ -74,4 +77,5 @@ public class KVTaskClient {
             return "Во время запроса произошла ошибка";
         }
     }
+
 }

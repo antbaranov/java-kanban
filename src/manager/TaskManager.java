@@ -70,6 +70,7 @@ public interface TaskManager {
 
     // Получение списка всех подзадач определённого эпика
    List<SubTask> getAllSubtasksByEpicId(int id);
+
     void remove(int id);
 
     void printTasks();

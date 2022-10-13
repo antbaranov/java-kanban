@@ -17,13 +17,14 @@ import java.util.List;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
 
-    private final Path PATH = Path.of("src/upload/tasks_file.csv");
+    private final Path PATH = Path.of("tasks_file.csv");
     private File file = new File(String.valueOf(PATH));
     public static final String COMMA_SEPARATOR = ",";
 
     public FileBackedTasksManager(HistoryManager historyManager) {
         super(historyManager);
     }
+
     public FileBackedTasksManager(HistoryManager historyManager, File file) {
         super(historyManager);
         this.file = file;
@@ -87,20 +88,21 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         Integer epicId = type.equals("SUBTASK") ? Integer.parseInt(params[7]) : null;
 
         if (type.equals("EPIC")) {
-            Epic epic = new Epic( name, description, status, startTime, duration);
+            Epic epic = new Epic(name, description, status, startTime, duration);
             epic.setId(id);
             epic.setStatus(status);
             return epic;
         } else if (type.equals("SUBTASK")) {
-            SubTask subtask = new SubTask( name, description, status, epicId, startTime, duration);
+            SubTask subtask = new SubTask(name, description, status, epicId, startTime, duration);
             subtask.setId(id);
             return subtask;
         } else {
-            Task task = new Task( name, description, status, startTime, duration);
+            Task task = new Task(name, description, status, startTime, duration);
             task.setId(id);
             return task;
         }
     }
+
     // Метод для сохранения истории в CSV
     static String historyToString(HistoryManager manager) {
         List<Task> history = manager.getHistory();
@@ -135,31 +137,32 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     // Метод восстанавливает данные менеджера из файла при запуске программы
-    public  void loadFromFile() {
+    public void loadFromFile() {
         // final FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
-        try (BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
-            br.readLine();
-            while (br.ready()) {
-                String line = br.readLine();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
 
-                if (line.isEmpty() || line.isBlank()) {
+            String line = bufferedReader.readLine();
+            while (bufferedReader.ready()) {
+                line = bufferedReader.readLine();
+                if (line.equals("")) {
                     break;
                 }
+
                 Task task = fromString(line);
 
                 if (task instanceof Epic epic) {
                     addEpic(epic);
-                } else if (task instanceof SubTask subTask) {
-                    addSubTask(subTask);
+                } else if (task instanceof SubTask subtask) {
+                    addSubTask(subtask);
                 } else {
                     addTask(task);
                 }
             }
-            String lineWithHistory = br.readLine();
+
+            String lineWithHistory = bufferedReader.readLine();
             for (int id : historyFromString(lineWithHistory)) {
                 addToHistory(id);
             }
-
         } catch (IOException e) {
             throw new ManagerSaveException("Произошла ошибка во время чтения файла!");
         }
@@ -196,7 +199,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
 
-
     // Удаление всех Задач
     @Override
     public void deleteAllTasks() {
@@ -217,7 +219,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         super.deleteAllEpics();
         save();
     }
-
 
 
     // Получение списка Эпиков
@@ -318,7 +319,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         super.deleteAllSubtasksByEpic(epic);
         save();
     }
-
 
 
     public static void main(String[] args) {
