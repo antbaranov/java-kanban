@@ -30,6 +30,7 @@ public class HttpTaskServer {
         TaskManager taskManager = Managers.getDefault(historyManager);
         this.httpServer = HttpServer.create();
         httpServer.bind(new InetSocketAddress(PORT), 0);
+
         httpServer.createContext("/tasks/", new TasksHandler(taskManager));
         httpServer.createContext("/tasks/task/", new TaskHandler(taskManager));
         httpServer.createContext("/tasks/epic/", new EpicHandler(taskManager));

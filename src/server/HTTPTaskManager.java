@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class HTTPTaskManager extends FileBackedTasksManager {
 
-    KVTaskClient client;
+    final KVTaskClient client;
     final static String KEY_TASKS = "tasks";
     final static String KEY_EPICS = "epics";
     final static String KEY_SUBTASKS = "subtasks";
@@ -78,9 +78,8 @@ public class HTTPTaskManager extends FileBackedTasksManager {
         client.put(KEY_EPICS, gson.toJson(epics.values()));
         client.put(KEY_HISTORY, gson.toJson(
                 this.getHistory()
-                .stream()
-                .map(Task::getId)
-                .collect(Collectors.toList())));
+                        .stream()
+                        .map(Task::getId)
+                        .collect(Collectors.toList())));
     }
-
 }

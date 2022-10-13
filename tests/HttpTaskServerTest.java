@@ -21,6 +21,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Instant;
 
+import static com.google.gson.JsonParser.parseString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HttpTaskServerTest {
@@ -113,7 +114,7 @@ class HttpTaskServerTest {
             request = HttpRequest.newBuilder().uri(url).GET().build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             assertEquals(200, response.statusCode());
-            JsonArray arrayTasks = JsonParser.parseString(response.body()).getAsJsonArray();
+            JsonArray arrayTasks = parseString(response.body()).getAsJsonArray();
             assertEquals(1, arrayTasks.size());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
@@ -151,7 +152,7 @@ class HttpTaskServerTest {
                 request = HttpRequest.newBuilder().uri(url).GET().build();
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 assertEquals(200, response.statusCode());
-                JsonArray arrayTasks = JsonParser.parseString(response.body()).getAsJsonArray();
+                JsonArray arrayTasks = parseString(response.body()).getAsJsonArray();
                 assertEquals(1, arrayTasks.size());
             }
         } catch (IOException | InterruptedException e) {
@@ -396,7 +397,7 @@ class HttpTaskServerTest {
             assertEquals(204, response.statusCode());
             request = HttpRequest.newBuilder().uri(url).GET().build();
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            JsonArray arrayTasks = JsonParser.parseString(response.body()).getAsJsonArray();
+            JsonArray arrayTasks = parseString(response.body()).getAsJsonArray();
             assertEquals(0, arrayTasks.size());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
@@ -423,7 +424,7 @@ class HttpTaskServerTest {
             request = HttpRequest.newBuilder().uri(url).GET().build();
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
             assertEquals(200, response.statusCode());
-            JsonArray arrayTasks = JsonParser.parseString(response.body()).getAsJsonArray();
+            JsonArray arrayTasks = parseString(response.body()).getAsJsonArray();
             assertEquals(0, arrayTasks.size());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
@@ -463,7 +464,7 @@ class HttpTaskServerTest {
                 request = HttpRequest.newBuilder().uri(url).GET().build();
                 response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 assertEquals(200, response.statusCode());
-                JsonArray arrayTasks = JsonParser.parseString(response.body()).getAsJsonArray();
+                JsonArray arrayTasks = parseString(response.body()).getAsJsonArray();
                 assertEquals(0, arrayTasks.size());
             }
         } catch (IOException | InterruptedException e) {

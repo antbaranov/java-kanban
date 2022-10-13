@@ -22,6 +22,12 @@ public class Task {
     private Instant startTime;
     private long duration;
 
+    public Task(String name, String description, Status status) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+    }
+
     public Task(String name, String description, Status status, Instant startTime, long duration) {
         this.name = name;
         this.description = description;

@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
 public class KVTaskClient {
 
     private final String apiToken;
-
     private final String serverURL;
 
 
