@@ -70,7 +70,7 @@ class HttpTaskServerTest {
             e.printStackTrace();
         }
     }
-    
+
     @Test
     void getTasksTest() {
         HttpClient client = HttpClient.newHttpClient();

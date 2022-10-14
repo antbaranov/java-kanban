@@ -58,7 +58,6 @@ public class HttpTaskServer {
          new HttpTaskServer().start();
      }*/
 
-
     public class TasksHandler implements HttpHandler {
         private final Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Instant.class, new InstantAdapter())
