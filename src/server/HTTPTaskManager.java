@@ -14,10 +14,6 @@ import java.util.stream.Collectors;
 public class HTTPTaskManager extends FileBackedTasksManager {
 
     final KVTaskClient client;
-    final static String KEY_TASKS = "tasks";
-    final static String KEY_EPICS = "epics";
-    final static String KEY_SUBTASKS = "subtasks";
-    final static String KEY_HISTORY = "history";
 
     private static final Gson gson =
             new GsonBuilder()
@@ -28,7 +24,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
         super(historyManager);
         client = new KVTaskClient(path);
 
-        JsonElement jsonTasks = JsonParser.parseString(client.load(KEY_TASKS));
+        JsonElement jsonTasks = JsonParser.parseString(client.load("tasks"));
         if (!jsonTasks.isJsonNull()) {
             JsonArray jsonTasksArray = jsonTasks.getAsJsonArray();
             for (JsonElement jsonTask : jsonTasksArray) {
@@ -37,7 +33,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
             }
         }
 
-        JsonElement jsonEpics = JsonParser.parseString(client.load(KEY_EPICS));
+        JsonElement jsonEpics = JsonParser.parseString(client.load("epics"));
         if (!jsonEpics.isJsonNull()) {
             JsonArray jsonEpicsArray = jsonEpics.getAsJsonArray();
             for (JsonElement jsonEpic : jsonEpicsArray) {
@@ -46,7 +42,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
             }
         }
 
-        JsonElement jsonSubtasks = JsonParser.parseString(client.load(KEY_SUBTASKS));
+        JsonElement jsonSubtasks = JsonParser.parseString(client.load("subtasks"));
         if (!jsonSubtasks.isJsonNull()) {
             JsonArray jsonSubtasksArray = jsonSubtasks.getAsJsonArray();
             for (JsonElement jsonSubtask : jsonSubtasksArray) {
@@ -55,7 +51,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
             }
         }
 
-        JsonElement jsonHistoryList = JsonParser.parseString(client.load(KEY_HISTORY));
+        JsonElement jsonHistoryList = JsonParser.parseString(client.load("history"));
         if (!jsonHistoryList.isJsonNull()) {
             JsonArray jsonHistoryArray = jsonHistoryList.getAsJsonArray();
             for (JsonElement jsonTaskId : jsonHistoryArray) {
@@ -73,11 +69,10 @@ public class HTTPTaskManager extends FileBackedTasksManager {
 
     @Override
     public void save() {
-        client.put(KEY_TASKS, gson.toJson(tasks.values()));
-        client.put(KEY_SUBTASKS, gson.toJson(subTasks.values()));
-        client.put(KEY_EPICS, gson.toJson(epics.values()));
-        client.put(KEY_HISTORY, gson.toJson(
-                this.getHistory()
+        client.put("tasks", gson.toJson(tasks.values()));
+        client.put("subtasks", gson.toJson(subTasks.values()));
+        client.put("epics", gson.toJson(epics.values()));
+        client.put("history", gson.toJson(this.getHistory()
                         .stream()
                         .map(Task::getId)
                         .collect(Collectors.toList())));
