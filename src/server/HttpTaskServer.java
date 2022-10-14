@@ -123,7 +123,8 @@ public class HttpTaskServer {
                         statusCode = 200;
                         String jsonString = gson.toJson(taskManager.getAllTasks());
                         System.out.println("GET Все задачи: " + jsonString);
-                        response = gson.toJson(jsonString);
+                        // response = gson.toJson(jsonString);
+                        response = jsonString;
                     } else {
                         try {
                             int id = Integer.parseInt(query.substring(query.indexOf("id=") + 3));
@@ -157,7 +158,8 @@ public class HttpTaskServer {
                             System.out.println("Создана задача: " + taskCreated);
                             int idCreated = taskCreated.getId();
                             statusCode = 201;
-                            response = "Создана задача с id=" + idCreated;
+                            response = ("Создана задача с id=" + idCreated);
+                            System.out.println("Создана задача с id=" + idCreated);
                         }
                     } catch (JsonSyntaxException e) {
                         statusCode = 400;
@@ -221,7 +223,8 @@ public class HttpTaskServer {
                         statusCode = 200;
                         String jsonString = gson.toJson(taskManager.getAllEpics());
                         System.out.println("GET Все Эпики: " + jsonString);
-                        response = gson.toJson(jsonString);
+                        //response = gson.toJson(jsonString);
+                        response = jsonString;
                     } else {
                         try {
                             int id = Integer.parseInt(query.substring(query.indexOf("id=") + 3));
@@ -256,7 +259,9 @@ public class HttpTaskServer {
                             System.out.println("Создан EPIC: " + epicCreated);
                             int idCreated = epicCreated.getId();
                             statusCode = 201;
-                            response = "Создан эпик с id=" + idCreated;
+                            response = ("Создан Эпик с id=" + idCreated);
+                            System.out.println("Создан Эпик с id=" + idCreated);
+
                         }
                     } catch (JsonSyntaxException e) {
                         statusCode = 400;
@@ -353,7 +358,8 @@ public class HttpTaskServer {
                             System.out.println("Создана ПодЗадача: " + subtaskCreated);
                             int idCreated = subtaskCreated.getId();
                             statusCode = 201;
-                            response = "Создана подЗадача с id=" + idCreated;
+                            response = ("Создана подЗадача с id=" + idCreated);
+                            System.out.println("Создана подЗадача с id=" + idCreated);
                         }
                     } catch (JsonSyntaxException e) {
                         response = "Неверный формат запроса";
