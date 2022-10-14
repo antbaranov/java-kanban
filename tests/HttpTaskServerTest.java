@@ -6,6 +6,7 @@ import constants.Status;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import server.HTTPTaskManager;
 import server.HttpTaskServer;
 import server.InstantAdapter;
 import server.KVServer;
@@ -26,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class HttpTaskServerTest {
     private static KVServer kvServer;
     private static HttpTaskServer taskServer;
+    HTTPTaskManager httpTaskManager;
     private Gson gson = new GsonBuilder()
             .registerTypeAdapter(Instant.class, new InstantAdapter())
             .create();
@@ -68,29 +70,8 @@ class HttpTaskServerTest {
             }
         }
     */
-/*
-    @Test
-    void getAllTasksTest() throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        URI url = URI.create("http://localhost:8080/tasks/task/");
-        Task task = new Task("Title Task 1", "Description Task 1", Status.NEW, Instant.now(), 15);
+   
 
-        HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        assertEquals(200, response.statusCode());
-        String json = response.body();
-        Type taskType = new TypeToken<ArrayList<Task>>(){}.getType();
-
-        List<Task> tasksList = gson.fromJson(json, taskType);
-
-        assertNotNull(tasksList, "Задачи не возвращаются.");
-        assertEquals(1, tasksList.size(), "Неверное количество задач.");
-        assertEquals(task, tasksList.get(0), "Задачи не совпадают.");
-    }
-
-
-*/
     @Test
     void getTasksTest() {
         HttpClient client = HttpClient.newHttpClient();
