@@ -1,7 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import constants.Status;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,11 +15,14 @@ import tasks.SubTask;
 import tasks.Task;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.google.gson.JsonParser.parseString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -71,6 +74,10 @@ class HttpTaskServerTest {
         }
     }
 
+
+
+
+
     @Test
     void getTasksTest() {
         HttpClient client = HttpClient.newHttpClient();
@@ -88,10 +95,14 @@ class HttpTaskServerTest {
             request = HttpRequest.newBuilder().uri(url).GET().build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             assertEquals(200, response.statusCode());
-            JsonArray arrayTasks = JsonParser.parseString(response.body()).getAsJsonArray(); //// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            System.out.println(response.body());
+            Type type = new TypeToken<ArrayList<Task>>(){}.getType();
+            List<Task> tasksList = gson.fromJson(response.body(), type);
+            System.out.println(tasksList);
+           // assertEquals(1, tasksList.size());
 
-
-            assertEquals(1, arrayTasks.size());
+            //JsonArray arrayTasks = JsonParser.parseString(response.body()).getAsJsonArray(); //// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+           // assertEquals(1, arrayTasks.size());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
