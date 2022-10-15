@@ -18,6 +18,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HTTPTaskManagerTest<T extends TaskManagerTest<HTTPTaskManager>> {
+
+//class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager>{
     private KVServer server;
     private TaskManager manager;
 

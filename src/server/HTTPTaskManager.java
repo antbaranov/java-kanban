@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class HTTPTaskManager extends FileBackedTasksManager {
 
-    final KVTaskClient client;
+    private final KVTaskClient client;
 
     private static final Gson gson =
             new GsonBuilder()

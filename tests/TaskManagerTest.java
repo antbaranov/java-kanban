@@ -13,7 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 abstract class TaskManagerTest<T extends TaskManager> {
 
+
     protected T manager;
+    // TaskManager manager;
 
     protected Task addTask() {
 
@@ -26,6 +28,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
     protected SubTask addSubTask(Epic epic) {
         return new SubTask("Title", "Description", Status.NEW, epic.getId(), Instant.now(), 0);
     }
+
 
     @Test
     public void addTaskTest() {
