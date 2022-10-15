@@ -60,7 +60,7 @@ public class Main {
             System.out.println(gson.toJson(httpTaskManager.getAllSubtasks()));
             System.out.println("\nЗагруженный менеджер");
             System.out.println(httpTaskManager);
-          //  server.stop();
+            server.stop();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/server/http_handlers/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/http_handlers/EpicHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +93,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HttpTaskServerTest">
+  <component name="RunManager" selected="JUnit.All in java-kanban">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="java-kanban" />
@@ -137,9 +139,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HttpTaskServerTest" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in java-kanban" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.HttpTaskServerTest" />
         <item itemvalue="JUnit.HTTPTaskManagerTest" />
         <item itemvalue="JUnit.HTTPTaskManagerTest.returnEmptyHistoryIfTasksNotExist" />
       </list>
