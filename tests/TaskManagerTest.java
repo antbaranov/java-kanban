@@ -11,18 +11,21 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-abstract class TaskManagerTest<T extends TaskManager>  {
+abstract class TaskManagerTest<T extends TaskManager> {
 
 
     protected T manager;
+
     protected Task addTask() {
 
-        return new Task( "Title", "Description", Status.NEW, Instant.now(), 0);
+        return new Task("Title", "Description", Status.NEW, Instant.now(), 0);
     }
+
     protected Epic addEpic() {
 
-        return new Epic("Title", "Description",  Status.NEW, Instant.now(), 0);
+        return new Epic("Title", "Description", Status.NEW, Instant.now(), 0);
     }
+
     protected SubTask addSubTask(Epic epic) {
         return new SubTask("Title", "Description", Status.NEW, epic.getId(), Instant.now(), 0);
     }
@@ -247,21 +250,21 @@ abstract class TaskManagerTest<T extends TaskManager>  {
     }
 
     @Test
-    public void doNothingIfTaskHashMapIsEmptyTest(){
+    public void doNothingIfTaskHashMapIsEmptyTest() {
         manager.deleteAllTasks();
         manager.deleteTaskById(-1);
         assertEquals(0, manager.getAllTasks().size());
     }
 
     @Test
-    public void doNothingIfEpicHashMapIsEmptyTest(){
+    public void doNothingIfEpicHashMapIsEmptyTest() {
         manager.deleteAllEpics();
         manager.deleteEpicById(-1);
         assertTrue(manager.getAllEpics().isEmpty());
     }
 
     @Test
-    public void doNothingIfSubTaskHashMapIsEmptyTest(){
+    public void doNothingIfSubTaskHashMapIsEmptyTest() {
         manager.deleteAllEpics();
         manager.deleteSubtaskById(-1);
         assertEquals(0, manager.getAllSubtasks().size());

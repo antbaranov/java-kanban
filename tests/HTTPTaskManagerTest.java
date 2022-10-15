@@ -16,17 +16,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// class HTTPTaskManagerTest<T extends TaskManagerTest<HTTPTaskManager>> { // мой изначально
-
- class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager>{ // так просит ревьюер
-//     class HTTPTaskManagerTest{
-
-  //  class HTTPTaskManagerTest extends TaskManagerTest<InMemoryTaskManager>{
-
+class HTTPTaskManagerTest {
 
     private KVServer server;
     // TaskManager manager;
-    HTTPTaskManager  manager;
+    HTTPTaskManager manager;
 
 
     @BeforeEach

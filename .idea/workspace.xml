@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/HTTPTaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/HTTPTaskManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/StatusCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/StatusCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/KVServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/KVServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/HTTPTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/HTTPTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +174,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tests/TaskManagerTest.java</url>
-          <line>319</line>
+          <line>314</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

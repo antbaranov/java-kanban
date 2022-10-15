@@ -73,8 +73,8 @@ public class HTTPTaskManager extends FileBackedTasksManager {
         client.put("subtasks", gson.toJson(subTasks.values()));
         client.put("epics", gson.toJson(epics.values()));
         client.put("history", gson.toJson(this.getHistory()
-                        .stream()
-                        .map(Task::getId)
-                        .collect(Collectors.toList())));
+                .stream()
+                .map(Task::getId)
+                .collect(Collectors.toList())));
     }
 }
