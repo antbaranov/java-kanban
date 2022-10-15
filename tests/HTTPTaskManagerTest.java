@@ -1,7 +1,6 @@
 import constants.Status;
 import manager.HistoryManager;
 import manager.Managers;
-import manager.TaskManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,11 +16,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class HTTPTaskManagerTest<T extends TaskManagerTest<HTTPTaskManager>> {
+// class HTTPTaskManagerTest<T extends TaskManagerTest<HTTPTaskManager>> { // мой изначально
 
-//class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager>{
+ class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager>{ // так просит ревьюер
+//     class HTTPTaskManagerTest{
+
+  //  class HTTPTaskManagerTest extends TaskManagerTest<InMemoryTaskManager>{
+
+
     private KVServer server;
-    private TaskManager manager;
+    // TaskManager manager;
+    HTTPTaskManager  manager;
+
 
     @BeforeEach
     public void createManager() {

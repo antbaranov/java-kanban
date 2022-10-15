@@ -11,12 +11,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-abstract class TaskManagerTest<T extends TaskManager> {
+abstract class TaskManagerTest<T extends TaskManager>  {
 
 
     protected T manager;
-    // TaskManager manager;
-
     protected Task addTask() {
 
         return new Task( "Title", "Description", Status.NEW, Instant.now(), 0);
@@ -28,7 +26,6 @@ abstract class TaskManagerTest<T extends TaskManager> {
     protected SubTask addSubTask(Epic epic) {
         return new SubTask("Title", "Description", Status.NEW, epic.getId(), Instant.now(), 0);
     }
-
 
     @Test
     public void addTaskTest() {
