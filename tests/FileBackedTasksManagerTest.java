@@ -4,7 +4,6 @@ import manager.InMemoryTaskManager;
 import manager.Managers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tasks.Epic;
 import tasks.Task;
@@ -21,9 +20,11 @@ class FileBackedTasksManagerTest extends TaskManagerTest<InMemoryTaskManager> {
     public static final Path PATH = Path.of("test_tasks_file.csv");
     File file = new File(String.valueOf(PATH));
 
-    @BeforeEach
-    public void beforeEach() {
+    @Override
+    public InMemoryTaskManager createManager() {
+
         manager = new FileBackedTasksManager(Managers.getDefaultHistory(), file);
+        return manager;
     }
 
     @AfterEach

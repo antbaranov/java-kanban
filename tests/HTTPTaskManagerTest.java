@@ -2,7 +2,6 @@ import constants.Status;
 import manager.HistoryManager;
 import manager.Managers;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import server.HTTPTaskManager;
 import server.KVServer;
@@ -16,15 +15,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class HTTPTaskManagerTest {
+// class HTTPTaskManagerTest {
+class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
+
 
     private KVServer server;
-    // TaskManager manager;
     HTTPTaskManager manager;
 
 
-    @BeforeEach
-    public void createManager() {
+    @Override
+    public HTTPTaskManager createManager() {
         try {
             server = new KVServer();
             server.start();
@@ -33,6 +33,7 @@ class HTTPTaskManagerTest {
         } catch (IOException | InterruptedException e) {
             System.out.println("Ошибка при создании менеджера");
         }
+        return manager;
     }
 
     @AfterEach

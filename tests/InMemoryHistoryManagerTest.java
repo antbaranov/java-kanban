@@ -21,7 +21,7 @@ class InMemoryHistoryManagerTest {
 
     protected Task addTask() {
 
-        return new Task( "Title", "Description", Status.NEW, Instant.now(), 0);
+        return new Task("Title", "Description", Status.NEW, Instant.now(), 0);
     }
 
     @BeforeEach
