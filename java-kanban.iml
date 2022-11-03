@@ -9,6 +9,8 @@
       <sourceFolder url="file://$MODULE_DIR$/tests/manager" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/server" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/server/server" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test" isTestSource="true" />
     </content>
     <orderEntry type="jdk" jdkName="openjdk-18" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
