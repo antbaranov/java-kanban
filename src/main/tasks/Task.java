@@ -1,4 +1,4 @@
-package main.tasks;
+package tasks;
 
 import com.sun.jdi.Type;
 import main.constants.Status;
