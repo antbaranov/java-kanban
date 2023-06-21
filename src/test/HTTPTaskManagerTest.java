@@ -3,13 +3,13 @@ package test;
 import main.constants.Status;
 import main.manager.HistoryManager;
 import main.manager.Managers;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
 import main.server.HTTPTaskManager;
 import main.server.KVServer;
-import main.tasks.Epic;
-import main.tasks.SubTask;
-import main.tasks.Task;
+import tasks.Epic;
+import tasks.SubTask;
+import tasks.Task;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -18,7 +18,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // class test.HTTPTaskManagerTest {
-class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
+class HTTPTaskManagerTest extends test.TaskManagerTest<HTTPTaskManager> {
 
 
     private KVServer server;
