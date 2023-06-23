@@ -1,10 +1,11 @@
-package main.server;
+package server;
 
 import com.sun.net.httpserver.HttpServer;
 import main.manager.HistoryManager;
 import main.manager.Managers;
 import main.manager.TaskManager;
-import main.server.http_handlers.*;
+import server.http_handlers.TaskHandler;
+import server.http_handlers.TasksHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

@@ -1,4 +1,4 @@
-package main.server;
+package server;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,7 +11,6 @@ public class KVTaskClient {
 
     private final String apiToken;
     private final String serverURL;
-
 
 
     public KVTaskClient(String serverURL) throws IOException, InterruptedException {
@@ -76,6 +75,4 @@ public class KVTaskClient {
             return "Во время запроса произошла ошибка";
         }
     }
-
-
 }

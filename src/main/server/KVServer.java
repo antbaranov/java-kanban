@@ -23,7 +23,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * }
  */
 
-
 public class KVServer {
     public static final int PORT = 8078;
     private final String apiToken;

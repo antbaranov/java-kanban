@@ -1,4 +1,4 @@
-package main.server.http_handlers;
+package server.http_handlers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -7,8 +7,8 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import main.constants.StatusCode;
 import main.manager.TaskManager;
-import main.server.InstantAdapter;
-import main.tasks.Task;
+import server.InstantAdapter;
+import tasks.Task;
 
 import java.io.IOException;
 import java.io.OutputStream;

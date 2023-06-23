@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="" />
+    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/HttpTaskServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/InstantAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/InstantAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/KVServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/KVServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/KVTaskClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/KVTaskClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/TaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/TasksHandler.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +34,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -172,6 +187,8 @@
       <workItem from="1685623989930" duration="537000" />
       <workItem from="1687257275667" duration="1012000" />
       <workItem from="1687340574156" duration="1071000" />
+      <workItem from="1687350056732" duration="1265000" />
+      <workItem from="1687523108845" duration="909000" />
     </task>
     <servers />
   </component>
