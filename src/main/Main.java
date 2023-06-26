@@ -6,8 +6,8 @@ import main.manager.Managers;
 import main.manager.TaskManager;
 import main.server.InstantAdapter;
 import main.server.KVServer;
-import main.tasks.Epic;
-import main.tasks.SubTask;
+import tasks.Epic;
+import tasks.SubTask;
 import tasks.Task;
 
 import java.io.IOException;
