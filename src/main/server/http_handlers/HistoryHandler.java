@@ -6,7 +6,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import main.constants.StatusCode;
 import main.manager.TaskManager;
-import main.server.InstantAdapter;
+import main.InstantAdapter;
 
 import java.io.IOException;
 import java.io.OutputStream;
