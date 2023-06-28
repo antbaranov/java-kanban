@@ -1,10 +1,10 @@
-package main.manager;
+package manager;
 
 import main.exceptions.ManagerValidateException;
-import main.tasks.Task;
-import main.tasks.Epic;
+import tasks.Task;
+import tasks.Epic;
 import main.constants.Status;
-import main.tasks.SubTask;
+import tasks.SubTask;
 
 import java.time.Instant;
 import java.util.*;
