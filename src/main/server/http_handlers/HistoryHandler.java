@@ -49,4 +49,3 @@ public class HistoryHandler implements HttpHandler {
         }
     }
 }
-
