@@ -1,9 +1,8 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import main.constants.Status;
-import main.manager.HistoryManager;
 import main.manager.Managers;
 import main.server.KVServer;
+import manager.HistoryManager;
 import manager.TaskManager;
 import server.InstantAdapter;
 import tasks.Epic;
@@ -27,7 +26,7 @@ public class Main {
             HistoryManager historyManager = Managers.getDefaultHistory();
             TaskManager httpTaskManager = Managers.getDefault(historyManager);
 
-            Task task1 = new Task("Title Task 1", "Description Task 1", Status.NEW, Instant.now(), 15);
+            Task task1 = new Task("Title Task 1", "Description Task 1", main.constants.Status.NEW, Instant.now(), 15);
             httpTaskManager.addTask(task1);
             Task task2 = new Task("Title Task 2", "Description Task 2", Status.NEW, Instant.now(), 15);
             httpTaskManager.addTask(task2);
