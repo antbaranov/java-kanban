@@ -1,11 +1,8 @@
-package test;
-
 import main.constants.Status;
-import main.manager.HistoryManager;
-import main.manager.InMemoryHistoryManager;
+import manager.HistoryManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import main.tasks.Task;
+import tasks.Task;
 
 import java.time.Instant;
 import java.util.Collections;
@@ -29,7 +26,7 @@ class InMemoryHistoryManagerTest {
     @BeforeEach
     public void beforeEach() {
 
-        manager = new InMemoryHistoryManager();
+        manager = new HistoryManager();
     }
 
     @Test

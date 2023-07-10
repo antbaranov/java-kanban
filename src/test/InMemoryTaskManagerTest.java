@@ -1,7 +1,5 @@
-package test;
-
-import main.manager.InMemoryTaskManager;
 import main.manager.Managers;
+import manager.InMemoryTaskManager;
 
 class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
     /*@BeforeEach

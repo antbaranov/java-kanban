@@ -1,7 +1,5 @@
-package test;
-
 import main.constants.Status;
-import main.manager.HistoryManager;
+import manager.HistoryManager;
 import main.manager.Managers;
 import main.server.HTTPTaskManager;
 import main.server.KVServer;
@@ -18,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // class test.HTTPTaskManagerTest {
-class HTTPTaskManagerTest extends test.TaskManagerTest<HTTPTaskManager> {
+class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
 
 
     private KVServer server;

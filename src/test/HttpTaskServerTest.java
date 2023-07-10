@@ -1,5 +1,3 @@
-package test;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -10,12 +8,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import main.server.HttpTaskServer;
-import main.server.InstantAdapter;
+import server.HttpTaskServer;
+import server.InstantAdapter;
 import main.server.KVServer;
-import main.tasks.Epic;
-import main.tasks.SubTask;
-import main.tasks.Task;
+import tasks.Epic;
+import tasks.SubTask;
+import tasks.Task;
 
 import java.io.IOException;
 import java.net.URI;
