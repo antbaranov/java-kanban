@@ -1,12 +1,10 @@
-package test;
-
-import main.constants.Status;
-import main.manager.TaskManager;
+import manager.TaskManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import main.tasks.Epic;
-import main.tasks.SubTask;
-import main.tasks.Task;
+import tasks.Epic;
+import tasks.SubTask;
+import tasks.Task;
+import main.constants.Status;
 
 import java.io.IOException;
 import java.time.Instant;

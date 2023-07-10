@@ -1,7 +1,7 @@
 import main.manager.Managers;
 import manager.InMemoryTaskManager;
 
-class InMemoryTaskManagerTest extends test.TaskManagerTest<InMemoryTaskManager> {
+class InMemoryTaskManagerTest extends TaskManagerTest<InMemoryTaskManager> {
     /*@BeforeEach
     public void beforeEach() {
         manager = new InMemoryTaskManager(Managers.getDefaultHistory());
