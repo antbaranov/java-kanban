@@ -1,5 +1,4 @@
 import main.constants.Status;
-import main.manager.InMemoryHistoryManager;
 import manager.HistoryManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
