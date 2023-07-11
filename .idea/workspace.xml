@@ -176,6 +176,7 @@
       <workItem from="1687961131281" duration="2628000" />
       <workItem from="1688632445464" duration="373000" />
       <workItem from="1688736721322" duration="769000" />
+      <workItem from="1688994705601" duration="1169000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1687875224887</created>
@@ -210,7 +211,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/TaskManagerTest.java</url>
-          <line>334</line>
+          <line>332</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
