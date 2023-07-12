@@ -1,22 +1,20 @@
 import main.constants.Status;
-import manager.HistoryManager;
 import main.manager.Managers;
 import main.server.HTTPTaskManager;
 import main.server.KVServer;
+import manager.HistoryManager;
+import manager.TaskManager;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-// class test.HTTPTaskManagerTest {
-class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
+class HTTPTaskManagerTest extends TaskManager<HTTPTaskManager> {
 
 
     private KVServer server;
