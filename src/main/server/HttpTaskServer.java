@@ -1,9 +1,9 @@
 package server;
 
 import com.sun.net.httpserver.HttpServer;
-import main.manager.HistoryManager;
-import main.manager.Managers;
-import main.manager.TaskManager;
+import manager.HistoryManager;
+import manager.Managers;
+import manager.TaskManager;
 import server.http_handlers.TaskHandler;
 import server.http_handlers.TasksHandler;
 
@@ -23,7 +23,7 @@ public class HttpTaskServer {
 
         httpServer.createContext("/main/tasks/", new TasksHandler(taskManager));
         httpServer.createContext("/main/tasks/task/", new TaskHandler(taskManager));
-        httpServer.createContext("/main/tasks/epic/", new EpicHandler(taskManager));
+        httpServer.createContext("/main/tasks/epic/", new main.server.http_handlers.EpicHandler(taskManager));
         httpServer.createContext("/main/tasks/subtask/", new SubtaskHandler(taskManager));
         httpServer.createContext("/main/tasks/subtask/epic/", new SubtaskByEpicHandler(taskManager));
         httpServer.createContext("/main/tasks/history/", new HistoryHandler(taskManager));

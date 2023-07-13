@@ -1,4 +1,4 @@
-package main.manager;
+package manager;
 
 import main.server.HTTPTaskManager;
 import main.server.KVServer;
