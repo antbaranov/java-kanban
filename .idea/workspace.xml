@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="fix" />
+    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="fix">
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/FileBackedTasksManagerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/HTTPTaskManagerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/HttpTaskServerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/InMemoryHistoryManagerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/InMemoryTaskManagerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/TaskManagerTest.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,7 +108,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="JUnit.FileBackedTasksManagerTest">
     <configuration name="HttpTaskServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.HttpTaskServer" />
       <module name="java-kanban" />
@@ -122,17 +129,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.java.Main" />
-      <module name="java-kanban" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="All in java-kanban" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileBackedTasksManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.FileBackedTasksManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -147,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FileBackedTasksManagerTest" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="JUnit.All in java-kanban" />
         <item itemvalue="JUnit.tests in java-kanban" />
         <item itemvalue="Application.HttpTaskServer" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -177,6 +186,8 @@
       <workItem from="1688632445464" duration="373000" />
       <workItem from="1688736721322" duration="769000" />
       <workItem from="1688994705601" duration="1169000" />
+      <workItem from="1689085515679" duration="1086000" />
+      <workItem from="1689241672207" duration="3125000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1687875224887</created>
@@ -185,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687875224887</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix">
+      <created>1689255871470</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1689255871471</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
