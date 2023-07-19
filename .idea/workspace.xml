@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="fix">
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/FileBackedTasksManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/HTTPTaskManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/HttpTaskServerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/InMemoryHistoryManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/InMemoryTaskManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/test/TaskManagerTest.class" beforeDir="false" />
-    </list>
+    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,6 +181,7 @@
       <workItem from="1688994705601" duration="1169000" />
       <workItem from="1689085515679" duration="1086000" />
       <workItem from="1689241672207" duration="3125000" />
+      <workItem from="1689329610261" duration="210000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1687875224887</created>
@@ -203,7 +197,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689255871471</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix">
+      <created>1689329701498</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1689329701498</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix">
+      <created>1689329788739</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1689329788739</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
