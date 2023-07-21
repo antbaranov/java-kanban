@@ -1,11 +1,12 @@
-package main.server;
+package server;
 
 import com.google.gson.*;
-import main.manager.FileBackedTasksManager;
-import main.manager.HistoryManager;
-import main.tasks.Epic;
-import main.tasks.SubTask;
-import main.tasks.Task;
+import manager.FileBackedTasksManager;
+import manager.HistoryManager;
+import tasks.Epic;
+import tasks.SubTask;
+import tasks.Task;
+import manager.HistoryManager;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -65,6 +66,9 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                 }
             }
         }
+    }
+
+    public HTTPTaskManager(HistoryManager historyManager, String path) {
     }
 
     @Override
