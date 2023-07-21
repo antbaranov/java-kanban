@@ -1,5 +1,6 @@
 import main.constants.Status;
 import manager.Managers;
+import org.junit.jupiter.api.BeforeEach;
 import server.HTTPTaskManager;
 import main.server.KVServer;
 import manager.HistoryManager;
@@ -14,14 +15,14 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 
-class HTTPTaskManagerTest extends TaskManager<HTTPTaskManager> {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+class HTTPTaskManagerTest extends TaskManager<HTTPTaskManager> {
 
     private KVServer server;
     HTTPTaskManager manager;
 
-
-    @Override
+    @BeforeEach
     public HTTPTaskManager createManager() {
         try {
             server = new KVServer();
