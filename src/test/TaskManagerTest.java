@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 abstract class TaskManagerTest<T extends TaskManager> {
 
-
     protected T manager;
     public abstract T createManager() throws IOException, InterruptedException;
     @BeforeEach
@@ -210,7 +209,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
         manager.addSubTask(SubTask);
         manager.deleteAllSubtasksByEpic(epic);
         assertTrue(epic.getSubtaskIds().isEmpty());
-        assertEquals(true, manager.getAllSubtasks().isEmpty());
+        assertTrue(manager.getAllSubtasks().isEmpty());
     }
 
     @Test
@@ -341,5 +340,4 @@ abstract class TaskManagerTest<T extends TaskManager> {
         assertTrue(list.contains(SubTask));
         assertTrue(list.contains(epic));
     }
-
 }
