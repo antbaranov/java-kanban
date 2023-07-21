@@ -1,12 +1,10 @@
 import main.constants.Status;
-import manager.Managers;
-import org.junit.jupiter.api.BeforeEach;
-import server.HTTPTaskManager;
 import main.server.KVServer;
 import manager.HistoryManager;
-import manager.TaskManager;
+import manager.Managers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import server.HTTPTaskManager;
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
@@ -17,12 +15,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class HTTPTaskManagerTest extends TaskManager<HTTPTaskManager> {
+class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
 
     private KVServer server;
     HTTPTaskManager manager;
 
-    @BeforeEach
+    @Override
     public HTTPTaskManager createManager() {
         try {
             server = new KVServer();
@@ -78,5 +76,4 @@ class HTTPTaskManagerTest extends TaskManager<HTTPTaskManager> {
         List<Task> list = manager.getHistory();
         assertEquals(manager.getAllSubtasks(), list);
     }
-
 }
