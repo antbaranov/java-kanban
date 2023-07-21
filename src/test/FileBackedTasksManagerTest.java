@@ -1,14 +1,12 @@
-package test;
-
 import main.constants.Status;
-import main.manager.FileBackedTasksManager;
-import main.manager.InMemoryTaskManager;
-import main.manager.Managers;
+import manager.FileBackedTasksManager;
+import manager.InMemoryTaskManager;
+import manager.Managers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import main.tasks.Epic;
-import main.tasks.Task;
+import tasks.Epic;
+import tasks.Task;
 
 import java.io.File;
 import java.io.IOException;

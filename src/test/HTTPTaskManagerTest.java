@@ -1,6 +1,6 @@
 import main.constants.Status;
-import main.manager.Managers;
-import main.server.HTTPTaskManager;
+import manager.Managers;
+import server.HTTPTaskManager;
 import main.server.KVServer;
 import manager.HistoryManager;
 import manager.TaskManager;
