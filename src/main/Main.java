@@ -1,9 +1,9 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import main.constants.Status;
-import manager.Managers;
 import main.server.KVServer;
 import manager.HistoryManager;
+import manager.Managers;
 import manager.TaskManager;
 import server.InstantAdapter;
 import tasks.Epic;
@@ -60,9 +60,9 @@ public class Main {
             System.out.println(gson.toJson(httpTaskManager.getAllSubtasks()));
             System.out.println("\nЗагруженный менеджер");
             System.out.println(httpTaskManager);
-            //  server.stop();
-        } catch (Exception e) {
-            e.printStackTrace();
+//            server.stop();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 }

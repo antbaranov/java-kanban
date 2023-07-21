@@ -1,5 +1,6 @@
 import main.constants.Status;
 import manager.HistoryManager;
+import manager.InMemoryHistoryManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tasks.Task;
@@ -26,7 +27,7 @@ class InMemoryHistoryManagerTest {
     @BeforeEach
     public void beforeEach() {
 
-        manager = new HistoryManager();
+        manager = new InMemoryHistoryManager();
     }
 
     @Test
