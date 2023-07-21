@@ -12,7 +12,6 @@ import server.http_handlers.TasksHandler;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-
 public class HttpTaskServer {
     private static final int PORT = 8080;
     private final HttpServer httpServer;
@@ -22,7 +21,6 @@ public class HttpTaskServer {
         TaskManager taskManager = Managers.getDefault(historyManager);
         this.httpServer = HttpServer.create();
         httpServer.bind(new InetSocketAddress(PORT), 0);
-
         httpServer.createContext("/main/tasks/", new TasksHandler(taskManager));
         httpServer.createContext("/main/tasks/task/", new TaskHandler(taskManager));
         httpServer.createContext("/main/tasks/epic/", new main.server.http_handlers.EpicHandler(taskManager));
@@ -47,5 +45,4 @@ public class HttpTaskServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         new HttpTaskServer().start();
     }
-
 }
