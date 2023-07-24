@@ -1,6 +1,6 @@
 package manager;
 
-import main.server.HTTPTaskManager;
+import server.HTTPTaskManager;
 import main.server.KVServer;
 
 import java.io.IOException;

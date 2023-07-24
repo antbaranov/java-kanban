@@ -1,11 +1,10 @@
 import main.constants.Status;
-import main.manager.Managers;
-import main.server.HTTPTaskManager;
 import main.server.KVServer;
 import manager.HistoryManager;
-import manager.TaskManager;
+import manager.Managers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import server.HTTPTaskManager;
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
@@ -14,12 +13,12 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 
-class HTTPTaskManagerTest extends TaskManager<HTTPTaskManager> {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
 
     private KVServer server;
     HTTPTaskManager manager;
-
 
     @Override
     public HTTPTaskManager createManager() {
@@ -77,5 +76,4 @@ class HTTPTaskManagerTest extends TaskManager<HTTPTaskManager> {
         List<Task> list = manager.getHistory();
         assertEquals(manager.getAllSubtasks(), list);
     }
-
 }

@@ -4,14 +4,15 @@ import com.sun.net.httpserver.HttpServer;
 import manager.HistoryManager;
 import manager.Managers;
 import manager.TaskManager;
+import server.http_handlers.EpicHandler;
 import server.http_handlers.HistoryHandler;
+import server.http_handlers.SubtaskByEpicHandler;
 import server.http_handlers.SubtaskHandler;
 import server.http_handlers.TaskHandler;
 import server.http_handlers.TasksHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-
 
 public class HttpTaskServer {
     private static final int PORT = 8080;
@@ -22,12 +23,11 @@ public class HttpTaskServer {
         TaskManager taskManager = Managers.getDefault(historyManager);
         this.httpServer = HttpServer.create();
         httpServer.bind(new InetSocketAddress(PORT), 0);
-
         httpServer.createContext("/main/tasks/", new TasksHandler(taskManager));
         httpServer.createContext("/main/tasks/task/", new TaskHandler(taskManager));
-        httpServer.createContext("/main/tasks/epic/", new main.server.http_handlers.EpicHandler(taskManager));
+        httpServer.createContext("/main/tasks/epic/", new EpicHandler(taskManager));
         httpServer.createContext("/main/tasks/subtask/", new SubtaskHandler(taskManager));
-        httpServer.createContext("/main/tasks/subtask/epic/", new main.server.http_handlers.SubtaskByEpicHandler(taskManager));
+        httpServer.createContext("/main/tasks/subtask/epic/", new SubtaskByEpicHandler(taskManager));
         httpServer.createContext("/main/tasks/history/", new HistoryHandler(taskManager));
     }
 
@@ -47,5 +47,4 @@ public class HttpTaskServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         new HttpTaskServer().start();
     }
-
 }

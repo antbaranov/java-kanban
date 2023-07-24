@@ -4,13 +4,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import main.constants.Status;
 import main.constants.StatusCode;
+import main.server.KVServer;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import server.HttpTaskServer;
 import server.InstantAdapter;
-import main.server.KVServer;
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
@@ -455,5 +455,4 @@ class HttpTaskServerTest {
             e.printStackTrace();
         }
     }
-
 }

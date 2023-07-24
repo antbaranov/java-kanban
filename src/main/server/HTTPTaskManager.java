@@ -1,11 +1,15 @@
-package main.server;
+package server;
 
-import com.google.gson.*;
-import main.manager.FileBackedTasksManager;
-import main.manager.HistoryManager;
-import main.tasks.Epic;
-import main.tasks.SubTask;
-import main.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import manager.FileBackedTasksManager;
+import manager.HistoryManager;
+import tasks.Epic;
+import tasks.SubTask;
+import tasks.Task;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -16,9 +20,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
     private final KVTaskClient client;
 
     private static final Gson gson =
-            new GsonBuilder()
-                    .registerTypeAdapter(Instant.class, new InstantAdapter())
-                    .create();
+            new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
 
     public HTTPTaskManager(HistoryManager historyManager, String path) throws IOException, InterruptedException {
         super(historyManager);
