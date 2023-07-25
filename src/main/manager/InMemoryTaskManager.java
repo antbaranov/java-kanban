@@ -1,7 +1,7 @@
 package manager;
 
 import exceptions.ManagerValidateException;
-import main.constants.Status;
+import constants.Status;
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;

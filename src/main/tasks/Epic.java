@@ -1,7 +1,7 @@
 package tasks;
 
 import com.sun.jdi.Type;
-import main.constants.Status;
+import constants.Status;
 
 import java.time.Instant;
 import java.util.ArrayList;
