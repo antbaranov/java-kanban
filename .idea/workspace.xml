@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="fix: done fix">
+    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="fix: fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/exceptions/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/exceptions/ManagerSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/exceptions/ManagerValidateException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/exceptions/ManagerValidateException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/manager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/manager/FileBackedTasksManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +170,8 @@
       <workItem from="1689329610261" duration="210000" />
       <workItem from="1689774668170" duration="326000" />
       <workItem from="1689930013320" duration="5778000" />
-      <workItem from="1690284934739" duration="652000" />
+      <workItem from="1690284934739" duration="1136000" />
+      <workItem from="1690374994132" duration="826000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1687875224887</created>
@@ -264,7 +264,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689939649742</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix: fix">
+      <created>1690286451556</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1690286451556</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix: fix">
+      <created>1690286834658</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1690286834658</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,7 +298,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix" />
     <MESSAGE value="fix: done fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: done fix" />
+    <MESSAGE value="fix: fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fix" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
