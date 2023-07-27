@@ -1,7 +1,7 @@
 package tasks;
 
 import com.sun.jdi.Type;
-import main.constants.Status;
+import constants.Status;
 
 import java.time.Instant;
 import java.util.Objects;
@@ -14,10 +14,12 @@ public class Task {
     protected Status status; //Статус, отображающий её прогресс
 
 
-    /* Мы будем выделять следующие этапы жизни задачи:
-            NEW — задача только создана, но к её выполнению ещё не приступили.
-            IN_PROGRESS — над задачей ведётся работа.
-            DONE — задача выполнена */
+    /**
+     * Мы будем выделять следующие этапы жизни задачи:
+     * NEW — задача только создана, но к её выполнению ещё не приступили.
+     * IN_PROGRESS — над задачей ведётся работа.
+     * DONE — задача выполнена
+     */
     protected Type taskType; // Тип задачи
     private Instant startTime;
     private long duration;
@@ -35,6 +37,7 @@ public class Task {
         this.startTime = startTime;
         this.duration = duration;
     }
+
     public Task(Type taskType, String name, String description, Status status, Instant startTime, long duration) {
         this.taskType = taskType;
         this.name = name;

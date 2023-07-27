@@ -21,17 +21,12 @@ public class Epic extends Task {
         super(name, description, status, startTime, duration);
         this.endTime = super.getEndTime();
     }
+
     public Epic(Type taskType, String name, String description, Status status, Instant startTime, long duration) {
         super(taskType, name, description, status, startTime, duration);
         this.endTime = super.getEndTime();
     }
 
-    /*
-    public void addSubTask(int subTaskId) {
-
-        this.subTaskIds.add(subTaskId);
-    }
-*/
     public List<Integer> getSubtaskIds() {
 
         return subTaskIds;
