@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
-import main.constants.Status;
+import constants.Status;
 
 import java.io.IOException;
 import java.time.Instant;

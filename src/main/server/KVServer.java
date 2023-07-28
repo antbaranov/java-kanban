@@ -1,8 +1,8 @@
-package main.server;
+package server;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
-import main.constants.StatusCode;
+import constants.StatusCode;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

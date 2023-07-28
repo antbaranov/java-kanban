@@ -1,5 +1,5 @@
-import main.constants.Status;
-import main.server.KVServer;
+import constants.Status;
+import server.KVServer;
 import manager.HistoryManager;
 import manager.Managers;
 import org.junit.jupiter.api.AfterEach;
