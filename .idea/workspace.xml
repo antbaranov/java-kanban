@@ -4,25 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="fix: fix">
+    <list default="true" id="e7f577df-ad31-4ded-837c-7bee2d598fcd" name="Changes" comment="fix:">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/manager/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/manager/Managers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/KVServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/KVServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/EpicHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/HistoryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskByEpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskByEpicHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/TaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/TasksHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tasks/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/FileBackedTasksManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/FileBackedTasksManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/HTTPTaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/HTTPTaskManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/HttpTaskServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/HttpTaskServerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/InMemoryHistoryManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/InMemoryHistoryManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/java-kanban/TaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/java-kanban/TaskManagerTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tasks/SubTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/tasks/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/FileBackedTasksManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/HTTPTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/HTTPTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/HttpTaskServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/HttpTaskServerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/InMemoryHistoryManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,33 +54,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/HP/dev/java-kanban/tests/server&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/dev/java-kanban&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "last_directory_selection": "C:/Users/HP/dev/java-kanban/tests/server",
+    "last_opened_file_path": "C:/Users/HP/dev/java-filmorate",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="server" />
@@ -188,7 +177,8 @@
       <workItem from="1689930013320" duration="5778000" />
       <workItem from="1690284934739" duration="1136000" />
       <workItem from="1690374994132" duration="2040000" />
-      <workItem from="1690443734440" duration="2366000" />
+      <workItem from="1690443734440" duration="2672000" />
+      <workItem from="1691577770979" duration="434000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1687875224887</created>
@@ -302,7 +292,21 @@
       <option name="project" value="LOCAL" />
       <updated>1690379531480</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fix: delete path">
+      <created>1690449699603</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1690449699603</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fix:">
+      <created>1690449933341</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1690449933341</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +327,9 @@
     <MESSAGE value="fix" />
     <MESSAGE value="fix: done fix" />
     <MESSAGE value="fix: fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: fix" />
+    <MESSAGE value="fix: delete path" />
+    <MESSAGE value="fix:" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
