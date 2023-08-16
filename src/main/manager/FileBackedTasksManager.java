@@ -190,7 +190,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         return task;
     }
 
-
     @Override
     public Epic addEpic(Epic epic) {
         super.addEpic(epic);
@@ -198,14 +197,12 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         return epic;
     }
 
-
     @Override
     public SubTask addSubTask(SubTask subTask) {
         super.addSubTask(subTask);
         save();
         return subTask;
     }
-
 
     // Удаление всех Задач
     @Override
@@ -228,17 +225,16 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         save();
     }
 
-
     // Получение списка Эпиков
     @Override
     public List<Epic> getAllEpics() {
+
         return super.getAllEpics();
     }
 
     // Получение списка задач
     @Override
     public List<Task> getAllTasks() {
-
         return super.getAllTasks();
     }
 
@@ -246,7 +242,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     @Override
     public List<SubTask> getAllSubtasks() {
         return super.getAllSubtasks();
-
     }
 
     // Получение Задач по идентификатору
