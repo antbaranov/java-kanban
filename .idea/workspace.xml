@@ -61,7 +61,7 @@
     "create.test.in.the.same.root": "true",
     "deletionFromPopupRequiresConfirmation": "false",
     "last_directory_selection": "C:/Users/HP/dev/java-kanban/tests/server",
-    "last_opened_file_path": "C:/Users/HP/dev/java-filmorate",
+    "last_opened_file_path": "C:/Users/HP/dev/java-kanban",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -171,6 +171,7 @@
       <workItem from="1690374994132" duration="2040000" />
       <workItem from="1690443734440" duration="2672000" />
       <workItem from="1691577770979" duration="553000" />
+      <workItem from="1691753284645" duration="176000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1687875224887</created>
@@ -305,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691578251214</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="fix:">
+      <created>1691753442954</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1691753442954</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
