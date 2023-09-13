@@ -35,7 +35,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         this.file = file;
     }
 
-
     // Метод сохраняет текущее состояние менеджера в указанный файл "id,type,name,status,description,epic" + "\n"
     public void save() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
