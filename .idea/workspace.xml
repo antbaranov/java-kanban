@@ -66,6 +66,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -172,6 +173,7 @@
       <workItem from="1690443734440" duration="2672000" />
       <workItem from="1691577770979" duration="553000" />
       <workItem from="1691753284645" duration="176000" />
+      <workItem from="1693383000761" duration="127000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1687875224887</created>
