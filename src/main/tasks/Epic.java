@@ -47,8 +47,7 @@ public class Epic extends Task {
     public void setEndTime(Instant endTime) {
         this.endTime = endTime;
     }
-
-
+    
     @Override
     public String toString() {
         return "Epic{" +
