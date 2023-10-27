@@ -27,22 +27,28 @@ public class Main {
             HistoryManager historyManager = Managers.getDefaultHistory();
             TaskManager httpTaskManager = Managers.getDefault(historyManager);
 
-            Task task1 = new Task("Title Task 1", "Description Task 1", Status.NEW, Instant.now(), 15);
+            Task task1 = new Task("Title Task 1", "Description Task 1",
+                    Status.NEW, Instant.now(), 15);
             httpTaskManager.addTask(task1);
-            Task task2 = new Task("Title Task 2", "Description Task 2", Status.NEW, Instant.now(), 15);
+            Task task2 = new Task("Title Task 2", "Description Task 2",
+                    Status.NEW, Instant.now(), 15);
             httpTaskManager.addTask(task2);
 
-            Epic epic1 = new Epic("Title Epic 1", "Description Epic 1", Status.NEW, Instant.now(), 45);
+            Epic epic1 = new Epic("Title Epic 1", "Description Epic 1",
+                    Status.NEW, Instant.now(), 45);
             httpTaskManager.addEpic(epic1);
 
             SubTask subTask1 = new SubTask(
-                    "Title SubTask 1", "Description SubTask 1", Status.NEW, epic1.getId(), Instant.now(), 15);
+                    "Title SubTask 1", "Description SubTask 1",
+                    Status.NEW, epic1.getId(), Instant.now(), 15);
             httpTaskManager.addSubTask(subTask1);
             SubTask subTask2 = new SubTask(
-                    "Title SubTask 2", "Description SubTask 2", Status.NEW, epic1.getId(), Instant.now(), 15);
+                    "Title SubTask 2", "Description SubTask 2",
+                    Status.NEW, epic1.getId(), Instant.now(), 15);
             httpTaskManager.addSubTask(subTask2);
             SubTask subTask3 = new SubTask(
-                    "Title SubTask 3", "Description SubTask 3", Status.NEW, epic1.getId(), Instant.now(), 15);
+                    "Title SubTask 3", "Description SubTask 3",
+                    Status.NEW, epic1.getId(), Instant.now(), 15);
             httpTaskManager.addSubTask(subTask3);
 
 
